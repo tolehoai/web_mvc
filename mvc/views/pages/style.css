@@ -1,0 +1,200 @@
+body {
+    font-family: 'Raleway', sans-serif !important; 
+}
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cart-icon {
+    position: relative;
+}
+.cart-number {
+    padding: 5px 12px;
+    background-color: #fdd922;
+    border-radius: 200px;
+    position: absolute;
+    top: 10px;
+    right: 90px;
+    color: white;
+    font-weight: 500;
+}
+.cnt-account {
+    margin-right: 100px;
+}
+.logo {
+    margin-left: 100px;
+    width: 100px;
+}
+.btn:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+.btn:hover {
+    outline: none !important;
+    box-shadow: none;
+}
+.sidebar {
+    padding-left: 30px !important;
+}
+.category-sub-2 {
+    display: none;
+    padding: 0 30px
+}
+.category-sub2-item {
+    padding: 5px;
+}
+.category-sub2-item :hover {
+    color:#fdd922;
+}
+.carousel-control-next1-icon, 
+.carousel-control-prev1-icon {
+    color: red !important;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+}
+.carousel-control-prev1-icon{
+    right: -210px;
+}
+
+.category-list {
+    padding: 0;
+}
+.sub1 {
+    background-color: transparent !important;
+}
+.sub2 {
+    padding: 20px !important;
+}
+.new-product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.nav-list-1 {
+    background-color: #f3f3f3;
+    position: absolute;
+    z-index: 2;
+    width: 200%;
+    padding: 5px 10px;
+    top: 45px;
+    min-height: 200px;
+    display: none;
+    left: 0;
+}
+.first-list {
+    position: relative;
+   
+}
+.nav-list-item-2 {
+    display: inline-block;
+    margin: 2px 10px 2px 10px;
+}
+.nav-list-item {
+    font-size:17px;
+    color: #d0021b;
+    font-weight: 600;
+    padding: 10px;
+    display: inline-block;
+}
+.nav-list-item:hover {
+    cursor: pointer;
+    background-color: #157ed2;
+    color: white;
+}
+.nav-list-item:hover .nav-list-1 {
+    display: block;
+    color: #d0021b;
+}
+.nav-list-item-2:hover {
+    color: #283747;
+}
+
+
+
+
+.megamenu {
+    position: static
+}
+
+.megamenu .dropdown-menu {
+    background: none;
+    border: none;
+    width: 100%
+}
+
+
+
+code {
+    color: #745eb1;
+    background: #fff;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.2rem
+}
+
+.text-uppercase {
+    letter-spacing: 0.08em
+}
+li {
+    list-style: none;
+}
+.sanpham {
+    padding-bottom: 10px;
+}
+.show {
+    display: block;
+}
+.sanphammoi {
+    position: sticky !important;
+}
+.sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+input:focus {
+    outline: none !important;
+}
+.search-button {
+    padding: 18px 25px 19px !important;
+}
+.top-bar, .main-header {
+    background-color: #189eff;
+}
+.logo-img {
+    width: 150% !important;
+}
+.media {
+    padding: 5px;
+}
+.media-body {
+    padding-left: 20px;
+}
+.banquyen {
+    color: white;
+}
+.breadcrumb-item {
+    display: inline-block;
+}
+.duongdan-list-item {
+    display: inline-block;
+}
+.section-title {
+    font-size: 24px;
+    padding-left: 30px;
+}
+.text {
+    padding:10px;
+}
+.duong-dan {
+    display: inline-block !important;
+}
+

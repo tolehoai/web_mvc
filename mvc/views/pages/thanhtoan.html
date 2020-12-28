@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="MediaCenter, Template, eCommerce">
+    <meta name="robots" content="all">
+    <title>Chi tiết</title>
+    <!-- Google Font  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="./assets/js/jquery.js"></script>
+
+
+    <!-- Bootstrap Core CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
+
+    <!-- CSS -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Customizable CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/blue.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/owl.transitions.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/rateit.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Icons/Glyphs -->
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            console.log($("#soluong").val());
+
+            $("#tangsoluong").click(function () {
+                console.log("Tang");
+
+                $("#soluong").val(parseInt($("#soluong").val()) + 1);
+            });
+
+            $("#giamsoluong").click(function () {
+                console.log("Giam");
+                if (parseInt($("#soluong").val()) <= 0) {
+                    console.log("Hết trừ được rồi đừng có bấm nữa!");
+                }
+                else {
+                    $("#soluong").val(parseInt($("#soluong").val()) - 1);
+                }
+
+
+            });
+        });
+
+
+
+
+    </script>
+</head>
+<style>
+    .slider-img {
+        width: 1200px;
+    }
+</style>
+
+<body class="cnt-home">
+    <!-- ============================================== HEADER ============================================== -->
+    <header class="header-style-1">
+
+        <!-- ============================================== TOP MENU ============================================== -->
+        <div class="top-bar animate-dropdown">
+            <div class="container-fluid-fluid">
+                <div class="header-top-inner">
+                    <div class="cnt-account">
+                        <ul class="list-unstyled">
+                            <li class="myaccount"><a href="#"><span>Đăng ký</span></a></li>
+
+                            <li class="header_cart hidden-xs"><a href="#"><span>Đăng nhập</span></a></li>
+
+
+                        </ul>
+                    </div>
+                    <!-- /.cnt-account -->
+
+
+                    <!-- /.cnt-cart -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /.header-top-inner -->
+            </div>
+            <!-- /.container-fluid-fluid -->
+        </div>
+        <!-- /.header-top -->
+        <!-- ============================================== TOP MENU : END ============================================== -->
+        <div class="main-header">
+            <div class="container-fluid-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+                        <!-- ============================================================= LOGO ============================================================= -->
+                        <div class="logo"> <a href="home.html" class="w-100"> <img src="./images/logo.PNG"
+                                    class="logo-img" alt="Logo"></a> </div>
+                        <!-- /.logo -->
+                        <!-- ============================================================= LOGO : END ============================================================= -->
+                    </div>
+                    <!-- /.logo-holder -->
+
+                    <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12 top-search-holder">
+                        <!-- /.contact-row -->
+                        <!-- ============================================================= SEARCH AREA ============================================================= -->
+                        <div class="search-area">
+                            <form>
+                                <div class="control-group">
+
+                                    <input class="search-field" placeholder="Tìm kiếm sản phẩm" />
+                                    <a class="search-button" href="#"></a> </div>
+                            </form>
+                        </div>
+                        <!-- /.search-area -->
+                        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+                    </div>
+                    <!-- /.top-search-holder -->
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 top-cart-row item">
+                        <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-cart2 cart-icon" fill="white"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                        </svg>
+                        <div class="cart-number">5</div>
+                    </div>
+
+                </div>
+
+
+                <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
+            </div>
+            <!-- /.top-cart-row -->
+        </div>
+        <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid-fluid -->
+
+        </div>
+        <!-- /.main-header -->
+
+
+        <!-- ============================================== NAVBAR ============================================== -->
+
+
+
+
+
+        </div>
+        <!-- ============================================== NAVBAR : END ============================================== -->
+
+
+    </header>
+    <!-- ============================================== HEADER : END ============================================== -->
+    <!-- ======================================MAIN====================================== -->
+
+    <div class="container-fluid">
+
+       <div class="row">
+           <div class="col-md-12">
+            <div class="breadcrumb">
+               
+                    <div class="breadcrumb-inner">
+                        <ul class="list-inline list-unstyled">
+                            <li class="duong-dan"><a href="#">Home</a></li>
+                            <li class="duong-dan active">Shopping Cart</li>
+                        </ul>
+                    </div><!-- /.breadcrumb-inner -->
+               
+            </div><!-- /.breadcrumb -->
+            
+           </div>
+       </div>
+
+       <div class="body-content outer-top-xs">
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="shopping-cart col-md-12">
+                    <div class="shopping-cart-table ">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Đơn giá</th>
+                        <th scope="col">Tổng cộng</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead><!-- /thead -->
+                
+                <tbody>
+                    <tr>
+                        
+                        <td class="cart-image">
+                            <a class="entry-thumbnail" href="detail.html">
+                                <img src="assets/images/products/p1.jpg" alt="">
+                            </a>
+                        </td>
+                        <td class="cart-product-name-info">
+                            <h4 class='cart-product-description'><a href="detail.html">Vợt cầu lông Yonex Astrox 100ZZ</a></h4>
+                            
+                           
+                        </td>
+                       
+                        <td class="cart-product-quantity">
+                            <div class="quant-input">
+                                    <div class="arrows">
+                                      <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+                                      <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+                                    </div>
+                                    <input type="text" value="1">
+                              </div>
+                        </td>
+                        <td class="cart-product-sub-total"><span class="cart-sub-total-price">$300.00</span></td>
+                        <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span></td>
+                        <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
+                    </tr>
+
+                    <tr>
+                        
+                        <td class="cart-image">
+                            <a class="entry-thumbnail" href="detail.html">
+                                <img src="assets/images/products/p1.jpg" alt="">
+                            </a>
+                        </td>
+                        <td class="cart-product-name-info">
+                            <h4 class='cart-product-description'><a href="detail.html">Vợt cầu lông Yonex Astrox 100ZZ</a></h4>
+                            
+                           
+                        </td>
+                       
+                        <td class="cart-product-quantity">
+                            <div class="quant-input">
+                                    <div class="arrows">
+                                      <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+                                      <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+                                    </div>
+                                    <input type="text" value="1">
+                              </div>
+                        </td>
+                        <td class="cart-product-sub-total"><span class="cart-sub-total-price">$300.00</span></td>
+                        <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span></td>
+                        <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
+                    </tr>
+
+                    
+                    
+                </tbody><!-- /tbody -->
+                
+                <tfoot>
+                    <tr>
+                        <td colspan="7">
+                            <div class="shopping-cart-btn">
+                                <span class="">
+                                    <a href="#" class="btn btn-upper btn-primary outer-left-xs">Tiếp tục mua sắp</a>
+                                    <a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Cập nhật giỏ hàng</a>
+                                </span>
+                            </div><!-- /.shopping-cart-btn -->
+                        </td>
+                    </tr>
+                </tfoot>
+            </table><!-- /table -->
+        </div>
+
+
+
+        <div class="row">
+    
+            <div class="col-md-6 col-sm-12 estimate-ship-tax">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="estimate-title">Thông tin cá nhân</span>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control unicase-form-control text-input m-3" placeholder="Họ và tên">
+                                        <input type="text" class="form-control unicase-form-control text-input m-3" placeholder="Địa chỉ">
+                                        <input type="text" class="form-control unicase-form-control text-input m-3" placeholder="Số điện thoại">
+                                        <input type="text" class="form-control unicase-form-control text-input m-3" placeholder="Ghi chú">
+                                    </div>
+                                    
+                                </td>
+                            </tr>
+                    </tbody><!-- /tbody -->
+                </table><!-- /table -->
+            </div><!-- /.estimate-ship-tax -->
+            
+            <div class="col-md-6 col-sm-12 ">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                               
+                                <div class="cart-grand-total">
+                                    Tổng cộng<span class="inner-left-md">$600.00</span>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead><!-- /thead -->
+                    <tbody>
+                            <tr>
+                                <td>
+                                    <div class="cart-checkout-btn pull-right">
+                                        <button type="submit" class="btn btn-primary checkout-btn">TIẾN HÀNH THANH TOÁN</button>
+                                       
+                                    </div>
+                                </td>
+                            </tr>
+                    </tbody><!-- /tbody -->
+                </table><!-- /table -->
+            </div><!-- /.cart-shopping-total -->			</div><!-- /.shopping-cart -->
+                    </div> <!-- /.row -->
+        </div>
+    </div>
+
+    </div>
+
+ <!-- ============================================================= FOOTER ============================================================= -->
+ <footer id="footer" class="footer color-bg">
+    <div class="footer-bottom">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="address-block">
+                        <!-- /.module-heading -->
+                        <div class="module-body">
+                            <ul class="toggle-footer" style="">
+                                <li class="media item">
+                                    <div class="float-left"> <span class="icon fa-stack fa-lg"> <i
+                                                class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span>
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="footer-title">38 Mậu Thân, phường An Hoà, quận Ninh Kiều, TP.
+                                            Cần Thơ</span>
+                                    </div>
+                                </li>
+                                <li class="media item">
+                                    <div class="float-left"> <span class="icon fa-stack fa-lg"> <i
+                                                class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span>
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="footer-title">036 597 4820</span>
+                                    </div>
+                                </li>
+                                <li class="media item">
+                                    <div class="float-left"> <span class="icon fa-stack fa-lg"> <i
+                                                class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span>
+                                    </div>
+                                    <div class="media-body footer-title"> <span
+                                            class="footer-title">tolehoai@gmail.com</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.module-body -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="module-heading">
+                        <h4 class="module-title">Chính sách</h4>
+                    </div>
+                    <!-- /.module-heading -->
+                    <div class="module-body">
+                        <ul class="list-unstyled">
+                            <li class="first"><a href="#" title="Contact us">Chính sách đổi trả,hoàn tiền</a>
+                            </li>
+                            <li><a href="#" title="About us">Chính sách bảo hành</a>
+                            </li>
+                            <li><a href="#" title="faq">Chính sách vận chuyển</a>
+                            </li>
+                            <li><a href="#" title="Popular Searches">Chính sách thanh toán</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.module-body -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="module-heading">
+                        <h4 class="module-title">Hướng dẫn</h4>
+                    </div>
+                    <!-- /.module-heading -->
+                    <div class="module-body">
+                        <ul class="list-unstyled">
+                            <li class="first"><a title="Your Account" href="#">Hướng dẫn Mua hàng hàng</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- /.module-body -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="module-heading">
+                        <h4 class="module-title">Chăm sóc khách hàng</h4>
+                    </div>
+                    <!-- /.module-heading -->
+                    <div class="module-body">
+                        <ul class="list-unstyled">
+                            <li class="first"><a href="#" title="About us">Tư vấn: 036 597 4820</a>
+                            </li>
+                            <li><a href="#" title="Blog">Than phiền dịch vụ: 036 597 4820</a>
+                            </li>
+                            <li><a href="#" title="Company">Giờ mở cửa: Từ 8:00 - 22:00 tất cả các ngày trong
+                                    tuần (bao gồm cả các ngày lễ, ngày Tết).</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.module-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-bar">
+        <p class="banquyen item">&copy 2020 ONLINE SHOP.</p>
+        <p class="banquyen item">Tô Lê Hoài - B1807632</p>
+        <p class="banquyen item">Cần Thơ</p>
+    </div>
+</footer>
+<!-- ============================================================= FOOTER : END============================================================= -->
+
+<!-- For demo purposes – can be removed on production -->
+
+<!-- For demo purposes – can be removed on production : End -->
+
+<!-- JavaScripts placed at the end of the document so the pages load faster -->
+<script src="main.js"></script>
+<!-- <script src="./assets/js/main.js"></script> -->
+<!-- ============================================================= FOOTER : END============================================================= -->
+
+<!-- For demo purposes – can be removed on production -->
+
+<!-- For demo purposes – can be removed on production : End -->
+
+<!-- JavaScripts placed at the end of the document so the pages load faster -->
+<!-- jQuery and JS bundle w/ Popper.js -->
+
+
+<!-- jQuery and JS bundle w/ Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>
