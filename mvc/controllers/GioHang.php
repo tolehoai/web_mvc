@@ -2,6 +2,11 @@
 // http://localhost/live/Home/Show/1/2
 class GioHang extends Controller {
     // Must have SayHi()
+    function SayHi(){
+        CheckLoginUser();
+        echo "Gio hang";
+       
+    }
     function ThemVaoGioHang($maSP) {
         CheckLoginUser();
         $giohang = $this->model("GioHangModel");

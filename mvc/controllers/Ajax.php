@@ -64,14 +64,79 @@ class Ajax extends Controller {
 
     function ThemVaoGioHang() {
         $masanpham = $_POST['masanpham'];
-        // CheckLoginUser();
-        // $giohang = $this->model("GioHangModel");
-        // $userName = $_SESSION["userNameLogin"];
-        // $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
-        // $maGioHang = $row['ma_gio_hang'];
-        // echo "Them vao gio hang " . $maSP . " Cua tai khoan " . $userName;
-        // echo " Ma gio hang " . $maGioHang;
-        echo $masanpham;
+        if(isset($_SESSION["userNameLogin"])){
+            $giohang = $this->model("GioHangModel");
+            $sanpham = $this->model("SanPhamModel");
+            $userName = $_SESSION["userNameLogin"];
+            $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+            $maGioHang = $row['ma_gio_hang'];
+            $row_sanpham = mysqli_fetch_assoc($sanpham->TimSanPhamTheoID($masanpham));
+            $giaSanPham = $row_sanpham['GIA'];
+            // echo "Them vao gio hang " . $masanpham . " Cua tai khoan " . $userName;
+            // echo " Ma gio hang " . $maGioHang;
+            $giohang->ThemSanPhamVaoGioHang($masanpham, $maGioHang, $giaSanPham);
+            echo "
+            
+                <script> 
+                
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Thêm vào giỏ hàng thành công',
+                    showConfirmButton: false,
+                    timer: 1000
+                  })
+                </script>
+            ";
+        }else{
+            echo "
+            <script>
+            Swal.fire({
+                // title: 'Bạn cần đăng nhập để Thêm vào giỏ hàng',
+                // showCancelButton: true,
+                // confirmButtonText: `Đăng nhập`,
+                title: 'Yêu cầu đăng nhập',
+            text: 'Bạn cần Đăng nhập để Thêm vào giỏ hàng',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#FCCF14',
+            confirmButtonText: '<a href=\"TaiKhoan\" style=\"color:white;\">Đăng nhập</a>',
+            cancelButtonText: 'Hủy bỏ',
+            closeOnConfirm: false,
+            closeOnCancel: false
+            })
+            </script>
+            ";
+        }
+        
+    }
+    function DiVaoGioHang() {
+        
+        if(isset($_SESSION["userNameLogin"])){
+           echo"
+                <script>
+                    window.location.href = 'GioHang';
+                </script>
+           ";
+        }else{
+            echo "
+            <script>
+            Swal.fire({
+                title: 'Yêu cầu đăng nhập',
+                text: 'Bạn cần Đăng nhập để vào giỏ hàng',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#FCCF14',
+                confirmButtonText: '<a href=\"TaiKhoan\" style=\"color:white;\">Đăng nhập</a>',
+                cancelButtonText: 'Hủy bỏ',
+                closeOnConfirm: false,
+                closeOnCancel: false
+            })
+            </script>
+            ";
+        }
+        
     }
 }
+
 ?>

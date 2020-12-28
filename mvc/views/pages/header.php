@@ -35,6 +35,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
   
   <script src="<?php echo URL;?>mvc/views/pages/assets/js/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script type="text/javascript">
 
     $(document).ready(function () {
@@ -110,15 +111,21 @@
          var masanpham_get=$(this).attr('product_id');
          console.log(masanpham_get);
          $.post("./Ajax/ThemVaoGioHang",{masanpham:masanpham_get}, function(data){
-          // $("."+b).html(data);
-          alert(data);
+          $(".ajax").html(data);
+          // alert(data);
         })
         });
 
       })
 
      
-
+      //Click mở giỏ hàng
+      $(".giohang").click(function(){
+        $.post("./Ajax/DiVaoGioHang",{}, function(data){
+          $(".ajax").html(data);
+          // alert(data);
+        })
+      })
 
 
 
@@ -200,7 +207,7 @@
 </style>
 
 <body class="cnt-home">
-
+  <div class="ajax"></div>
   <!-- ============================================== HEADER ============================================== -->
   <header class="header-style-1">
 
@@ -270,11 +277,14 @@
           <!-- /.top-search-holder -->
 
           <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 top-cart-row item">
+          <div class="giohang" style="cursor: pointer;">
             <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-cart2 cart-icon" fill="white"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-            </svg>
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+              </svg>
+          </div>
+           
             <div class="cart-number">5</div>
           </div>
 
