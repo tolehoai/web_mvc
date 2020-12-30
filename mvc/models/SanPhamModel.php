@@ -26,7 +26,7 @@ class SanPhamModel extends DB {
         return mysqli_query($this->con, $qr);
     }
     public function ThemSanPham($tensanpham, $loaisanpham, $thuonghieu, $giasanpham, $soluongsanpham, $hinhsanpham) {
-        $qr = "INSERT INTO hang_hoa (MSHS, MANHOM, MATHUONGHIEU, TENHH, GIA, SOLUONGHANG, HINH, MOTAHH)
+        $qr = "INSERT INTO hang_hoa (MSHS, MANHOM, MATHUONGHIEU, TENHH, GIA, SOLUONGNHAP, HINH, MOTAHH)
         VALUES ('', '$loaisanpham', '$thuonghieu', '$tensanpham', '$giasanpham', '$soluongsanpham', '$hinhsanpham','')";
         return mysqli_query($this->con, $qr);
     }
@@ -36,11 +36,11 @@ class SanPhamModel extends DB {
         return mysqli_query($this->con, $qr);
     }
     public function SuaSanPhamCoThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua, $hinhCanSua) {
-        $qr = "UPDATE hang_hoa SET MANHOM='$nhomSanPhamCanSua', MATHUONGHIEU='$thuongHieuCanSua', TENHH='$tenSanPhamCanSua',GIA=$giaCanSua, SOLUONGHANG=$soLuongCanSua, HINH='$hinhCanSua' WHERE MSHS=$id";
+        $qr = "UPDATE hang_hoa SET MANHOM='$nhomSanPhamCanSua', MATHUONGHIEU='$thuongHieuCanSua', TENHH='$tenSanPhamCanSua',GIA=$giaCanSua, SOLUONGNHAP=SOLUONGNHAP+$soLuongCanSua, HINH='$hinhCanSua' WHERE MSHS=$id";
         return mysqli_query($this->con, $qr);
     }
     public function SuaSanPhamKhongThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua) {
-        $qr = "UPDATE hang_hoa SET MANHOM='$nhomSanPhamCanSua', MATHUONGHIEU='$thuongHieuCanSua', TENHH='$tenSanPhamCanSua',GIA=$giaCanSua, SOLUONGHANG=$soLuongCanSua WHERE MSHS=$id";
+        $qr = "UPDATE hang_hoa SET MANHOM='$nhomSanPhamCanSua', MATHUONGHIEU='$thuongHieuCanSua', TENHH='$tenSanPhamCanSua',GIA=$giaCanSua, SOLUONGNHAP=SOLUONGNHAP+$soLuongCanSua WHERE MSHS=$id";
         return mysqli_query($this->con, $qr);
     }
     public function GetHinhBangID($id) {

@@ -110,6 +110,7 @@ class Ajax extends Controller {
         }
         
     }
+
     function DiVaoGioHang() {
         
         if(isset($_SESSION["userNameLogin"])){
@@ -137,6 +138,101 @@ class Ajax extends Controller {
         }
         
     }
+
+    function CapNhatSoLuong() {
+        
+       
+        $soluong = $_POST['soluongcancapnhat'];
+       
+        $masanpham= $_POST['mahanghoa'];
+       
+        // $giohang->CapNhatSoLuongConLai($masanpham);
+        $giohang = $this->model("GioHangModel");
+        // echo $masanpham;
+
+        $userName = $_SESSION["userNameLogin"];
+       
+        $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+        $maGioHang = $row['ma_gio_hang'];
+       
+        $kq_capnhat_sl=$giohang->CapNhatSoLuong($soluong, $masanpham, $maGioHang);
+
+        // $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+        
+        $row_giohang=mysqli_fetch_assoc($giohang->LayThongTinGioHangTuMSHS($masanpham));
+        $kq = $row_giohang['giohang_gia']*$row_giohang['so_luong'];
+        
+        echo number_format($kq, 0, '', ','); 
+        echo " ₫";
+        
+        // $giohang = $this->model("GioHangModel");
+       
+        $giohang->CapNhatSoLuongConLaiTrongBangChiTietGioHang();
+        $row_giohang_soluong = mysqli_fetch_assoc($giohang->GetGioHangTuMaGioHang_MaSanPham($maGioHang,$masanpham));
+        if($row_giohang_soluong ['so_luong']-$row_giohang_soluong ['soluong_conlai']>0){
+            $soluong="soluong_".$row_giohang_soluong ['MSHS'];
+            $sl_conlai=$row_giohang_soluong ['soluong_conlai'];
+            $sl=$row_giohang_soluong ['so_luong'];
+            echo "
+            <script>
+                var str=  $masanpham;
+                var sl = $sl_conlai;
+                console.log(str);
+                console.log( $(\"#soluong_\"+str));
+                $(\"#soluong_\"+str).val(sl);
+                console.log($sl_conlai);
+                console.log($sl)
+                console.log($maGioHang)
+                $(\"#soluong_\"+str).attr(\"value\", $sl_conlai);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Số lượng tối đa',
+                    text: 'Chúng tôi chỉ có tối đa $sl_conlai sản phẩm này',
+                    
+                  })
+
+            </script>
+            ";
+            $giohang->CapNhatSoLuongLonNhat_GioHang_HangHoa($maGioHang,$masanpham);
+        }
+        else{
+            // echo "<script>alert($sl_conlai)</script>";
+        }
+        
+    }
+    
+    function CapNhatThanhTien() {
+        $giohang = $this->model("GioHangModel");
+        $userName = $_SESSION["userNameLogin"];
+        $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+        $maGioHang = $row['ma_gio_hang'];
+        $row = mysqli_fetch_assoc($giohang->TinhTongGioHang($maGioHang));
+        $kq=$row['tong'];
+        echo number_format($kq, 0, '', ','); 
+        echo " ₫";
+    }
+    function HienThiSoLuong() {
+        $giohang = $this->model("GioHangModel");
+        $userName = $_SESSION["userNameLogin"];
+        $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+        $maGioHang = $row['ma_gio_hang'];
+        $row_hienthi=mysqli_fetch_assoc($giohang->Hien_Thi_Gia_Va_So_Luong($maGioHang));
+        $soluong=$row_hienthi['sl'];
+        echo $soluong;
+    }
+    function HienThiGia() {
+        $giohang = $this->model("GioHangModel");
+        $userName = $_SESSION["userNameLogin"];
+        $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+        $maGioHang = $row['ma_gio_hang'];
+        $row_hienthi=mysqli_fetch_assoc($giohang->Hien_Thi_Gia_Va_So_Luong($maGioHang));
+        $gia=$row_hienthi['gia'];
+        echo number_format($gia, 0, '', ','); 
+        echo " ₫";
+    }
+
+
+
 }
 
 ?>

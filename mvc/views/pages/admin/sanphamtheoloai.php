@@ -122,7 +122,7 @@
 													</div>
 													<div class="modal-footer">
 														<a
-															href="http://localhost:8080/web_mvc/Admin/SanPham/<?php echo $data["a"]?>"><button
+															href="/web_mvc/Admin/SanPham/<?php echo $data["a"]?>"><button
 																type="button" class="btn btn-primary">Thôi không xóa
 																nữa</button></a>
 														<a

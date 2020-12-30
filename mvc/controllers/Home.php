@@ -7,7 +7,10 @@ class Home extends Controller {
         $sanpham = $this->model("SanPhamModel");
         // echo $teo->GetSV();
         // Call Views
-        $this->view("aoxau", ["Page" => "noidung1", "danhmuc" => $danhmuc->GetDanhMucCoSanPham(), "sanpham" => $sanpham->GetUniqueNhomHangHoa(), ]);
+        $this->view("aoxau", ["Page" => "noidung1", 
+        "danhmuc" => $danhmuc->GetDanhMucCoSanPham(), 
+        "sanpham" => $sanpham->GetUniqueNhomHangHoa(), 
+        ]);
     }
     function Show($a, $b) {
         echo "Home Show";

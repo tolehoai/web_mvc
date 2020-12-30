@@ -1,6 +1,12 @@
 <?php
 // http://localhost/live/Home/Show/1/2
 class Admin extends Controller {
+    public function __construct ( ) {
+        $giohang = $this->model("GioHangModel");
+        
+        // $giohang->CapNhatSoLuongConLaiTrongBangChiTietGioHang();
+        
+      }
     function KiemTraDangNhap() {
         $admin = $this->model("TaiKhoanAdminModel");
         echo 'Kiem tra dang nhap';
@@ -33,7 +39,13 @@ class Admin extends Controller {
         $this->view("pagemaster_admin", ["Page" => "admin/trangquantri", "Mau" => "red", "SoThich" => ["A", "B", "C"]]);
     }
     function SayHi() {
-        $this->view("pagemaster_admin_login", ["Page" => "admin/login", ]);
+        if(isset($_SESSION['AdminLogin'])){
+            $this->view("pagemaster_admin", ["Page" => "admin/trangquantri", "Mau" => "red", "SoThich" => ["A", "B", "C"]]);
+        }
+        else{
+            $this->view("pagemaster_admin_login", ["Page" => "admin/login", ]);
+        }
+       
     }
     function AddDanhMuc() {
         CheckLogin();
@@ -140,7 +152,11 @@ class Admin extends Controller {
         echo "Admin Add San pham";
         $danhmuc = $this->model("DanhMucModel");
         $thuonghieu = $this->model("ThuongHieuModel");
-        $this->view("pagemaster_admin", ["Page" => "admin/themsanpham", "danhmuc" => $danhmuc->GetDanhMuc(), "thuonghieu" => $thuonghieu->GetThuongHieu(), "Title" => 'Thêm Sản Phẩm', ]);
+        $this->view("pagemaster_admin", ["Page" => "admin/themsanpham", 
+        "danhmuc" => $danhmuc->GetDanhMuc(), 
+        "thuonghieu" => $thuonghieu->GetThuongHieu(), 
+        "Title" => 'Thêm Sản Phẩm', 
+        ]);
         if (isset($_POST["btnThemSanPham"])) {
             $tensanpham = $_POST["txtTenSanPham"];
             $loaisanpham = $_POST["slLoaiSanPham"];
@@ -162,11 +178,13 @@ class Admin extends Controller {
                     echo "Chua";
                 }
             }
-            //    echo '<script>window.location = "http://localhost:8080/web_mvc/Admin/ThemSanPham" </script>';
-            
+           
+            echo '<script>window.location = "/web_mvc/Admin/SanPham/TatCa" </script>';
         } else {
             echo "Chua";
         }
+       
+        
     }
     function SuaSanPham($masanpham) {
         CheckLogin();

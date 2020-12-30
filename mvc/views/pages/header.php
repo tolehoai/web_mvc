@@ -1,4 +1,3 @@
-
 <?php header('Access-Control-Allow-Origin: *');
 ?>
 <!DOCTYPE html>
@@ -12,7 +11,9 @@
   <meta name="author" content="">
   <meta name="keywords" content="MediaCenter, Template, eCommerce">
   <meta name="robots" content="all">
-  <title><?php 
+  <link rel="stylesheet" href="public/style.css">
+  <title>
+    <?php 
  
   if(isset($data["SP_Title"])){
     $row = mysqli_fetch_assoc($data["SP_Title"]);
@@ -25,22 +26,93 @@
     echo "Trang chủ";
   }
   
-  ?></title>
+  ?>
+  </title>
 
   <!-- Google Font  -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
     rel="stylesheet">
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
-  
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+
   <script src="<?php echo URL;?>mvc/views/pages/assets/js/jquery.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="public/simple.money.format.js"></script>
+
   <script type="text/javascript">
 
     $(document).ready(function () {
 
-     
+
+
+      // $('.money').simpleMoneyFormat();
+      $(".soluonghanghoa").keyup(function () {
+        var soluong = $(this);
+        var soluong_update = parseInt(soluong.val());
+        var mahanghoa_update = soluong.attr("mahanghoa");
+        // console.log("soluong_update)";
+        // alert(mahanghoa_update);
+        $.post("./Ajax/CapNhatSoLuong", { soluongcancapnhat: soluong_update, mahanghoa: mahanghoa_update }, 
+        function (data) {
+          $("#tongcong-"+mahanghoa_update).html(data);
+          // alert(data);
+        })
+        $.post("./Ajax/CapNhatThanhTien", {}, function (data) {
+          $(".tongcong").html(data);
+          // alert(data);
+        })
+      })
+
+
+
+      $(".tangsoluong").click(function () {
+
+        var soluong = $(this).next().children();
+        var mahanghoa_update = soluong.attr("mahanghoa");
+        // console.log("#tongcong-"+mahanghoa_update);
+        soluong.val(parseInt(soluong.val()) + 1);
+        var soluong_update = parseInt(soluong.val());
+        $.post("./Ajax/CapNhatSoLuong", { soluongcancapnhat: soluong_update, mahanghoa: mahanghoa_update }, function (data) {
+          $("#tongcong-" + mahanghoa_update).html(data);
+          // alert(data);
+        })
+        $.post("./Ajax/CapNhatThanhTien", {}, function (data) {
+          $(".tongcong").html(data);
+          // alert(data);
+        })
+      })
+      $(".giamsoluong").click(function () {
+        var soluong = $(this).prev().children();
+        var mahanghoa_update = soluong.attr("mahanghoa");
+        soluong.val(parseInt(soluong.val()) - 1);
+        if (parseInt(soluong.val()) < 1) {
+          soluong.val(1);
+        }
+        var soluong_update = parseInt(soluong.val());
+        
+        $.post("./Ajax/CapNhatSoLuong", { soluongcancapnhat: soluong_update, mahanghoa: mahanghoa_update }, function (data) {
+          $("#tongcong-" + mahanghoa_update).html(data);
+          // alert(data);
+        })
+        $.post("./Ajax/CapNhatThanhTien", {}, function (data) {
+          $(".tongcong").html(data);
+          // alert(data);
+        })
+      })
+
+      //Update cart
+//Hien thi so luong
+$.post("./Ajax/HienThiSoLuong", {}, function (data) {
+        $(".cart-number").html(data);
+        // alert(data);
+      })
+
+//Hien thi gia
+      $.post("./Ajax/HienThiGia", {}, function (data) {
+        $(".gia").html(data);
+        // alert(data);
+      })
 
 
 
@@ -53,12 +125,12 @@
 
       $(".sub1").on("click", function () {
         var loaisanphamcanlay = $(this).attr('loaisanpham');
-        
+
         // var str1=str1.concat(loaisanphamcanlay);
-        var a='noidung-';
-        var b=a.concat(loaisanphamcanlay);
-        $.post("./Ajax/GetSubMenu",{loaisanpham:loaisanphamcanlay}, function(data){
-          $("."+b).html(data);
+        var a = 'noidung-';
+        var b = a.concat(loaisanphamcanlay);
+        $.post("./Ajax/GetSubMenu", { loaisanpham: loaisanphamcanlay }, function (data) {
+          $("." + b).html(data);
           // alert(data);
         })
       });
@@ -80,48 +152,48 @@
 
 
 
-      $(".new-arriavls").ready(function(){
+      $(".new-arriavls").ready(function () {
         var danhmuc = $(".new-arriavls");
         var myVals = [];
-        $(danhmuc).map(function(){
+        $(danhmuc).map(function () {
           myVals.push($(this).attr('madanhmuc'));
-          var madanhmuc=$(this).attr('madanhmuc');
-          var tendanhmuclayduoc=$(this).attr('tendanhmuc');
-          var a='san-pham-cua-danh-muc-';
-          var b=a.concat(madanhmuc);
+          var madanhmuc = $(this).attr('madanhmuc');
+          var tendanhmuclayduoc = $(this).attr('tendanhmuc');
+          var a = 'san-pham-cua-danh-muc-';
+          var b = a.concat(madanhmuc);
           console.log(b);
           // Ajax
-          $.post("./Ajax/LaySanPhamTheoDanhMuc",{danhmuc:madanhmuc,tendanhmuc:tendanhmuclayduoc}, function(data){
-          $("#"+b).html(data);
-          // alert(data);
-        })
-        // Ajax
+          $.post("./Ajax/LaySanPhamTheoDanhMuc", { danhmuc: madanhmuc, tendanhmuc: tendanhmuclayduoc }, function (data) {
+            $("#" + b).html(data);
+            // alert(data);
+          })
+          // Ajax
         });
         // console.log(myVals);
 
       })
 
       //Xu ly don hang
-      $(".new-arriavls").ready(function(){
+      $(".new-arriavls").ready(function () {
         // $(".addCart").click(function(){
         //   console.log("click");
         // })
-        $(document).on("click", '.addCart', function(event) { 
-        //  console.log("click");
-         var masanpham_get=$(this).attr('product_id');
-         console.log(masanpham_get);
-         $.post("./Ajax/ThemVaoGioHang",{masanpham:masanpham_get}, function(data){
-          $(".ajax").html(data);
-          // alert(data);
-        })
+        $(document).on("click", '.addCart', function (event) {
+          //  console.log("click");
+          var masanpham_get = $(this).attr('product_id');
+          console.log(masanpham_get);
+          $.post("./Ajax/ThemVaoGioHang", { masanpham: masanpham_get }, function (data) {
+            $(".ajax").html(data);
+            // alert(data);
+          })
         });
 
       })
 
-     
+
       //Click mở giỏ hàng
-      $(".giohang").click(function(){
-        $.post("./Ajax/DiVaoGioHang",{}, function(data){
+      $(".giohang").click(function () {
+        $.post("./Ajax/DiVaoGioHang", {}, function (data) {
           $(".ajax").html(data);
           // alert(data);
         })
@@ -158,7 +230,7 @@
 
 
 
-    
+
     });
 
   </script>
@@ -168,13 +240,13 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
- <link rel="stylesheet" href="<?php echo URL;?>mvc\views\pages\assets\css\bootstrap.css">
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="<?php echo URL;?>mvc\views\pages\assets\css\bootstrap.css">
   <!-- Customizable CSS -->
- 
+
   <link rel="stylesheet" type="text/css" href="<?php echo URL;?>mvc/views/pages/assets/css/main.css">
   <link rel="stylesheet" type="text/css" href="<?php echo URL;?>mvc/views/pages/assets/css/blue.css">
   <link rel="stylesheet" type="text/css" href="<?php echo URL;?>mvc/views/pages/assets/css/owl.carousel.css">
@@ -183,28 +255,53 @@
   <link rel="stylesheet" type="text/css" href="<?php echo URL;?>mvc/views/pages/assets/css/rateit.css">
   <link rel="stylesheet" type="text/css" href="<?php echo URL;?>mvc/views/pages/assets/css/bootstrap-select.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo URL;?>mvc/views/pages/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/web_mvc/public/style.css">
+  
   <!-- Icons/Glyphs -->
-  <link rel="stylesheet" type="text/css"href="<?php echo URL;?>mvc/views/pages/assets/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo URL;?>mvc/views/pages/assets/css/font-awesome.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
     rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
+<!-- ===================================CSS============================================ -->
 
 <style>
   .slider-img {
     width: 1200px;
   }
+
   .search-button {
     padding: 29px 25px 19px !important;
-}
+  }
+  .gia{
+   position: relative !important;
+   right: 20px;
+   font-weight: 600;
+   color: white;
+   font-size: 14px;
+ }
+ .cart-number {
+  position: relative !important;
+   right: 20px ;
+   top: -15px;
+ }
 </style>
+
+
+
+
+<!-- ===================================CSS============================================ -->
+
+
 
 <body class="cnt-home">
   <div class="ajax"></div>
@@ -230,8 +327,8 @@
                 <li class="header_cart hidden-xs"><a href="'.URL.'TaiKhoan"><span>Đăng nhập</span></a></li>';
               }
               ?>
-              
-              
+
+
 
 
             </ul>
@@ -253,8 +350,8 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
             <!-- ============================================================= LOGO ============================================================= -->
-            <div class="logo"> <a href="<?php echo URL?>" class="w-100"> <img src="<?php echo URL;?>mvc/views/pages/images/logo.PNG" class="logo-img"
-                  alt="Logo"></a> </div>
+            <div class="logo"> <a href="<?php echo URL?>" class="w-100"> <img
+                  src="<?php echo URL;?>mvc/views/pages/images/logo.PNG" class="logo-img" alt="Logo"></a> </div>
             <!-- /.logo -->
             <!-- ============================================================= LOGO : END ============================================================= -->
           </div>
@@ -268,25 +365,35 @@
                 <div class="control-group">
 
                   <input class="search-field" placeholder="Tìm kiếm sản phẩm" />
-                  <a class="search-button" href="#"></a> </div>
+                  <a class="search-button" href="#"></a>
+                </div>
               </form>
             </div>
             <!-- /.search-area -->
             <!-- ============================================================= SEARCH AREA : END ============================================================= -->
           </div>
           <!-- /.top-search-holder -->
+          <?php 
+              if(isset($_SESSION["userNameLogin"])){
+                echo "
+                    <div class=\"col-lg-2 col-md-3 col-sm-4 col-xs-12 top-cart-row item\">
+                    <div class=\"giohang\" style=\"cursor: pointer;\">
+                      <svg width=\"3em\" height=\"3em\" viewBox=\"0 0 16 16\" class=\"bi bi-cart2 cart-icon\" fill=\"white\"
+                        xmlns=\"http://www.w3.org/2000/svg\">
+                        <path fill-rule=\"evenodd\"
+                          d=\"M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z\" />
+                      </svg>
+                    </div>
+      
+                    <div class=\"cart-number\"></div>
+                    <div class=\"gia\"></div>
+                  </div>
+                ";
+              }
+            
+           ?>
+          
 
-          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 top-cart-row item">
-          <div class="giohang" style="cursor: pointer;">
-            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-cart2 cart-icon" fill="white"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-              </svg>
-          </div>
-           
-            <div class="cart-number">5</div>
-          </div>
 
         </div>
 

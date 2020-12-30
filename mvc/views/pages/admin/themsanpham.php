@@ -38,7 +38,7 @@ if (isset($_SESSION["thatbai"])) {
             
             <div class="row">
                 <div class="col-md-6">
-                <form action="http://localhost:8080/web_mvc/Admin/ThemSanPham" method="POST" enctype="multipart/form-data">
+                <form action="/web_mvc/Admin/ThemSanPham" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label >Tên sản phẩm</label>
                     <input type="text" class="form-control" name="txtTenSanPham" aria-describedby="emailHelp" placeholder="Nhập tên sản phẩm">

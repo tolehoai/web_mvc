@@ -16,7 +16,7 @@
                   Thêm danh mục thành công
                   </div>
                     ';
-                    session_destroy ();
+                    unset($_SESSION['thanhcong']);
                 }
                 if(isset($_SESSION["thatbai"])){
                     echo'
@@ -24,7 +24,7 @@
   Thêm danh mục không thành công
 </div>
                     ';
-                    session_destroy ();
+                    unset($_SESSION['thatbai']);
                 }
             ?>
             
@@ -39,7 +39,7 @@
             
             <div class="row">
                 <div class="col-md-6">
-                <form action="http://localhost:8080/web_mvc/Admin/ThemSanPham" method="POST">
+                <form action="/web_mvc/Admin/ThemSanPham" method="POST">
                 <div class="form-group">
                     <label >Tên sản phẩm</label>
                     <input type="text" class="form-control" name="txtTenSanPham" aria-describedby="emailHelp" placeholder="Nhập tên sản phẩm">
