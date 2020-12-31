@@ -89,7 +89,7 @@
 									<?php echo $row_sanpham['ten_thuong_hieu'] ;?>
 								</td>
 								<td>
-									<?php echo $row_sanpham['GIA'] ;?>
+									<?php echo number_format($row_sanpham['GIA'], 0, '', ',') ."đ" ;?>
 								</td>
 								<td>
 									<?php echo $row_sanpham['SOLUONGHANG'] ;?>

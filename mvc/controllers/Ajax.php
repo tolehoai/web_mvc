@@ -28,27 +28,55 @@ class Ajax extends Controller {
         $ketqua = $sanpham->GetSanPhamTheoDanhMuc($danhmuc);
         // echo $danhmuc;
         while ($row_sanpham = mysqli_fetch_array($ketqua)) {
-            echo '<a href="./SanPham/ChiTietSanPham/' . $tendanhmuc . '/' . $row_sanpham['MSHS'] . '">
+            if($row_sanpham['SOLUONGHANG']==0){
+                echo '<a href="./SanPham/ChiTietSanPham/' . $tendanhmuc . '/' . $row_sanpham['MSHS'] . '">
+                <div class="col-md-3">
+                                    <div class="sanpham item1">
+                                        <img src="./uploads/' . $row_sanpham['HINH'] . '"
+                                            class="img-fluid" alt="Responsive image">
+                                        <div class="product-info text-left m-t-20 new-product-info">
+                                            <h6 class="name"><a href="./SanPham/ChiTietSanPham/' . $tendanhmuc . '/' . $row_sanpham['MSHS'] . '">' . $row_sanpham['TENHH'] . '</a></h6>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="product-price item1">
+                                                <h5 class="price text-danger"> ' . number_format($row_sanpham['GIA'], 0, '', ',') . ' đ</h5>
+                                                <br>
+                                                <form action="">
+                                                <!-- ' . URL . 'GioHang/ThemVaoGioHang -->
+                                                <a href="" class="btn btn-danger disabled " tabindex="-1" aria-disabled="true" role="button" data-bs-toggle="button">Hết hàng</a>
+                                                
+                                                    <!-- <button class="btn btn-warning" type="button">Mua hàng</button> -->
+                                                
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </a>
+                
+                ';}
+                else{
+                    echo '<a href="./SanPham/ChiTietSanPham/' . $tendanhmuc . '/' . $row_sanpham['MSHS'] . '">
             <div class="col-md-3">
                                 <div class="sanpham item1">
                                     <img src="./uploads/' . $row_sanpham['HINH'] . '"
                                         class="img-fluid" alt="Responsive image">
                                     <div class="product-info text-left m-t-20 new-product-info">
-                                        <h6 class="name"><a href="detail.html">' . $row_sanpham['TENHH'] . '</a></h6>
+                                        <h6 class="name"><a href="./SanPham/ChiTietSanPham/' . $tendanhmuc . '/' . $row_sanpham['MSHS'] . '">' . $row_sanpham['TENHH'] . '</a></h6>
                                         <div class="rating rateit-small"></div>
                                         <div class="product-price item1">
-                                            <h5 class="price text-danger"> ' . $row_sanpham['GIA'] . ' </h5>
+                                            <h5 class="price text-danger"> ' . number_format($row_sanpham['GIA'], 0, '', ',') . ' đ</h5>
                                             <br>
                                             <form action="">
                                             <!-- ' . URL . 'GioHang/ThemVaoGioHang -->
                                             <!-- <a href="' . URL . 'GioHang/ThemVaoGioHang/' . $row_sanpham['MSHS'] . '"> -->
+                                                
                                                 <button class="btn btn-primary icon addCart" product_Id="'.$row_sanpham['MSHS'].'" data-toggle="dropdown"
                                                   type="button" name="addCart"> 
                                                     <i class="fa fa-shopping-cart"></i> 
                                                    Thêm vào giỏ hàng </button>
                                                   
                                             
-                                            </a>
+                                            <!--</a>-->
                                                 <!-- <button class="btn btn-warning" type="button">Mua hàng</button> -->
                                             
                                             </form>
@@ -59,6 +87,9 @@ class Ajax extends Controller {
                 </a>
             
             ';
+                }
+            
+            
         }
     }
 
@@ -229,6 +260,70 @@ class Ajax extends Controller {
         $gia=$row_hienthi['gia'];
         echo number_format($gia, 0, '', ','); 
         echo " ₫";
+    }
+
+    function Update_ChuaCapNhat() {
+        $giohang = $this->model("GioHangModel");
+        $masanpham=$_POST['masanpham'];
+        $magiohang=$_POST['magiohang'];
+
+        // echo $masanpham;
+        $kq=$giohang->CapNhatTrangThaiSanPham_MaGioHang_ChuaXuLy($masanpham,$magiohang);
+        // echo "
+        //     <script>
+        //         Swal.fire({
+        //             position: 'center',
+        //             icon: 'success',
+        //             title: 'Your work has been saved',
+        //             showConfirmButton: false,
+        //             timer: 1000
+        //         })
+        //         setTimeout(function(){
+        //             location.reload();
+        //         }, 1200);
+               
+        //     </script>
+        //     ";
+
+
+        if($kq>=1){
+            echo "
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Thao tác thành công',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                setTimeout(function(){
+                    location.reload();
+                }, 1200);
+               
+            </script>
+            ";
+        }
+        else{
+            echo "
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Thao tác thất bại',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                setTimeout(function(){
+                    location.reload();
+                }, 1200);
+               
+            </script>
+            ";
+        }
+
+    }
+    function GetDonHang(){
+        
     }
 
 

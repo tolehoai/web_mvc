@@ -44,9 +44,9 @@
 									</ul>
 								</li>
 								<li class="categogy-sub1-item">
-								<a class="sub1" id="sub1"><span class="fa fa-paper-plane-o"></span>Vợt cầu lông</a>
+								<a class="sub1" id="sub1"><span class="fa fa-paper-plane-o"></span>Quản lý đơn hàng</a>
 									<ul class="category-sub-2 " id="sub1-1">
-										<li class="category-sub2-item"> <a href=""> Vợt cầu lông Yonex</a></li>
+										<li class="category-sub2-item"> <a href="<?php echo URL;?>Admin/DonHang"> Danh sách đơn hàng</a></li>
 										<li class="category-sub2-item"> <a href=""> Vợt cầu lông Lining</a></li>
 										<li class="category-sub2-item"> <a href=""> Vợt cầu lông Victor</a></li>
 									</ul>

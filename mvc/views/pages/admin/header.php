@@ -26,10 +26,16 @@
 	<link rel="stylesheet" href="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/chartist/css/chartist-custom.css">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="<?php echo URL;?>mvc/views/pages/admin/assets/css/main.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
 	<link rel="stylesheet" href="assets/css/demo.css">
 	<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 	<!-- GOOGLE FONTS -->
+	
+	<script src="<?php echo URL;?>mvc/views/pages/assets/js/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="public/simple.money.format.js"></script>
+
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo URL;?>mvc/views/pages/admin/assets/img/apple-icon.png">

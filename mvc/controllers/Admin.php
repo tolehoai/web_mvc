@@ -314,5 +314,15 @@ class Admin extends Controller {
             header("Location: $url");
         }
     }
+    function DonHang(){
+        echo "Đơn hàng";
+        $donhang = $this->model("GioHangModel");
+        $this->view("pagemaster_admin", 
+        ["Page" => "admin/danhsachdonhang", 
+        "donhang"=>$donhang->GetGioHang(),
+        "Title" => 'Danh sách đơn hàng', ]);
+    }
+
+
 }
 ?>

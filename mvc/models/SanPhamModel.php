@@ -18,7 +18,7 @@ class SanPhamModel extends DB {
         return mysqli_query($this->con, $qr);
     }
     public function TimSanPhamTheoIDVaDanhMuc($danhmuc, $id) {
-        $qr = "SELECT hang_hoa.HINH, hang_hoa.TENHH,hang_hoa.GIA,hang_hoa.MOTAHH,nhomhanghoa.TENNHOM,concat(nhomhanghoa.TENNHOM,' ',thuong_hieu.ten_thuong_hieu) as hanghoathuocnhom
+        $qr = "SELECT hang_hoa.SOLUONGHANG, hang_hoa.HINH, hang_hoa.TENHH,hang_hoa.GIA,hang_hoa.MOTAHH,nhomhanghoa.TENNHOM,concat(nhomhanghoa.TENNHOM,' ',thuong_hieu.ten_thuong_hieu) as hanghoathuocnhom
         FROM hang_hoa JOIN nhomhanghoa JOIN thuong_hieu
         WHERE hang_hoa.MANHOM=nhomhanghoa.MANHOM
         AND hang_hoa.MATHUONGHIEU=thuong_hieu.ma_thuong_hieu
@@ -108,6 +108,13 @@ class SanPhamModel extends DB {
     public function GetTenNhomHangHoa($loai) {
         $qr = "SELECT nhomhanghoa.TENNHOM from nhomhanghoa 
         WHERE nhomhanghoa.nhomhanghoa_slug = '$loai'";
+        return mysqli_query($this->con, $qr);
+    }
+    public function GetSanPhamMoi() {
+        $qr = "SELECT * FROM hang_hoa JOIN nhomhanghoa
+        WHERE hang_hoa.MANHOM=nhomhanghoa.MANHOM
+        ORDER BY hang_hoa.MSHS ASC
+                LIMIT 5";
         return mysqli_query($this->con, $qr);
     }
 }

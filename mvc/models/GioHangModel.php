@@ -77,5 +77,35 @@ class GiohangModel extends DB {
         WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
         return mysqli_query($this->con, $qr);
     }
+    public function UpdateTinhTrangDonHang($magiohang,$masanpham) {
+        $qr = "UPDATE chi_tiet_gio_hang
+        SET tinhtrang_donhang='Chưa xữ lý'
+        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
+        return mysqli_query($this->con, $qr);
+    }
+    public function GetGioHang() {
+        $qr = "SELECT * FROM chi_tiet_gio_hang JOIN hang_hoa
+        WHERE chi_tiet_gio_hang.MSHS=hang_hoa.MSHS
+        ORDER BY ma_gio_hang ASC";
+        return mysqli_query($this->con, $qr);
+    }
+    public function CapNhatTrangThaiSanPham_MaGioHang_ChuaXuLy($masanpham,$magiohang) {
+        $qr = "UPDATE chi_tiet_gio_hang
+        SET tinhtrang_donhang='Chưa xữ lý'
+        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
+        return mysqli_query($this->con, $qr);
+    }
+    public function CapNhatTrangThaiSanPham_MaGioHang_DangXuLy($masanpham,$magiohang) {
+        $qr = "UPDATE chi_tiet_gio_hang
+        SET tinhtrang_donhang='Đang xữ lý'
+        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
+        return mysqli_query($this->con, $qr);
+    }
+    public function CapNhatTrangThaiSanPham_MaGioHang_DaXuLy($masanpham,$magiohang) {
+        $qr = "UPDATE chi_tiet_gio_hang
+        SET tinhtrang_donhang='Đã xữ lý'
+        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
+        return mysqli_query($this->con, $qr);
+    }
 }
 ?>

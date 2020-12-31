@@ -75,12 +75,30 @@ class GioHang extends Controller {
         // $giohang->CapNhatSoLuongConLai();
         $giohang->CapNhatSoLuongConLaiTrongBangChiTietGioHang();
         $giohang->CapNhatSoLuongConLai();
-        
+        $userName = $_SESSION["userNameLogin"];
+        $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+        $maGioHang = $row['ma_gio_hang'];
         echo "Thanh toan";
 
         //Cập nhật trạng thái đơn hàng
-        // print_r($_POST);
+        // var_dump($_POST);
+        // exit(); 
+        // $arrSoLuong=array();
+        // $arrMaSanPham=array();
+        // foreach($_POST['soluong'] as $item)
+        // {
+        //     array_push($arrSoLuong,$item);
+        // }
+        
+        foreach($_POST['masanpham'] as $item)
+        {
+           $giohang->UpdateTinhTrangDonHang($maGioHang,$item);
+        }
+        // print_r($arrSoLuong);
+        // print_r($arrMaSanPham);
         // exit();
+
+
 
        
     }

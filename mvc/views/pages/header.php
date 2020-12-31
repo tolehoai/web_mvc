@@ -103,16 +103,16 @@
 
       //Update cart
 //Hien thi so luong
-$.post("./Ajax/HienThiSoLuong", {}, function (data) {
-        $(".cart-number").html(data);
-        // alert(data);
-      })
+// $.post("./Ajax/HienThiSoLuong", {}, function (data) {
+//         $(".cart-number").html(data);
+//         // alert(data);
+//       })
 
 //Hien thi gia
-      $.post("./Ajax/HienThiGia", {}, function (data) {
-        $(".gia").html(data);
-        // alert(data);
-      })
+      // $.post("./Ajax/HienThiGia", {}, function (data) {
+      //   $(".gia").html(data);
+      //   // alert(data);
+      // })
 
 
 
@@ -345,7 +345,7 @@ $.post("./Ajax/HienThiSoLuong", {}, function (data) {
     </div>
     <!-- /.header-top -->
     <!-- ============================================== TOP MENU : END ============================================== -->
-    <div class="main-header">
+    <div class="main-header p-0">
       <div class="container-fluid-fluid">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
@@ -373,25 +373,7 @@ $.post("./Ajax/HienThiSoLuong", {}, function (data) {
             <!-- ============================================================= SEARCH AREA : END ============================================================= -->
           </div>
           <!-- /.top-search-holder -->
-          <?php 
-              if(isset($_SESSION["userNameLogin"])){
-                echo "
-                    <div class=\"col-lg-2 col-md-3 col-sm-4 col-xs-12 top-cart-row item\">
-                    <div class=\"giohang\" style=\"cursor: pointer;\">
-                      <svg width=\"3em\" height=\"3em\" viewBox=\"0 0 16 16\" class=\"bi bi-cart2 cart-icon\" fill=\"white\"
-                        xmlns=\"http://www.w3.org/2000/svg\">
-                        <path fill-rule=\"evenodd\"
-                          d=\"M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z\" />
-                      </svg>
-                    </div>
-      
-                    <div class=\"cart-number\"></div>
-                    <div class=\"gia\"></div>
-                  </div>
-                ";
-              }
-            
-           ?>
+          
           
 
 
@@ -420,84 +402,15 @@ $.post("./Ajax/HienThiSoLuong", {}, function (data) {
       <div id="navbarContent" class="collapse navbar-collapse">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item dropdown megamenu"><a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false" class="nav-link dropdown-toggle font-weight-bold text-uppercase">SẢN PHẨM</a>
-            <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
-              <div class="container">
-                <div class="row bg-white rounded-0 m-0 shadow-sm">
-                  <div class="col-lg-7 col-xl-8">
-                    <div class="p-4">
-                      <div class="row">
-                        <div class="col-lg-6 mb-4">
-                          <h6 class="font-weight-bold text-uppercase">Vợt cầu lông</h6>
-                          <ul class="list-unstyled">
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0">Vợt cầu lông Yonex</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Vợt cầu lông Lining</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Vợt cầu lông Victor</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Vợt cầu lông Mizuno</a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                          <h6 class="font-weight-bold text-uppercase">Giày cầu lông</h6>
-                          <ul class="list-unstyled">
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Giày cầu lông Yonex</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Giày cầu lông Linng</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Giày cầu lông Victor</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Giày cầu lông Mizuno</a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                          <h6 class="font-weight-bold text-uppercase">Áo cầu lông</h6>
-                          <ul class="list-unstyled">
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Áo cầu lông Yonex</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Áo cầu lông Lining</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Áo cầu lông Victor</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Áo cầu lông Mizuno</a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                          <h6 class="font-weight-bold text-uppercase">Quần cầu lông</h6>
-                          <ul class="list-unstyled">
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Quần cầu lông Yonex</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Quần cầu lông Lining</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Quần cầu lông Victor</a>
-                            </li>
-                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Quần cầu lông Mizuno</a>
-                            </li>
-                          </ul>
-                        </div>
-
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="col-md-4 itemR">
-
-
-                    <img src="https://pbs.twimg.com/media/ElYb9AZVMAEkdvQ.jpg" class="img-fluid" alt="Responsive image">
-
-                  </div>
-                </div>
-              </div>
+             
+            
+              
             </div>
       </div>
       </li>
       <li class="nav-item"><a href="" class="nav-link font-weight-bold text-uppercase">Giới thiệu</a></li>
-      <li class="nav-item"><a href="" class="nav-link font-weight-bold text-uppercase">Dịch vụ</a></li>
-      <li class="nav-item"><a href="" class="nav-link font-weight-bold text-uppercase">Liên hệ</a></li>
+      <li class="nav-item"><a href="" class="nav-link font-weight-bold text-uppercase">TÌNH TRẠNG ĐƠN HÀNG</a></li>
+      <li class="nav-item"><a href="/web_mvc/GioHang" class="nav-link font-weight-bold text-uppercase">Giỏ hàng</a></li>
       </ul>
       </div>
     </nav>

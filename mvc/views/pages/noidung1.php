@@ -1,4 +1,3 @@
-
 <div class="body-content outer-top-vs" id="top-banner-and-menu">
     <div class="container-fluid">
         <div class="row">
@@ -15,18 +14,19 @@
                         
                             ?>
                             <li class="categogy-sub1-item">
-                                <button type="button" class="btn btn-light w-100 sub1" class="sub1" loaisanpham="<?php echo $row_sanpham['nhomhanghoa_slug'];?>"><?php echo $row_sanpham['TENNHOM'];?></button>
+                                <button type="button" class="btn btn-light w-100 sub1" class="sub1"
+                                    loaisanpham="<?php echo $row_sanpham['nhomhanghoa_slug'];?>"><?php echo $row_sanpham['TENNHOM'];?></button>
                                 <ul class="category-sub-2 " id="sub1-1">
-                                <div class="noidung-<?php echo $row_sanpham['nhomhanghoa_slug'] ?>">
-                                
-                                </div>
-                                <!-- <li class="category-sub2-item "></li> -->
-                                
-                                    
-                                   
+                                    <div class="noidung-<?php echo $row_sanpham['nhomhanghoa_slug'] ?>">
+
+                                    </div>
+                                    <!-- <li class="category-sub2-item "></li> -->
+
+
+
                                 </ul>
                             </li>
-                          <?php } ?>
+                            <?php } ?>
                         </ul>
                     </nav>
                     <!-- /.megamenu-horizontal -->
@@ -34,8 +34,7 @@
                 <!-- /.side-menu -->
                 <!-- ================================== TOP NAVIGATION : END ================================== -->
                 <!-- ============================================== Sản phẩm mới ============================================== -->
-                <div class="sidebar-widget hot-deals outer-bottom-xs" id="sanphammoi">
-                    <h3 class="section-title">Sản phẩm mới</h3>
+               
                     <!-- slider san pham moi  -->
                     <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -126,89 +125,73 @@
                           <span class="sr-only">Next</span>
                         </a>
                         </div> -->
-                    <div class="swiper-container w-100 h-auto">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Slides -->
-                            <div class="swiper-slide">
-                                <img src="https://shopvnb.com/uploads/gallery/Mizuno%20Dynablitz%20-%20Den%20xanh.png"
+                    <div class="sidebar-widget hot-deals outer-bottom-xs" id="sanphammoi">
+                        <h3 class="section-title">Sản phẩm mới</h3>
+
+
+                        <!-- slider san pham moi  -->
+
+                        <div class="swiper-container w-100 h-auto">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                                <!-- Slides -->
+                                <?php
+							                  while($row_sanpham_new = mysqli_fetch_array($data["sanphammoi"])){
+                                $sanphamnew_ten=$row_sanpham_new['TENHH'];
+                                $sanphamnew_hinh=$row_sanpham_new['HINH'];
+                                $sanphamnew_gia=$row_sanpham_new['GIA'];
+                                $sanphamnew_gia=number_format($sanphamnew_gia, 0, '', ',');
+                                
+                                echo '
+                                <a href="'.URL.'SanPham/ChiTietSanPham/' . $row_sanpham_new['nhomhanghoa_slug'] . '/' . $row_sanpham_new['MSHS'] . '">
+                                <div class="swiper-slide">
+                                <img src="../../../web_mvc/uploads/'.$sanphamnew_hinh.'"
                                     class="img-fluid" alt="Responsive image">
                                 <div class="product-info text-left m-t-20 new-product-info">
-                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
+                                    <h3 class="name"><a href="'.URL.'SanPham/ChiTietSanPham/' . $row_sanpham_new['nhomhanghoa_slug'] . '/' . $row_sanpham_new['MSHS'] . '">'.$sanphamnew_ten.'</a></h3>
                                     <div class="rating rateit-small"></div>
-                                    <div class="product-price item1"> <span class="price"> $600.00 </span> <span
-                                            class="price-before-discount">$800.00</span> </div>
+                                    <div class="product-price item1"> <span class="price"> '.$sanphamnew_gia.' đ </span> <span
+                                            class="price-before-discount"></span> </div>
                                     <!-- /.product-price item1 -->
                                     <div class="cart clearfix animate-effect item">
                                         <div class="action">
-                                            <div class="add-cart-button btn-group">
-                                                <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                    type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                <button class="btn btn-primary cart-btn" type="button">Mua
-                                                    hàng</button>
+                                            <div class="add-cart-button btn-group p-3">
+                                                
                                             </div>
                                         </div>
                                         <!-- /.action -->
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://shopvnb.com/uploads/gallery/Mizuno%20Dynablitz%20-%20Den%20xanh.png"
-                                    class="img-fluid" alt="Responsive image">
-                                <div class="product-info text-left m-t-20 new-product-info">
-                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-                                    <div class="rating rateit-small"></div>
-                                    <div class="product-price item1"> <span class="price"> $600.00 </span> <span
-                                            class="price-before-discount">$800.00</span> </div>
-                                    <!-- /.product-price item1 -->
-                                    <div class="cart clearfix animate-effect item">
-                                        <div class="action">
-                                            <div class="add-cart-button btn-group">
-                                                <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                    type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                <button class="btn btn-primary cart-btn" type="button">Mua
-                                                    hàng</button>
-                                            </div>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
                                 </div>
+                                </a>
+                                ';
+                            };
+						
+                        ?>
+
                             </div>
-                            <div class="swiper-slide">
-                                <img src="https://shopvnb.com/uploads/gallery/Mizuno%20Dynablitz%20-%20Den%20xanh.png"
-                                    class="img-fluid" alt="Responsive image">
-                                <div class="product-info text-left m-t-20 new-product-info">
-                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-                                    <div class="rating rateit-small"></div>
-                                    <div class="product-price item1"> <span class="price"> $600.00 </span> <span
-                                            class="price-before-discount">$800.00</span> </div>
-                                    <!-- /.product-price item1 -->
-                                    <div class="cart clearfix animate-effect item">
-                                        <div class="action">
-                                            <div class="add-cart-button btn-group">
-                                                <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                    type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                <button class="btn btn-primary cart-btn" type="button">Mua
-                                                    hàng</button>
-                                            </div>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                </div>
-                            </div>
-                            ...
+                            <!-- If we need pagination -->
+                            <div class="swiper-pagination"></div>
+                            <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                            <!-- If we need scrollbar -->
+                            <div class="swiper-scrollbar"></div>
                         </div>
-                        <!-- If we need pagination -->
-                        <div class="swiper-pagination"></div>
-                        <!-- If we need navigation buttons -->
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                        <!-- If we need scrollbar -->
-                        <div class="swiper-scrollbar"></div>
+
+
+
+
+
+
+                        <!-- /.product-info -->
+
+
+                        <!-- /.cart -->
                     </div>
                     <!-- /.product-info -->
                     <!-- /.cart -->
-                </div>
+                
             </div>
             <!-- Cot phai  -->
             <!-- ============================================== CONTENT ============================================== -->
@@ -266,7 +249,8 @@
                             </div>
                             <div class="swiper-slide">
                                 <img class="d-block w-100 img-fluid"
-                                    src="https://shopvnb.com/uploads/slider/banner-AX-UNISEX-1-2-3.jpg" alt="Third slide">
+                                    src="https://shopvnb.com/uploads/slider/banner-AX-UNISEX-1-2-3.jpg"
+                                    alt="Third slide">
                             </div>
                             ...
                         </div>
@@ -300,20 +284,21 @@
                 <?php 
                 while($row_danhmuc = mysqli_fetch_array($data["danhmuc"])){
                 ?>
-                <section class="section new-arriavls" madanhmuc="<?php echo $row_danhmuc['MANHOM'];?>" tendanhmuc="<?php echo $row_danhmuc['nhomhanghoa_slug'];?>" >
-                    
-                        <h3 class="section-title"><?php echo $row_danhmuc['TENNHOM']?></h3>
-                        <div class="row" id="san-pham-cua-danh-muc-<?php echo $row_danhmuc['MANHOM']; ?>">
-                        </div>
-                            
-                            
-                            
+                <section class="section new-arriavls" madanhmuc="<?php echo $row_danhmuc['MANHOM'];?>"
+                    tendanhmuc="<?php echo $row_danhmuc['nhomhanghoa_slug'];?>">
+
+                    <h3 class="section-title"><?php echo $row_danhmuc['TENNHOM']?></h3>
+                    <div class="row" id="san-pham-cua-danh-muc-<?php echo $row_danhmuc['MANHOM']; ?>">
+                    </div>
+
+
+
                 </section>
-                        <?php }?>
+                <?php }?>
                 <!-- /.section -->
                 <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
                 <!-- ============================================== FEATURED PRODUCTS ============================================== -->
-                
+
                 <!-- /.section -->
                 <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
             </div>

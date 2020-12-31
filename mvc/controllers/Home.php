@@ -10,6 +10,7 @@ class Home extends Controller {
         $this->view("aoxau", ["Page" => "noidung1", 
         "danhmuc" => $danhmuc->GetDanhMucCoSanPham(), 
         "sanpham" => $sanpham->GetUniqueNhomHangHoa(), 
+        "sanphammoi"=>$sanpham->GetSanPhamMoi(), 
         ]);
     }
     function Show($a, $b) {
