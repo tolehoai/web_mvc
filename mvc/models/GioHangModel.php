@@ -79,7 +79,7 @@ class GiohangModel extends DB {
     }
     public function UpdateTinhTrangDonHang($magiohang,$masanpham) {
         $qr = "UPDATE chi_tiet_gio_hang
-        SET tinhtrang_donhang='Chưa xữ lý'
+        SET tinhtrang_donhang='Chưa xữ lý', show_in_cart='0'
         WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
         return mysqli_query($this->con, $qr);
     }
@@ -107,5 +107,12 @@ class GiohangModel extends DB {
         WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
         return mysqli_query($this->con, $qr);
     }
+    public function GetChiTietGioHangTuMaGioHang($magiohang) {
+        $qr = "SELECT * FROM chi_tiet_gio_hang JOIN hang_hoa
+        WHERE chi_tiet_gio_hang.ma_gio_hang='$magiohang'
+        AND chi_tiet_gio_hang.MSHS=hang_hoa.MSHS";
+        return mysqli_query($this->con, $qr);
+    }
+   
 }
 ?>

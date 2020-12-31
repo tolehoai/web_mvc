@@ -30,7 +30,7 @@ class Ajax extends Controller {
         while ($row_sanpham = mysqli_fetch_array($ketqua)) {
             if($row_sanpham['SOLUONGHANG']==0){
                 echo '<a href="./SanPham/ChiTietSanPham/' . $tendanhmuc . '/' . $row_sanpham['MSHS'] . '">
-                <div class="col-md-3">
+                <div class="col-md-3 product">
                                     <div class="sanpham item1">
                                         <img src="./uploads/' . $row_sanpham['HINH'] . '"
                                             class="img-fluid" alt="Responsive image">
@@ -42,8 +42,9 @@ class Ajax extends Controller {
                                                 <br>
                                                 <form action="">
                                                 <!-- ' . URL . 'GioHang/ThemVaoGioHang -->
-                                                <a href="" class="btn btn-danger disabled " tabindex="-1" aria-disabled="true" role="button" data-bs-toggle="button">Hết hàng</a>
-                                                
+                                                <button class="btn btn-danger w-100" disabled  type="button"> 
+                                                  
+                                                 HẾT HÀNG </button>
                                                     <!-- <button class="btn btn-warning" type="button">Mua hàng</button> -->
                                                 
                                                 </form>
@@ -56,7 +57,7 @@ class Ajax extends Controller {
                 ';}
                 else{
                     echo '<a href="./SanPham/ChiTietSanPham/' . $tendanhmuc . '/' . $row_sanpham['MSHS'] . '">
-            <div class="col-md-3">
+            <div class="col-md-3 product">
                                 <div class="sanpham item1">
                                     <img src="./uploads/' . $row_sanpham['HINH'] . '"
                                         class="img-fluid" alt="Responsive image">
@@ -199,8 +200,9 @@ class Ajax extends Controller {
         // $giohang = $this->model("GioHangModel");
        
         $giohang->CapNhatSoLuongConLaiTrongBangChiTietGioHang();
+        
         $row_giohang_soluong = mysqli_fetch_assoc($giohang->GetGioHangTuMaGioHang_MaSanPham($maGioHang,$masanpham));
-        if($row_giohang_soluong ['so_luong']-$row_giohang_soluong ['soluong_conlai']>0){
+        if($row_giohang_soluong['so_luong']-$row_giohang_soluong['soluong_conlai']>0){
             $soluong="soluong_".$row_giohang_soluong ['MSHS'];
             $sl_conlai=$row_giohang_soluong ['soluong_conlai'];
             $sl=$row_giohang_soluong ['so_luong'];
@@ -225,6 +227,7 @@ class Ajax extends Controller {
             </script>
             ";
             $giohang->CapNhatSoLuongLonNhat_GioHang_HangHoa($maGioHang,$masanpham);
+           
         }
         else{
             // echo "<script>alert($sl_conlai)</script>";
@@ -322,12 +325,129 @@ class Ajax extends Controller {
         }
 
     }
-    function GetDonHang(){
-        
+    function Update_DangCapNhat() {
+        $giohang = $this->model("GioHangModel");
+        $masanpham=$_POST['masanpham'];
+        $magiohang=$_POST['magiohang'];
+
+        // echo $masanpham;
+        $kq=$giohang->CapNhatTrangThaiSanPham_MaGioHang_DangXuLy($masanpham,$magiohang);
+        // echo "
+        //     <script>
+        //         Swal.fire({
+        //             position: 'center',
+        //             icon: 'success',
+        //             title: 'Your work has been saved',
+        //             showConfirmButton: false,
+        //             timer: 1000
+        //         })
+        //         setTimeout(function(){
+        //             location.reload();
+        //         }, 1200);
+               
+        //     </script>
+        //     ";
+
+
+        if($kq>=1){
+            echo "
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Thao tác thành công',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                setTimeout(function(){
+                    location.reload();
+                }, 1200);
+               
+            </script>
+            ";
+        }
+        else{
+            echo "
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Thao tác thất bại',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                setTimeout(function(){
+                    location.reload();
+                }, 1200);
+               
+            </script>
+            ";
+        }
+
     }
+    function Update_DaCapNhat() {
+        $giohang = $this->model("GioHangModel");
+        $masanpham=$_POST['masanpham'];
+        $magiohang=$_POST['magiohang'];
+
+        // echo $masanpham;
+        $kq=$giohang->CapNhatTrangThaiSanPham_MaGioHang_DaXuLy($masanpham,$magiohang);
+        // echo "
+        //     <script>
+        //         Swal.fire({
+        //             position: 'center',
+        //             icon: 'success',
+        //             title: 'Your work has been saved',
+        //             showConfirmButton: false,
+        //             timer: 1000
+        //         })
+        //         setTimeout(function(){
+        //             location.reload();
+        //         }, 1200);
+               
+        //     </script>
+        //     ";
+
+
+        if($kq>=1){
+            echo "
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Thao tác thành công',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                setTimeout(function(){
+                    location.reload();
+                }, 1200);
+               
+            </script>
+            ";
+        }
+        else{
+            echo "
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Thao tác thất bại',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                setTimeout(function(){
+                    location.reload();
+                }, 1200);
+               
+            </script>
+            ";
+        }
+
+    }
+  
 
 
 
 }
 
-?>

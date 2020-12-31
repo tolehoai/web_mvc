@@ -66,10 +66,10 @@ class GioHang extends Controller {
         
         // var_dump($_POST);
         // exit();
-        // $this->view("aodep", [
-        //     "Page" => "noidung2", 
-        //     "Title" =>"Giỏ hàng"
-        //     ]);
+        $this->view("aodep", [
+            "Page" => "noidung2", 
+            "Title" =>"Giỏ hàng"
+            ]);
 
 
         // $giohang->CapNhatSoLuongConLai();
@@ -135,6 +135,18 @@ class GioHang extends Controller {
 
         //Cập nhật lại số lượng có thể mua trong bảng chi tiết hàng hóa 
         $giohang->CapNhatSoLuongConLaiTrongBangChiTietGioHang();
+    }
+
+    function TinhTrangDonHang(){
+        $giohang = $this->model("GioHangModel");
+        $userName = $_SESSION["userNameLogin"];
+        $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+        $maGioHang = $row['ma_gio_hang'];
+        $this->view("aoxau", [
+            "Page" => "tinhtrang_donhang", 
+            "Title" =>"Tình trạng đơn hàng",
+            "giohang" => $giohang->GetChiTietGioHangTuMaGioHang($maGioHang), 
+            ]);
     }
 }
 ?>

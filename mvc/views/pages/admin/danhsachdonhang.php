@@ -66,14 +66,14 @@
 									if($row_donhang['tinhtrang_donhang']=="Đang xữ lý"){
 										echo '
 										<td><button type="button" class="btn btn-light chuaxuly" masanpham="'.$row_donhang['MSHS'].'" magiohang="'.$row_donhang['ma_gio_hang'].'">Chưa xữ lý</button></td>
-										<td><button type="button" class="btn btn-info dangxuly" masanpham="'.$row_donhang['MSHS'].'" magiohang="'.$row_donhang['ma_gio_hang'].'">Đang xữ lý</button></td>
+										<td><button type="button" class="btn btn-info dangxuly btn-disabled" masanpham="'.$row_donhang['MSHS'].'" magiohang="'.$row_donhang['ma_gio_hang'].'">Đang xữ lý</button></td>
 										<td><button type="button" class="btn btn-light daxuly" masanpham="'.$row_donhang['MSHS'].'" magiohang="'.$row_donhang['ma_gio_hang'].'">Đã xữ lý</button></td>
 										<td><button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
 										';
 									}
 									if($row_donhang['tinhtrang_donhang']=="Đã xữ lý"){
 										echo '
-										<td><button type="button" class="btn btn-ligh chuaxulyt" masanpham="'.$row_donhang['MSHS'].'" magiohang="'.$row_donhang['ma_gio_hang'].'">Chưa xữ lý</button></td>
+										<td><button type="button" class="btn btn-ligh chuaxuly" masanpham="'.$row_donhang['MSHS'].'" magiohang="'.$row_donhang['ma_gio_hang'].'">Chưa xữ lý</button></td>
 										<td><button type="button" class="btn btn-light dangxuly" masanpham="'.$row_donhang['MSHS'].'" magiohang="'.$row_donhang['ma_gio_hang'].'">Đang xữ lý</button></td>
 										<td><button type="button" class="btn btn-success daxuly" masanpham="'.$row_donhang['MSHS'].'" magiohang="'.$row_donhang['ma_gio_hang'].'">Đã xữ lý</button></td>
 										<td><button type="button" class="btn btn-danger "><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
@@ -82,6 +82,7 @@
 								?>
 								
 							</tr>
+							
 						</tbody>
 						<?php
 						$i++;
@@ -103,6 +104,8 @@
 <script>
 
 $( document ).ready(function() {
+
+	//Chua xu ly
 	$(".chuaxuly").on("click", function () {
 			
 			var masanpham_update=$(this).attr("masanpham");
@@ -115,14 +118,37 @@ $( document ).ready(function() {
           })
 
 		});
-
-		$(".donhang").ready(function () {
-        
-			$.post("/web_mvc/Ajax/Get_DonHang", , function (data) {
-            $(".donhang").html(data);
+	//Dang xu ly
+	$(".dangxuly").on("click", function () {
+			
+			var masanpham_update=$(this).attr("masanpham");
+			var magiohang_update=$(this).attr("magiohang");
+			console.log(masanpham_update);
+			console.log(magiohang_update);
+			$.post("/web_mvc/Ajax/Update_DangCapNhat", { masanpham: masanpham_update, magiohang: magiohang_update }, function (data) {
+            $(".ajax").html(data);
             // alert(data);
           })
-      })
+
+		});
+
+	//Da xu ly
+	$(".daxuly").on("click", function () {
+			
+			var masanpham_update=$(this).attr("masanpham");
+			var magiohang_update=$(this).attr("magiohang");
+			console.log(masanpham_update);
+			console.log(magiohang_update);
+			$.post("/web_mvc/Ajax/Update_DaCapNhat", { masanpham: masanpham_update, magiohang: magiohang_update }, function (data) {
+            $(".ajax").html(data);
+            // alert(data);
+          })
+
+		});
+
+
+
+		
 
 });
 	

@@ -15,9 +15,9 @@
 
 </style>
 <body>
-    <!-- The video -->
-<!-- <video autoplay muted loop id="myVideo">
+    The video 
+<video autoplay muted loop id="myVideo">
   <source src="/web_mvc/public/bg.mp4" type="video/mp4">
-</video> -->
+</video>
 
 </body>

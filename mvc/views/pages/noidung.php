@@ -28,7 +28,7 @@
 						
                         ?>
 
-
+                                <?php if($row_giohang['show_in_cart']=="1"){ ?>
                                     <tbody>
                                         <!-- Start form  -->
                                         
@@ -118,6 +118,7 @@
 
 
                                     </tbody>
+                                    <?php } ?>
                                     <!-- /tbody -->
                                     <?php
                             
