@@ -40,6 +40,8 @@ class GioHang extends Controller {
         $maGioHang = $row['ma_gio_hang'];
         echo "Them vao gio hang " . $maSP . " Cua tai khoan " . $userName;
         echo " Ma gio hang " . $maGioHang;
+        $giohang->UpdateTinhTrangDonHang_Show($maGioHang,$maSP);
+        
     }
 
     function CapNhat(){
@@ -66,8 +68,8 @@ class GioHang extends Controller {
         
         // var_dump($_POST);
         // exit();
-        $this->view("aodep", [
-            "Page" => "noidung2", 
+        $this->view("aoxau", [
+            "Page" => "thanhtoanthanhcong", 
             "Title" =>"Giỏ hàng"
             ]);
 
@@ -97,7 +99,12 @@ class GioHang extends Controller {
         // print_r($arrSoLuong);
         // print_r($arrMaSanPham);
         // exit();
-
+        $hoten=$_POST['txtHoTen'];
+        $diachi=$_POST['txtDiaChi'];
+        $sdt=$_POST['txtSDT'];
+        $ghichu=$_POST['txtGhiChu'];
+        $giohang->UpdateThongTinThanhToan($hoten, $diachi, $sdt, $ghichu, $maGioHang);
+        
 
 
        

@@ -31,7 +31,7 @@
 								<li class="categogy-sub1-item">
 								<a class="sub1" id="sub1"><i class="fa fa-product-hunt" aria-hidden="true"></i></span>Quản lý sản phẩm</a>
 									<ul class="category-sub-2 " id="sub1-1">
-										<li class="category-sub2-item"> <a href="<?php echo URL;?>Admin/SanPham/TatCa"> Danh sách sản phẩm</a></li>
+										<li class="category-sub2-item"> <a href="<?php echo URL;?>Admin/SanPham/TatCa/1"> Danh sách sản phẩm</a></li>
 										<li class="category-sub2-item"> <a href="<?php echo URL ?>Admin/ThemSanPham"> Thêm sản phẩm</a></li>
 										
 									</ul>

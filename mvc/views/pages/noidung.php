@@ -25,7 +25,7 @@
                                     <!-- /thead -->
                                     <?php
 							while($row_giohang = mysqli_fetch_array($data["giohang"])){
-						
+                               
                         ?>
 
                                 <?php if($row_giohang['show_in_cart']=="1"){ ?>
@@ -133,8 +133,7 @@
                                                             class="btn btn-upper btn-primary outer-left-xs">Tiếp tục
                                                             mua
                                                             sắp</a>
-                                                        <button class="btn btn-primary float-right">Cập nhật giỏ
-                                                            hàng</button>
+                                                       
                                                     </span>
                                                 </div>
                                                 <!-- /.shopping-cart-btn -->
@@ -219,12 +218,14 @@
                                         <tbody>
                                             <tr>
                                                 <td>
+                                                    
                                                     <div class="cart-checkout-btn pull-right">
                                                         <a href="GioHang/ThanhToan"><button type="submit"
                                                                 class="btn btn-primary checkout-btn">TIẾN HÀNH THANH
                                                                 TOÁN</button></a>
 
                                                     </div>
+                                                   
                                                 </td>
                                             </tr>
                                         </tbody>

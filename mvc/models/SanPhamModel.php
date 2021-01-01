@@ -18,7 +18,7 @@ class SanPhamModel extends DB {
         return mysqli_query($this->con, $qr);
     }
     public function TimSanPhamTheoIDVaDanhMuc($danhmuc, $id) {
-        $qr = "SELECT hang_hoa.SOLUONGHANG, hang_hoa.HINH, hang_hoa.TENHH,hang_hoa.GIA,hang_hoa.MOTAHH,hang_hoa.MOTA_NGAN,nhomhanghoa.TENNHOM,concat(nhomhanghoa.TENNHOM,' ',thuong_hieu.ten_thuong_hieu) as hanghoathuocnhom
+        $qr = "SELECT hang_hoa.MSHS, hang_hoa.SOLUONGHANG, hang_hoa.HINH, hang_hoa.TENHH,hang_hoa.GIA,hang_hoa.MOTAHH,hang_hoa.MOTA_NGAN,nhomhanghoa.TENNHOM,concat(nhomhanghoa.TENNHOM,' ',thuong_hieu.ten_thuong_hieu) as hanghoathuocnhom
         FROM hang_hoa JOIN nhomhanghoa JOIN thuong_hieu
         WHERE hang_hoa.MANHOM=nhomhanghoa.MANHOM
         AND hang_hoa.MATHUONGHIEU=thuong_hieu.ma_thuong_hieu
@@ -32,12 +32,12 @@ class SanPhamModel extends DB {
     }
     public function GetSanPhamTheoLoai($loai) {
         $qr = "SELECT * from hang_hoa JOIN nhomhanghoa JOIN thuong_hieu
-        WHERE hang_hoa.MANHOM = nhomhanghoa.MANHOM and nhomhanghoa_slug='$loai' and hang_hoa.MATHUONGHIEU=thuong_hieu.ma_thuong_hieu";
+        WHERE hang_hoa.MANHOM = nhomhanghoa.MANHOM and nhomhanghoa_slug='$loai' AND hang_hoa.MATHUONGHIEU=thuong_hieu.ma_thuong_hieu";
         return mysqli_query($this->con, $qr);
     }
     public function GetSanPhamTheoLoai_CoSoTrang($loai,$offset,$sosanpham_hienthi) {
-        $qr = "SELECT * from hang_hoa JOIN nhomhanghoa
-        WHERE hang_hoa.MANHOM = nhomhanghoa.MANHOM and nhomhanghoa_slug='$loai'
+        $qr = "SELECT * from hang_hoa JOIN nhomhanghoa JOIN thuong_hieu
+        WHERE hang_hoa.MANHOM = nhomhanghoa.MANHOM AND hang_hoa.MATHUONGHIEU=thuong_hieu.ma_thuong_hieu AND nhomhanghoa_slug='$loai'
         LIMIT $offset,$sosanpham_hienthi";
         return mysqli_query($this->con, $qr);
     }

@@ -83,6 +83,12 @@ class GiohangModel extends DB {
         WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
         return mysqli_query($this->con, $qr);
     }
+    public function UpdateTinhTrangDonHang_Show($magiohang,$masanpham) {
+        $qr = "UPDATE chi_tiet_gio_hang
+        SET tinhtrang_donhang='', show_in_cart='1'
+        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
+        return mysqli_query($this->con, $qr);
+    }
     public function GetGioHang() {
         $qr = "SELECT * FROM chi_tiet_gio_hang JOIN hang_hoa
         WHERE chi_tiet_gio_hang.MSHS=hang_hoa.MSHS
@@ -123,6 +129,13 @@ class GiohangModel extends DB {
     public function DemGiohang() {
         $qr = "SELECT COUNT(*) as sl
         FROM chi_tiet_gio_hang";
+        return mysqli_query($this->con, $qr);
+    }
+    public function UpdateThongTinThanhToan($hoten, $diachi, $sdt, $ghichu, $maGioHang) {
+        $qr = "UPDATE chi_tiet_gio_hang
+        SET
+        hoten='$hoten',diachi='$diachi',sodienthoai='$sdt',ghichu='$chichu'
+        WHERE chi_tiet_gio_hang.ma_gio_hang='$maGioHang'";
         return mysqli_query($this->con, $qr);
     }
    

@@ -136,15 +136,25 @@ class Admin extends Controller {
             header("Location: $url");
         }
     }
-    function SanPham($a) {
+    function SanPham($a,$trang) {
         CheckLogin();
         echo $a;
         if ($a == "TatCa") {
             $sanpham = $this->model("SanPhamModel");
             $this->view("pagemaster_admin", ["Page" => "admin/sanpham_trangchu", "danhmuc" => $sanpham->DemSoLuongHangHoa(), "Title" => 'Danh Sách Sản Phẩm', ]);
         } else {
+            $sosanpham_hienthi=5;
+            $offset=($trang-1)*$sosanpham_hienthi;
             $sanpham = $this->model("SanPhamModel");
-            $this->view("pagemaster_admin", ["Page" => "admin/sanphamtheoloai", "sanpham" => $sanpham->GetSanPhamTheoLoai($a), "a" => $a, "TitleSP" => $sanpham->GetTenNhomHangHoa($a), ]);
+            $this->view("pagemaster_admin", 
+            ["Page" => "admin/sanphamtheoloai", 
+            "sanpham" => $sanpham->GetSanPhamTheoLoai_CoSoTrang($a,$offset,$sosanpham_hienthi), 
+            "loai" => $a, 
+            "TitleSP" => $sanpham->GetTenNhomHangHoa($a), 
+            "page_no" => $trang,
+            "sl" => $sanpham->DemSanPham($a),
+            ]);
+
         }
     }
     function ThemSanPham() {

@@ -120,6 +120,8 @@ class Ajax extends Controller {
                   })
                 </script>
             ";
+        $giohang->UpdateTinhTrangDonHang_Show($maGioHang,$masanpham);
+
         }else{
             echo "
             <script>
