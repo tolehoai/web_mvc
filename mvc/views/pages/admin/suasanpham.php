@@ -39,7 +39,7 @@
             <?php
                while($row_sanpham = mysqli_fetch_array($data["sanpham"])){ 
             ?>
-            <p class="panel-subtitle">Tên sản phẩm</p>
+            
             <form action="<?php echo URL;?>Admin/XuLySuaSanPham/<?php echo $row_sanpham['MSHS']?>" method="POST"
                 name="frmSuaSanPham" id="frmSuaSanPham" enctype="multipart/form-data">
 
@@ -88,13 +88,17 @@
                         placeholder="Nhập giá sản phẩm" value="<?php echo $row_sanpham['GIA'] ?>">
                 </div>
                 <div class="form-group">
-                    <label>Số lượng sản phẩm</label>
+                    <label>Số lượng sản phẩm (Nhập thêm)</label>
                     <input type="text" class="form-control" name="txtSoLuongSanPham" aria-describedby="emailHelp"
                         placeholder="Nhập số lượng sản phẩm" value="<?php echo $row_sanpham['SOLUONGHANG'] ?>">
                 </div>
                 <div class="form-group">
                     <label>Chọn hình để tải lên</label>
                     <input type="file" class="form-control-file" name="txtHinhSanPham" value="<?php echo $row_sanpham['HINH']; ?>">
+                </div>
+                <div class="form-group">
+                    <label>Mô tả sản phẩm </label>
+                  <textarea name="txtMoTa" id="txtMoTa" cols="30" rows="10"><?php echo $row_sanpham['MOTAHH'] ?></textarea>
                 </div>
                 <?php } ?>
                 <div class="form-group">
@@ -113,6 +117,7 @@
 </div>
 <!-- END WRAPPER -->
 <!-- Javascript -->
+<script src="/web_mvc/public/ckeditor/ckeditor.js"></script>
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/jquery/jquery.min.js"></script>
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -120,7 +125,10 @@
     src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/chartist/js/chartist.min.js"></script>
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/scripts/klorofil-common.js"></script>
-
+<script>
+    // Yêu cầu CKEDITOR thay thế textarea đơn giản thành Bộ công cụ soạn thảo trực quan
+    CKEDITOR.replace('txtMoTa');
+</script>
 </body>
 
 </html>

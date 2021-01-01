@@ -81,6 +81,10 @@ while ($row_thuonghieu = mysqli_fetch_array($data["thuonghieu"])) {
                     <input type="file" class="form-control-file" name="txtHinhSanPham">
                 </div>
                 <div class="form-group">
+                    <label >Mô tả sản phẩm</label>
+                   <textarea name="txtMoTa" id="txtMoTa" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary" name="btnThemSanPham">Thêm mới sản phẩm</button>
                 </div>
                 </form>
@@ -98,6 +102,7 @@ while ($row_thuonghieu = mysqli_fetch_array($data["thuonghieu"])) {
 </div>
 <!-- END WRAPPER -->
 <!-- Javascript -->
+<script src="/web_mvc/public/ckeditor/ckeditor.js"></script>
 <script src="<?php echo URL; ?>mvc/views/pages/admin/assets/vendor/jquery/jquery.min.js"></script>
 <script src="<?php echo URL; ?>mvc/views/pages/admin/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo URL; ?>mvc/views/pages/admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -105,7 +110,10 @@ while ($row_thuonghieu = mysqli_fetch_array($data["thuonghieu"])) {
 	src="<?php echo URL; ?>mvc/views/pages/admin/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 <script src="<?php echo URL; ?>mvc/views/pages/admin/assets/vendor/chartist/js/chartist.min.js"></script>
 <script src="<?php echo URL; ?>mvc/views/pages/admin/assets/scripts/klorofil-common.js"></script>
-
+<script>
+    // Yêu cầu CKEDITOR thay thế textarea đơn giản thành Bộ công cụ soạn thảo trực quan
+    CKEDITOR.replace('txtMoTa');
+</script>
 </body>
 
 </html>

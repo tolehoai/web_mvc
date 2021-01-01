@@ -89,6 +89,13 @@ class GiohangModel extends DB {
         ORDER BY ma_gio_hang ASC";
         return mysqli_query($this->con, $qr);
     }
+    public function GetGioHang_CoSoTrang($offset, $sosanpham_hienthi) {
+        $qr = "SELECT * FROM chi_tiet_gio_hang JOIN hang_hoa
+        WHERE chi_tiet_gio_hang.MSHS=hang_hoa.MSHS
+        ORDER BY ma_gio_hang ASC
+        LIMIT $offset,$sosanpham_hienthi";;
+        return mysqli_query($this->con, $qr);
+    }
     public function CapNhatTrangThaiSanPham_MaGioHang_ChuaXuLy($masanpham,$magiohang) {
         $qr = "UPDATE chi_tiet_gio_hang
         SET tinhtrang_donhang='Chưa xữ lý'
@@ -111,6 +118,11 @@ class GiohangModel extends DB {
         $qr = "SELECT * FROM chi_tiet_gio_hang JOIN hang_hoa
         WHERE chi_tiet_gio_hang.ma_gio_hang='$magiohang'
         AND chi_tiet_gio_hang.MSHS=hang_hoa.MSHS";
+        return mysqli_query($this->con, $qr);
+    }
+    public function DemGiohang() {
+        $qr = "SELECT COUNT(*) as sl
+        FROM chi_tiet_gio_hang";
         return mysqli_query($this->con, $qr);
     }
    

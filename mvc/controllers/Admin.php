@@ -11,8 +11,8 @@ class Admin extends Controller {
         $admin = $this->model("TaiKhoanAdminModel");
         echo 'Kiem tra dang nhap';
         if (isset($_POST['btnDangNhap'])) {
-            $userName = $_POST['txtAdminUsername'];
-            $pass = $_POST['txtAdminPass'];
+            $userName = addslashes($_POST['txtAdminUsername']);
+            $pass = addslashes($_POST['txtAdminPass']);
             $kq = mysqli_num_rows($admin->KiemTraDangNhap($userName, $pass));
             if (isset($kq)) {
                 if ($kq == 1) {
@@ -52,7 +52,7 @@ class Admin extends Controller {
         echo "Admin Add";
         $this->view("pagemaster_admin", ["Page" => "admin/themdanhmuc", "Title" => 'Thêm Danh Mục', ]);
         if (isset($_POST["btnThemDanhMuc"]) && $_POST["txtTenDanhMuc"] != "") {
-            $tendanhmuc = $_POST["txtTenDanhMuc"];
+            $tendanhmuc = addslashes($_POST["txtTenDanhMuc"]);
             $slug = $tendanhmuc;
             $slug = trim(mb_strtolower($slug));
             $slug = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $slug);
@@ -94,7 +94,7 @@ class Admin extends Controller {
         CheckLogin();
         echo "Xu ly sua danh muc" . $id;
         if (isset($_POST["btnSuaDanhMuc"]) && $_POST["txtTenDanhMuc"] != "") {
-            $tenDanhMucCanSua = $_POST["txtTenDanhMuc"];
+            $tenDanhMucCanSua = addslashes($_POST["txtTenDanhMuc"]);
             $slug = $tenDanhMucCanSua;
             $slug = trim(mb_strtolower($slug));
             $slug = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $slug);
@@ -129,7 +129,7 @@ class Admin extends Controller {
                 if ($kq == 1) {
                     $_SESSION["thanhcong"] = "Xóa danh mục thành công";
                 } else {
-                    $_SESSION["thatbai"] = "Xóa danh mục thất bại";
+                    $_SESSION["thatbai"] = "Xóa danh mục thất bại - Do quan hệ RESTRICT";
                 }
             }
             $url = URL . "Admin/Danhmuc";
@@ -158,17 +158,18 @@ class Admin extends Controller {
         "Title" => 'Thêm Sản Phẩm', 
         ]);
         if (isset($_POST["btnThemSanPham"])) {
-            $tensanpham = $_POST["txtTenSanPham"];
-            $loaisanpham = $_POST["slLoaiSanPham"];
-            $thuonghieu = $_POST["slThuongHieu"];
-            $giasanpham = $_POST["txtGiaSanPham"];
-            $soluongsanpham = $_POST["txtSoLuongSanPham"];
-            $hinhsanpham = $_FILES["txtHinhSanPham"]["name"];
+            $tensanpham = addslashes($_POST["txtTenSanPham"]);
+            $loaisanpham = addslashes($_POST["slLoaiSanPham"]);
+            $thuonghieu = addslashes($_POST["slThuongHieu"]);
+            $giasanpham = addslashes($_POST["txtGiaSanPham"]);
+            $soluongsanpham = addslashes($_POST["txtSoLuongSanPham"]);
+            $mota = addslashes($_POST["txtMoTa"]);
+            $hinhsanpham = addslashes($_FILES["txtHinhSanPham"]["name"]);
             $dst = "./uploads/" . $hinhsanpham;
             //    echo '<script type="text/javascript">alert("' . $dst . '")</script>';
             move_uploaded_file($_FILES["txtHinhSanPham"]["tmp_name"], $dst);
             $sanpham = $this->model("SanPhamModel");
-            $kq = $sanpham->ThemSanPham($tensanpham, $loaisanpham, $thuonghieu, $giasanpham, $soluongsanpham, $hinhsanpham);
+            $kq = $sanpham->ThemSanPham($tensanpham, $loaisanpham, $thuonghieu, $giasanpham, $soluongsanpham, $hinhsanpham, $mota);
             if (isset($kq)) {
                 if ($kq >= 1) {
                     $_SESSION["thanhcong"] = "Thêm sản phẩm thành công";
@@ -207,7 +208,7 @@ class Admin extends Controller {
                 if ($kq == 1) {
                     $_SESSION["thanhcong"] = "Xóa sản phẩm thành công";
                 } else {
-                    $_SESSION["thatbai"] = "Xóa sản phẩm thất bại";
+                    $_SESSION["thatbai"] = "Xóa sản phẩm thất bại - Do quan hệ RESTRICT";
                 }
             }
             $url = URL . "Admin/SanPham/TatCa";
@@ -220,20 +221,21 @@ class Admin extends Controller {
         // $hinhChuaCapNhat=$row_sanpham['HINH'][1];
         // echo '<script type="text/javascript">alert("'.$hinhChuaCapNhat.'")</script>';
         if (isset($_POST["btnSuaSanPham"]) && $_POST["txtTenSanPham"] != "" && $_POST["txtGiaSanPham"] != "" && $_POST["txtSoLuongSanPham"] != "") {
-            $tenSanPhamCanSua = $_POST["txtTenSanPham"];
-            $nhomSanPhamCanSua = $_POST["slNhomSanPham"];
-            $thuongHieuCanSua = $_POST["slThuongHieu"];
-            $giaCanSua = $_POST["txtGiaSanPham"];
-            $soLuongCanSua = $_POST["txtSoLuongSanPham"];
-            $hinhCanSua = $_FILES["txtHinhSanPham"]["name"];
+            $tenSanPhamCanSua = addslashes($_POST["txtTenSanPham"]);
+            $nhomSanPhamCanSua = addslashes( $_POST["slNhomSanPham"]);
+            $thuongHieuCanSua = addslashes($_POST["slThuongHieu"]);
+            $giaCanSua = addslashes($_POST["txtGiaSanPham"]);
+            $soLuongCanSua = addslashes($_POST["txtSoLuongSanPham"]);
+            $hinhCanSua = addslashes($_FILES["txtHinhSanPham"]["name"]);
+            $mota=addslashes($_POST['txtMoTa']);
             // var_dump($hinhCanSua);
             $sanpham = $this->model("SanPhamModel");
             if ($hinhCanSua == '') {
-                $kq = $sanpham->SuaSanPhamKhongThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua);
+                $kq = $sanpham->SuaSanPhamKhongThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua, $mota);
             } else {
                 $dst = "./uploads/" . $hinhCanSua;
                 move_uploaded_file($_FILES["txtHinhSanPham"]["tmp_name"], $dst);
-                $kq = $sanpham->SuaSanPhamCoThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua, $hinhCanSua);
+                $kq = $sanpham->SuaSanPhamCoThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua, $hinhCanSua, $mota);
             }
             // $hinhCanSua=$_FILES["txtHinhSanPham"]["name"];
             // echo '<script type="text/javascript">alert("'.$hinhCanSua.'")</script>';
@@ -283,7 +285,7 @@ class Admin extends Controller {
     function XuLySuaThuongHieu($id) {
         CheckLogin();
         if (isset($_POST["btnSuaThuongHieu"]) && $_POST["txtTenThuongHieu"] != "") {
-            $tenThuongHieuCanSua = $_POST["txtTenThuongHieu"];
+            $tenThuongHieuCanSua = addslashes($_POST["txtTenThuongHieu"]);
             $thuonghieu = $this->model("ThuongHieuModel");
             $kq = $thuonghieu->SuaThuongHieu($tenThuongHieuCanSua, $id);
             if (isset($kq)) {
@@ -307,20 +309,27 @@ class Admin extends Controller {
                 if ($kq == 1) {
                     $_SESSION["thanhcong"] = "Xóa thương hiệu thành công";
                 } else {
-                    $_SESSION["thatbai"] = "Xóa thương hiệu thất bại";
+                    $_SESSION["thatbai"] = "Xóa thương hiệu thất bại - Do quan hệ RESTRICT";
                 }
             }
             $url = URL . "Admin/Thuonghieu";
             header("Location: $url");
         }
     }
-    function DonHang(){
+    function DonHang($trang){
+        $sosanpham_hienthi=10;
+        $sanpham = $this->model("SanPhamModel");
+        $offset=($trang-1)*$sosanpham_hienthi;
         echo "Đơn hàng";
         $donhang = $this->model("GioHangModel");
         $this->view("pagemaster_admin", 
         ["Page" => "admin/danhsachdonhang", 
-        "donhang"=>$donhang->GetGioHang(),
-        "Title" => 'Danh sách đơn hàng', ]);
+        "donhang"=>$donhang->GetGioHang_CoSoTrang($offset, $sosanpham_hienthi),
+        "Title" => 'Danh sách đơn hàng', 
+        "page_no" => $trang,
+        "sl" => $donhang->DemGioHang(),
+        ]);
+        
     }
 
 

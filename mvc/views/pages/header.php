@@ -15,18 +15,17 @@
     <title>
         <?php 
  
-  if(isset($data["SP_Title"])){
-    $row = mysqli_fetch_assoc($data["SP_Title"]);
-    echo $row['TENHH'];
-  }
-  else if(isset($data["Title"])){
-    echo $data["Title"];
-  }
-  else{
-    echo "Trang chủ";
-  }
-  
-  ?>
+	if(isset($data["Title"])){
+		echo $data["Title"];
+	}
+	else if(isset($data["Title_SP"])){
+		$row = mysqli_fetch_assoc($data["Title_SP"]);
+		echo $row['TENNHOM'];
+	}
+	else{
+		echo "Trang chủ";
+	}
+	?>
     </title>
 
     <!-- Google Font  -->

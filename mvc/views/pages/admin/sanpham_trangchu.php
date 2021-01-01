@@ -58,6 +58,9 @@
     display: block;
     font-size: 18px;
   }
+  .action{
+    margin: 20px;
+  }
 </style>
 <!-- MAIN -->
 <?php
@@ -100,17 +103,18 @@
                     unset($_SESSION['thatbai']);
                 }
             ?>
-					<h3 class="panel-title">Danh mục</h3>
+					<h3 class="panel-title">Sản phẩm</h3>
 					<p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+      
 				</div>
-
+        <a href="/web_mvc/Admin/ThemSanPham"> <button type="button" class="btn btn-success action">Thêm mới sản phẩm</button></a>
 			</div>
 			<!-- END OVERVIEW -->
 
 			<!--BANG DANH MUC -->
 			<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title">Bảng danh mục</h3>
+					<h3 class="panel-title">Bảng sản phẩm</h3>
 				</div>
 				<div class="panel-body">
                 <?php

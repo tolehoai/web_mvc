@@ -14,8 +14,12 @@
                         
                             ?>
                             <li class="categogy-sub1-item">
-                                <button type="button" class="btn btn-light w-100 sub1" class="sub1"
-                                    loaisanpham="<?php echo $row_sanpham['nhomhanghoa_slug'];?>"><?php echo $row_sanpham['TENNHOM'];?></button>
+                                <a href="/web_mvc/SanPham/DanhMuc/<?php echo $row_sanpham['nhomhanghoa_slug'];?>/1">
+                                    <button type="button" class="btn btn-light w-100 sub1" class="sub1"
+                                        loaisanpham="<?php echo $row_sanpham['nhomhanghoa_slug'];?>"><?php echo $row_sanpham['TENNHOM'];?>
+                                    </button>
+                                </a>
+
                                 <ul class="category-sub-2 " id="sub1-1">
                                     <div class="noidung-<?php echo $row_sanpham['nhomhanghoa_slug'] ?>">
 
@@ -34,9 +38,9 @@
                 <!-- /.side-menu -->
                 <!-- ================================== TOP NAVIGATION : END ================================== -->
                 <!-- ============================================== Sản phẩm mới ============================================== -->
-               
-                    <!-- slider san pham moi  -->
-                    <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+                <!-- slider san pham moi  -->
+                <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
                             <img src="https://shopvnb.com/uploads/gallery/Mizuno%20Dynablitz%20-%20Den%20xanh.png"
@@ -125,17 +129,17 @@
                           <span class="sr-only">Next</span>
                         </a>
                         </div> -->
-                    <div class="sidebar-widget hot-deals outer-bottom-xs" id="sanphammoi">
-                        <h3 class="section-title">Sản phẩm mới</h3>
+                <div class="sidebar-widget hot-deals outer-bottom-xs" id="sanphammoi">
+                    <h3 class="section-title">Sản phẩm mới</h3>
 
 
-                        <!-- slider san pham moi  -->
+                    <!-- slider san pham moi  -->
 
-                        <div class="swiper-container w-100 h-auto">
-                            <!-- Additional required wrapper -->
-                            <div class="swiper-wrapper">
-                                <!-- Slides -->
-                                <?php
+                    <div class="swiper-container w-100 h-auto">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <?php
 							                  while($row_sanpham_new = mysqli_fetch_array($data["sanphammoi"])){
                                 $sanphamnew_ten=$row_sanpham_new['TENHH'];
                                 $sanphamnew_hinh=$row_sanpham_new['HINH'];
@@ -169,29 +173,29 @@
 						
                         ?>
 
-                            </div>
-                            <!-- If we need pagination -->
-                            <div class="swiper-pagination"></div>
-                            <!-- If we need navigation buttons -->
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                            <!-- If we need scrollbar -->
-                            <div class="swiper-scrollbar"></div>
                         </div>
-
-
-
-
-
-
-                        <!-- /.product-info -->
-
-
-                        <!-- /.cart -->
+                        <!-- If we need pagination -->
+                        <div class="swiper-pagination"></div>
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                        <!-- If we need scrollbar -->
+                        <div class="swiper-scrollbar"></div>
                     </div>
+
+
+
+
+
+
                     <!-- /.product-info -->
+
+
                     <!-- /.cart -->
-                
+                </div>
+                <!-- /.product-info -->
+                <!-- /.cart -->
+
             </div>
             <!-- Cot phai  -->
             <!-- ============================================== CONTENT ============================================== -->
