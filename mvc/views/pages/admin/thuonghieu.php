@@ -83,8 +83,8 @@
 														<p>Bạn có xác nhận xóa thương hiệu <strong><?php echo $row_thuonghieu['ten_thuong_hieu']?></strong></p>
 													</div>
 													<div class="modal-footer">
-													<a href="/web_mvc/Admin/Thuonghieu"><button type="button" class="btn btn-primary">Thôi không xóa nữa</button></a>
-													<a href="<?php echo URL;?>Admin/XoaThuongHieu/<?php echo $row_thuonghieu['ma_thuong_hieu']?>"><button type="submit" name="btnXoaThuongHieu" class="btn btn-danger">Xóa luôn đi</button></a>
+													<a href="/web_mvc/Admin/Thuonghieu"><button type="button" class="btn btn-primary">Hủy bỏ</button></a>
+													<a href="<?php echo URL;?>Admin/XoaThuongHieu/<?php echo $row_thuonghieu['ma_thuong_hieu']?>"><button type="submit" name="btnXoaThuongHieu" class="btn btn-danger">Xác nhận xóa</button></a>
 													</div>
 												
 												

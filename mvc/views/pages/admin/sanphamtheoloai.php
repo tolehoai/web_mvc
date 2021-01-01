@@ -123,12 +123,11 @@
 													<div class="modal-footer">
 														<a
 															href="/web_mvc/Admin/SanPham/<?php echo $data["a"]?>"><button
-																type="button" class="btn btn-primary">Thôi không xóa
-																nữa</button></a>
+																type="button" class="btn btn-primary">Hủy bỏ</button></a>
 														<a
 															href="<?php echo URL;?>Admin/XoaSanPham/<?php echo $row_sanpham['MSHS']?>"><button
 																type="submit" name="btnXoaSanPham"
-																class="btn btn-danger">Xóa luôn đi</button></a>
+																class="btn btn-danger">Xác nhận xóa</button></a>
 													</div>
 
 

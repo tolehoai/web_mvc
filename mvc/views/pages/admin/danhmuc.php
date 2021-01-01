@@ -84,8 +84,8 @@
 														<p>Bạn có xác nhận xóa danh mục <strong><?php echo $row_danhmuc['TENNHOM']?></strong></p>
 													</div>
 													<div class="modal-footer">
-													<a href="/web_mvc/Admin/Danhmuc"><button type="button" class="btn btn-primary">Thôi không xóa nữa</button></a>
-													<a href="<?php echo URL;?>Admin/XoaDanhMuc/<?php echo $row_danhmuc['MANHOM']?>"><button type="submit" name="btnXoaDanhMuc" class="btn btn-danger">Xóa luôn đi</button></a>
+													<a href="/web_mvc/Admin/Danhmuc"><button type="button" class="btn btn-primary">Hủy bỏ</button></a>
+													<a href="<?php echo URL;?>Admin/XoaDanhMuc/<?php echo $row_danhmuc['MANHOM']?>"><button type="submit" name="btnXoaDanhMuc" class="btn btn-danger">Xác nhận xóa</button></a>
 													</div>
 												
 												

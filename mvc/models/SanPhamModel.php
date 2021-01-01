@@ -170,6 +170,7 @@ class SanPhamModel extends DB {
         AND hang_hoa.TENHH LIKE '%$noidung%'";
         return mysqli_query($this->con, $qr);
     }
+    
    
 }
 ?>

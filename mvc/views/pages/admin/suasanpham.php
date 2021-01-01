@@ -106,7 +106,7 @@
                 </div>
                 <?php } ?>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" name="btnSuaSanPham">Sửa sản phẩm sản phẩm</button>
+                    <button type="submit" class="btn btn-primary" name="btnSuaSanPham">Sửa sản phẩm</button>
                 </div>
             </form>
 

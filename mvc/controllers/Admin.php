@@ -69,11 +69,11 @@ class Admin extends Controller {
             if ($number == 0) {
                 if ($tendanhmuc != "") {
                     $kq = $danhmuc->ThemDanhMuc($tendanhmuc, $slug);
-                    $_SESSION["thanhcong"] = "Thanhcong";
+                    $_SESSION["thanhcong"] = "Thêm danh mục thành công";
                 } else {
                 }
             } else {
-                $_SESSION["thatbai"] = "That bai";
+                $_SESSION["thatbai"] = "Thêm danh mục thất bại";
             }
             echo '<script>window.location = "/web_mvc/Admin/AddDanhMuc" </script>';
         }
@@ -166,7 +166,7 @@ class Admin extends Controller {
             $mota = addslashes($_POST["txtMoTa"]);
             $motangan = addslashes($_POST["txtMoTaNgan"]);
             $hinhsanpham = addslashes($_FILES["txtHinhSanPham"]["name"]);
-            $dst = "./uploads/" . $hinhsanpham;
+            $dst = "/web_mvc/uploads/" . $hinhsanpham;
             //    echo '<script type="text/javascript">alert("' . $dst . '")</script>';
             move_uploaded_file($_FILES["txtHinhSanPham"]["tmp_name"], $dst);
             $sanpham = $this->model("SanPhamModel");
@@ -204,6 +204,10 @@ class Admin extends Controller {
         CheckLogin();
         if (isset($_POST["btnXoaSanPham"])) {
             $sanpham = $this->model("SanPhamModel");
+            $row = mysqli_fetch_assoc($sanpham->GetHinhBangID($id));
+            $hinhsanpham=$row['HINH'];
+            // $dst = "/web_mvc/uploads/" . $hinhsanpham;
+            // unlink('/web_mvc/uploads/'.$hinhsanpham);
             $kq = $sanpham->XoaSanPham($id);
             if (isset($kq)) {
                 if ($kq == 1) {

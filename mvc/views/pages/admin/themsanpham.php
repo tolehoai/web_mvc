@@ -89,7 +89,7 @@ while ($row_thuonghieu = mysqli_fetch_array($data["thuonghieu"])) {
                    <textarea name="txtMoTa" id="txtMoTa" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" name="btnThemSanPham">Thêmsản phẩm</button>
+                    <button type="submit" class="btn btn-primary" name="btnThemSanPham">Thêm sản phẩm</button>
                 </div>
                 </form>
                 </div>
