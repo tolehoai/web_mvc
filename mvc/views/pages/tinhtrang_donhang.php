@@ -26,9 +26,9 @@
                                     <!-- /thead -->
                                     <?php
 							while($row_giohang = mysqli_fetch_array($data["giohang"])){
-						
+                               
                         ?>
-
+    <?php  if($row_giohang['tinhtrang_donhang']!=""){ ?>
                                     <tbody>
                                         <!-- Start form  -->
 
@@ -100,11 +100,8 @@
                                             <td><?php echo $row_giohang['tinhtrang_donhang'] ?></td>
                                             <td class="romove-item">
                                             <?php if($row_giohang['tinhtrang_donhang']=="Chưa xữ lý"){?>
-                                            <button type="button" class="btn btn-danger"><a
-                                                        href="/web_mvc/GioHang/Xoa/<?php echo $row_giohang['MSHS'];?>"
-                                                        title="Xóa" class="icon"><i style="color:white;"
-                                                            class="fa fa-trash-o"></i></a>
-                                            </button>
+                                            
+                                            <button type="button" class="btn btn-danger xoaDonHang" masanpham="<?php echo $row_giohang['MSHS'];?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                             <?php } ?>
                                             </td>
                                         </tr>
@@ -117,7 +114,7 @@
 
 
                                     </tbody>
-                                    
+                                    <?php } ?>
                                     <!-- /tbody -->
                                     <?php
                             

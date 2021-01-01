@@ -10,9 +10,9 @@ class ThuongHieuModel extends DB {
         $qr = "SELECT * FROM thuong_hieu";
         return mysqli_query($this->con, $qr);
     }
-    public function ThemThuongHieu($name) {
-        $qr = "INSERT INTO thuong_hieu (ma_thuong_hieu, ten_thuong_hieu)
-        VALUES ('', '$name')";
+    public function ThemThuongHieu($name,$slug) {
+        $qr = "INSERT INTO thuong_hieu (ma_thuong_hieu, ten_thuong_hieu, slug)
+        VALUES ('', '$name', '$slug')";
         return mysqli_query($this->con, $qr);
     }
     public function TimThuongHieuTheoTen($str) {

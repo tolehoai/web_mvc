@@ -97,12 +97,16 @@
                     <input type="file" class="form-control-file" name="txtHinhSanPham" value="<?php echo $row_sanpham['HINH']; ?>">
                 </div>
                 <div class="form-group">
+                    <label>Mô tả sản ngắn </label>
+                  <textarea name="txtMoTaNgan" id="txtMoTaNgan" cols="30" rows="10"><?php echo $row_sanpham['MOTA_NGAN'] ?></textarea>
+                </div>
+                <div class="form-group">
                     <label>Mô tả sản phẩm </label>
                   <textarea name="txtMoTa" id="txtMoTa" cols="30" rows="10"><?php echo $row_sanpham['MOTAHH'] ?></textarea>
                 </div>
                 <?php } ?>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" name="btnSuaSanPham">Thêm mới sản phẩm</button>
+                    <button type="submit" class="btn btn-primary" name="btnSuaSanPham">Sửa sản phẩm sản phẩm</button>
                 </div>
             </form>
 
@@ -128,6 +132,7 @@
 <script>
     // Yêu cầu CKEDITOR thay thế textarea đơn giản thành Bộ công cụ soạn thảo trực quan
     CKEDITOR.replace('txtMoTa');
+    CKEDITOR.replace('txtMoTaNgan');
 </script>
 </body>
 

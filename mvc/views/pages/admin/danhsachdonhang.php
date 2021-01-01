@@ -6,9 +6,26 @@
             <!-- OVERVIEW -->
             <div class="panel panel-headline">
                 <div class="panel-heading">
-
+                    <?php
+                if(isset($_SESSION["thanhcong"])){
+                    echo'
+                    <div class="alert alert-success" role="alert">
+					'.$_SESSION["thanhcong"].'
+                  </div>
+                    ';
+                    unset($_SESSION['thanhcong']);
+                }
+                if(isset($_SESSION["thatbai"])){
+                    echo'
+                    <div class="alert alert-danger" role="alert">
+					'.$_SESSION["thatbai"].'
+</div>
+                    ';
+                    unset($_SESSION['thatbai']);
+                }
+            ?>
                     <h3 class="panel-title">Đơn hàng</h3>
-                    <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+                   
                 </div>
 
             </div>
@@ -42,7 +59,7 @@
                         <?php
 while ($row_donhang = mysqli_fetch_array($data["donhang"]))
 {
-
+            if($row_donhang['tinhtrang_donhang']!=""){
 ?>
 
                         <tbody>
@@ -61,7 +78,7 @@ while ($row_donhang = mysqli_fetch_array($data["donhang"]))
 										<td><button type="button" class="btn btn-warning chuaxuly" masanpham="' . $row_donhang['MSHS'] . '" magiohang="' . $row_donhang['ma_gio_hang'] . '">Chưa xữ lý</button></td>
 										<td><button type="button" class="btn btn-light dangxuly" masanpham="' . $row_donhang['MSHS'] . '" magiohang="' . $row_donhang['ma_gio_hang'] . '">Đang xữ lý</button></td>
 										<td><button type="button" class="btn btn-light daxuly" masanpham="' . $row_donhang['MSHS'] . '" magiohang="' . $row_donhang['ma_gio_hang'] . '">Đã xữ lý</button></td>
-										<td><button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+										
 										';
     }
     if ($row_donhang['tinhtrang_donhang'] == "Đang xữ lý")
@@ -70,7 +87,7 @@ while ($row_donhang = mysqli_fetch_array($data["donhang"]))
 										<td><button type="button" class="btn btn-light chuaxuly" masanpham="' . $row_donhang['MSHS'] . '" magiohang="' . $row_donhang['ma_gio_hang'] . '">Chưa xữ lý</button></td>
 										<td><button type="button" class="btn btn-info dangxuly btn-disabled" masanpham="' . $row_donhang['MSHS'] . '" magiohang="' . $row_donhang['ma_gio_hang'] . '">Đang xữ lý</button></td>
 										<td><button type="button" class="btn btn-light daxuly" masanpham="' . $row_donhang['MSHS'] . '" magiohang="' . $row_donhang['ma_gio_hang'] . '">Đã xữ lý</button></td>
-										<td><button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+										
 										';
     }
     if ($row_donhang['tinhtrang_donhang'] == "Đã xữ lý")
@@ -79,14 +96,19 @@ while ($row_donhang = mysqli_fetch_array($data["donhang"]))
 										<td><button type="button" class="btn btn-ligh chuaxuly" masanpham="' . $row_donhang['MSHS'] . '" magiohang="' . $row_donhang['ma_gio_hang'] . '">Chưa xữ lý</button></td>
 										<td><button type="button" class="btn btn-light dangxuly" masanpham="' . $row_donhang['MSHS'] . '" magiohang="' . $row_donhang['ma_gio_hang'] . '">Đang xữ lý</button></td>
 										<td><button type="button" class="btn btn-success daxuly" masanpham="' . $row_donhang['MSHS'] . '" magiohang="' . $row_donhang['ma_gio_hang'] . '">Đã xữ lý</button></td>
-										<td><button type="button" class="btn btn-danger "><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+										
 										';
     }
 ?>
+                                <td><button type="button" class="btn btn-danger xoaDonHang"
+                                        masanpham="<?php echo $row_donhang['MSHS']?>"
+                                        magiohang="<?php echo $row_donhang['ma_gio_hang'] ?>"><i class="fa fa-trash-o"
+                                            aria-hidden="true"></i></button></td>
 
                             </tr>
 
                         </tbody>
+                        <?php } ?>
                         <?php
     $i++;
 }
@@ -280,9 +302,9 @@ elseif ($sotrang > 10)
 
                     </nav>
                 </div>
-				
+
             </div>
-			
+
         </div>
     </div>
     <!-- END MAIN CONTENT -->

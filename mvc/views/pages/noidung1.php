@@ -14,11 +14,11 @@
                         
                             ?>
                             <li class="categogy-sub1-item">
-                                <a href="/web_mvc/SanPham/DanhMuc/<?php echo $row_sanpham['nhomhanghoa_slug'];?>/1">
+                             
                                     <button type="button" class="btn btn-light w-100 sub1" class="sub1"
                                         loaisanpham="<?php echo $row_sanpham['nhomhanghoa_slug'];?>"><?php echo $row_sanpham['TENNHOM'];?>
                                     </button>
-                                </a>
+                               
 
                                 <ul class="category-sub-2 " id="sub1-1">
                                     <div class="noidung-<?php echo $row_sanpham['nhomhanghoa_slug'] ?>">
@@ -145,6 +145,7 @@
                                 $sanphamnew_hinh=$row_sanpham_new['HINH'];
                                 $sanphamnew_gia=$row_sanpham_new['GIA'];
                                 $sanphamnew_gia=number_format($sanphamnew_gia, 0, '', ',');
+                                $danhmuc=$row_sanpham_new['nhomhanghoa_slug'];
                                 
                                 echo '
                                 <a href="'.URL.'SanPham/ChiTietSanPham/' . $row_sanpham_new['nhomhanghoa_slug'] . '/' . $row_sanpham_new['MSHS'] . '">
@@ -290,13 +291,13 @@
                 ?>
                 <section class="section new-arriavls" madanhmuc="<?php echo $row_danhmuc['MANHOM'];?>"
                     tendanhmuc="<?php echo $row_danhmuc['nhomhanghoa_slug'];?>">
-
-                    <h3 class="section-title"><?php echo $row_danhmuc['TENNHOM']?></h3>
+                    <a href="/web_mvc/SanPham/DanhMuc/<?php echo $row_danhmuc['nhomhanghoa_slug'];?>/1"><h3 class="section-title"><?php echo $row_danhmuc['TENNHOM']?></h3></a>
+                    
                     <div class="row" id="san-pham-cua-danh-muc-<?php echo $row_danhmuc['MANHOM']; ?>">
                     </div>
 
-
-
+                  
+                  <div class="d-flex justify-content-center p-2"><a href="/web_mvc/SanPham/DanhMuc/<?php echo $row_danhmuc['nhomhanghoa_slug'];?>/1">Xem thêm</a></div>
                 </section>
                 <?php }?>
                 <!-- /.section -->

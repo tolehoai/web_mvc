@@ -25,9 +25,10 @@
                 }
             ?>
 					<h3 class="panel-title">Danh mục</h3>
-					<p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+					
 				</div>
-
+				
+				<a href="/web_mvc/Admin/AddDanhMuc"> <button type="button" class="btn btn-success action">Thêm mới danh mục</button></a>
 			</div>
 			<!-- END OVERVIEW -->
 

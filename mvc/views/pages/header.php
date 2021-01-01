@@ -13,20 +13,26 @@
     <meta name="robots" content="all">
     <link rel="stylesheet" href="public/style.css">
     <title>
-        <?php 
- 
-	if(isset($data["Title"])){
-		echo $data["Title"];
-	}
-	else if(isset($data["Title_SP"])){
-		$row = mysqli_fetch_assoc($data["Title_SP"]);
-		echo $row['TENNHOM'];
-	}
-	else{
-		echo "Trang chủ";
-	}
-	?>
-    </title>
+    <?php 
+
+  if(isset($data["SP_Title"])){
+    $row = mysqli_fetch_assoc($data["SP_Title"]);
+    echo $row['TENHH'];
+  }
+  if(isset($data["Title_SP"])){
+    $row = mysqli_fetch_assoc($data["Title_SP"]);
+    echo $row['TENNHOM'];
+  }
+  else if(isset($data["Title"])){
+    echo $data["Title"];
+  }
+  else{
+    echo "Trang chủ";
+  }
+
+  ?>
+  
+  </title>
 
     <!-- Google Font  -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -190,9 +196,10 @@
                 // })
                 $(document).on("click", '.addCart', function(event) {
                     //  console.log("click");
-                    var masanpham_get = $(this).attr('product_id');
+                    var masanpham_get = parseInt($(this).attr('product_id'));
+
                     console.log(masanpham_get);
-                    $.post("./Ajax/ThemVaoGioHang", {
+                    $.post("/web_mvc/Ajax/ThemVaoGioHang", {
                         masanpham: masanpham_get
                     }, function(data) {
                         $(".ajax").html(data);
@@ -210,6 +217,17 @@
                     // alert(data);
                 })
             })
+            $(".xoaDonHang").on("click", function() {
+                var masanpham_get = parseInt($(this).attr('masanpham'));
+                $.post("/web_mvc/Ajax/XoaDonHang_GioHang", {
+                    masanpham: masanpham_get
+                }, function(data) {
+                    $(".ajax").html(data);
+                    // alert(data);
+                })
+            });
+
+
 
 
 
@@ -284,6 +302,100 @@
 <!-- ===================================CSS============================================ -->
 
 <style>
+    .modal-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #000000;
+    }
+    
+    a:hover {
+        color: #222222
+    }
+    /* Dropdown */
+    
+    .dropdown {
+        display: inline-block;
+        position: relative;
+    }
+    
+    .dd-button {
+        display: inline-block;
+        padding: 10px 30px 10px 20px;
+        background-color: #ffffff;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    
+    .dd-button:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid black;
+    }
+    
+    .dd-button:hover {
+        background-color: #eeeeee;
+    }
+    
+    .dd-input {
+        display: none;
+    }
+    
+    .dd-menu {
+        position: absolute;
+        top: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0;
+        margin: 2px 0 0 0;
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        list-style-type: none;
+        z-index: 5;
+        margin-right: 10px;
+    }
+    
+    .dd-input+.dd-menu {
+        display: none;
+    }
+    
+    .dd-input:checked+.dd-menu {
+        display: block;
+    }
+    
+    .dd-menu li {
+        padding: 10px 20px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    
+    .dd-menu li:hover {
+        background-color: #f6f6f6;
+    }
+    
+    .dd-menu li a {
+        display: block;
+        margin: -10px -20px;
+        padding: 10px 20px;
+    }
+    
+    .dd-menu li.divider {
+        padding: 0;
+        border-bottom: 1px solid #cccccc;
+    }
+    
     .slider-img {
         width: 1200px;
     }
@@ -316,14 +428,41 @@
     }
     
     .btn-danger.disabled,
-    .btn-danger:disabled {
-        
-    }
-    .item1{
+    .btn-danger:disabled {}
+    
+    .item1 {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+    }
+    
+    .menu-sub-1 {
+        cursor: pointer;
+    }
+    
+    .menu-sub-2 {
+        display: none;
+    }
+    
+    .menu-sub-1:active .menu-sub-2 {
+        display: block;
+    }
+    
+    .noidungtimkiem {
+        width: 790px;
+        height: 50px;
+        position: relative;
+        /* border-radius: 15px; */
+    }
+    
+    .btnTimKiem {
+        position: absolute;
+    top: 33px;
+    right: 337px;
+    padding: 14px;
+    border-radius: 0 999px 999px 0;
+    background-color: #fdd922;
     }
 </style>
 
@@ -382,28 +521,28 @@
                     <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
                         <!-- ============================================================= LOGO ============================================================= -->
                         <div class="logo"> <a href="<?php echo URL?>" class="w-100"> <img
-                  src="<?php echo URL;?>mvc/views/pages/images/logo.PNG" class="logo-img" alt="Logo"></a> </div>
+                                    src="<?php echo URL;?>mvc/views/pages/images/logo.PNG" class="logo-img"
+                                    alt="Logo"></a> </div>
                         <!-- /.logo -->
                         <!-- ============================================================= LOGO : END ============================================================= -->
                     </div>
                     <!-- /.logo-holder -->
 
-                    <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12 top-search-holder">
-                        <!-- /.contact-row -->
-                        <!-- ============================================================= SEARCH AREA ============================================================= -->
-                        <div class="search-area">
-                            <form>
-                                <div class="control-group">
 
-                                    <input class="search-field" placeholder="Tìm kiếm sản phẩm" />
-                                    <a class="search-button" href="#"></a>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.search-area -->
-                        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+                    <!-- /.contact-row -->
+                    <!-- ============================================================= SEARCH AREA ============================================================= -->
+                    <div class="search-area">
+                        <form action="/web_mvc/SanPham/TimKiem" method="POST" name="frmTimKiem" id="frmTimKiem" autocomplete="off" >
+                            <div class="form-group">
+                                <input type="text" class="form-control noidungtimkiem" name="txtNoiDung" placeholder="Nhập tên sản phẩm cần tìm kiêm">
+                                <a href="/web_mvc/SanPham/TimKiem/1"><button
+                                            type="submit" name="btnTimKiem" class="btn btn-primary btnTimKiem">Tìm Kiếm</button></a>
+                            </div>
+                        </form>
                     </div>
-                    <!-- /.top-search-holder -->
+
+                    <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+
 
 
 
@@ -426,7 +565,8 @@
 
         <!-- ============================================== NAVBAR ============================================== -->
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-white py-1 shadow-sm"> <a href="#" class="navbar-brand font-weight-bold d-block d-lg-none">MegaMenu</a> <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"> <span class="navbar-toggler-icon"></span> </button>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-1 shadow-sm"> <a href="#" class="navbar-brand font-weight-bold d-block d-lg-none">MegaMenu</a> <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"> <span class="navbar-toggler-icon"></span>
+            </button>
             <div id="navbarContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item dropdown megamenu">
@@ -435,7 +575,8 @@
             </li>
             <li class="nav-item"><a href="" class="nav-link font-weight-bold text-uppercase">Giới thiệu</a></li>
             <li class="nav-item"><a href="/web_mvc/GioHang/TinhTrangDonHang" class="nav-link font-weight-bold text-uppercase">TÌNH TRẠNG ĐƠN HÀNG</a></li>
-            <li class="nav-item"><a href="/web_mvc/GioHang" class="nav-link font-weight-bold text-uppercase">Giỏ hàng</a></li>
+            <li class="nav-item"><a href="/web_mvc/GioHang" class="nav-link font-weight-bold text-uppercase">Giỏ
+                    hàng</a></li>
             </ul>
             </div>
         </nav>

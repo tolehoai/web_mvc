@@ -164,12 +164,13 @@ class Admin extends Controller {
             $giasanpham = addslashes($_POST["txtGiaSanPham"]);
             $soluongsanpham = addslashes($_POST["txtSoLuongSanPham"]);
             $mota = addslashes($_POST["txtMoTa"]);
+            $motangan = addslashes($_POST["txtMoTaNgan"]);
             $hinhsanpham = addslashes($_FILES["txtHinhSanPham"]["name"]);
             $dst = "./uploads/" . $hinhsanpham;
             //    echo '<script type="text/javascript">alert("' . $dst . '")</script>';
             move_uploaded_file($_FILES["txtHinhSanPham"]["tmp_name"], $dst);
             $sanpham = $this->model("SanPhamModel");
-            $kq = $sanpham->ThemSanPham($tensanpham, $loaisanpham, $thuonghieu, $giasanpham, $soluongsanpham, $hinhsanpham, $mota);
+            $kq = $sanpham->ThemSanPham($tensanpham, $loaisanpham, $thuonghieu, $giasanpham, $soluongsanpham, $hinhsanpham, $mota, $motangan);
             if (isset($kq)) {
                 if ($kq >= 1) {
                     $_SESSION["thanhcong"] = "Thêm sản phẩm thành công";
@@ -228,14 +229,15 @@ class Admin extends Controller {
             $soLuongCanSua = addslashes($_POST["txtSoLuongSanPham"]);
             $hinhCanSua = addslashes($_FILES["txtHinhSanPham"]["name"]);
             $mota=addslashes($_POST['txtMoTa']);
+            $motangan=addslashes($_POST['txtMoTaNgan']);
             // var_dump($hinhCanSua);
             $sanpham = $this->model("SanPhamModel");
             if ($hinhCanSua == '') {
-                $kq = $sanpham->SuaSanPhamKhongThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua, $mota);
+                $kq = $sanpham->SuaSanPhamKhongThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua, $mota,$motangan);
             } else {
                 $dst = "./uploads/" . $hinhCanSua;
                 move_uploaded_file($_FILES["txtHinhSanPham"]["tmp_name"], $dst);
-                $kq = $sanpham->SuaSanPhamCoThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua, $hinhCanSua, $mota);
+                $kq = $sanpham->SuaSanPhamCoThayDoiHinh($id, $tenSanPhamCanSua, $nhomSanPhamCanSua, $thuongHieuCanSua, $giaCanSua, $soLuongCanSua, $hinhCanSua, $mota,$motangan);
             }
             // $hinhCanSua=$_FILES["txtHinhSanPham"]["name"];
             // echo '<script type="text/javascript">alert("'.$hinhCanSua.'")</script>';
@@ -262,12 +264,23 @@ class Admin extends Controller {
         CheckLogin();
         $this->view("pagemaster_admin", ["Page" => "admin/themthuonghieu", "Title" => 'Thêm Thương Hiệu', ]);
         if (isset($_POST["btnThemThuongHieu"]) && $_POST["txtTenThuongHieu"] != "") {
-            $tenthuonghieu = $_POST["txtTenThuongHieu"];
+            $tenthuonghieu = addslashes($_POST["txtTenThuongHieu"]);
+            $slug = $tenthuonghieu;
+            $slug = trim(mb_strtolower($slug));
+            $slug = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $slug);
+            $slug = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $slug);
+            $slug = preg_replace('/(ì|í|ị|ỉ|ĩ)/', 'i', $slug);
+            $slug = preg_replace('/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/', 'o', $slug);
+            $slug = preg_replace('/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/', 'u', $slug);
+            $slug = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $slug);
+            $slug = preg_replace('/(đ)/', 'd', $slug);
+            $slug = preg_replace('/[^a-z0-9-\s]/', '', $slug);
+            $slug = preg_replace('/([\s]+)/', '-', $slug);
             $thuonghieu = $this->model("ThuongHieuModel");
             $number = mysqli_num_rows($thuonghieu->TimThuongHieuTheoTen($tenthuonghieu));
             if ($number == 0) {
                 if ($tenthuonghieu != "") {
-                    $kq = $thuonghieu->ThemThuongHieu($tenthuonghieu);
+                    $kq = $thuonghieu->ThemThuongHieu($tenthuonghieu,$slug);
                     $_SESSION["thanhcong"] = "Thêm thương hiệu thành công";
                 } else { 
                 }
@@ -317,19 +330,48 @@ class Admin extends Controller {
         }
     }
     function DonHang($trang){
-        $sosanpham_hienthi=10;
-        $sanpham = $this->model("SanPhamModel");
-        $offset=($trang-1)*$sosanpham_hienthi;
-        echo "Đơn hàng";
-        $donhang = $this->model("GioHangModel");
-        $this->view("pagemaster_admin", 
-        ["Page" => "admin/danhsachdonhang", 
-        "donhang"=>$donhang->GetGioHang_CoSoTrang($offset, $sosanpham_hienthi),
-        "Title" => 'Danh sách đơn hàng', 
-        "page_no" => $trang,
-        "sl" => $donhang->DemGioHang(),
-        ]);
+        if($trang>0){
+            $sosanpham_hienthi=10;
+            $sanpham = $this->model("SanPhamModel");
+            $offset=($trang-1)*$sosanpham_hienthi;
+            echo "Đơn hàng";
+            $donhang = $this->model("GioHangModel");
+            $this->view("pagemaster_admin", 
+            ["Page" => "admin/danhsachdonhang", 
+            "donhang"=>$donhang->GetGioHang_CoSoTrang($offset, $sosanpham_hienthi),
+            "Title" => 'Danh sách đơn hàng', 
+            "page_no" => $trang,
+            "sl" => $donhang->DemGioHang(),
+            ]);
+        }
+        else{
+            $this->view("black_page", 
+            ["Page" => "admin/404", 
+           
+            ]);
+        }
         
+    }
+    function XoaDonHang($masanpham, $magiohang){
+        CheckLogin();
+        $giohang = $this->model("GioHangModel");
+        if(isset($_POST["btnXoaGioHang"])){
+            echo $masanpham;
+            echo $magiohang;
+            
+            $kq = $giohang->XoaSanPhamTuGioHang($magiohang, $masanpham);
+            if (isset($kq)) {
+                if ($kq == 1) {
+                    $_SESSION["thanhcong"] = "Xóa giỏ hàng thành công";
+                } else {
+                    $_SESSION["thatbai"] = "Xóa giỏ hàng thất bại";
+                }
+            }
+            $url = "/web_mvc/Admin/DonHang/1";
+            header("Location: $url");
+        }
+       
+           
     }
 
 

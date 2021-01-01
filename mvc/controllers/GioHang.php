@@ -103,8 +103,9 @@ class GioHang extends Controller {
        
     }
     function Xoa($masanpham){
+        CheckLoginUser();
         $giohang = $this->model("GioHangModel");
-        echo "Xoa";
+        
 
         // var_dump($_POST);
         // exit();
@@ -135,9 +136,12 @@ class GioHang extends Controller {
 
         //Cập nhật lại số lượng có thể mua trong bảng chi tiết hàng hóa 
         $giohang->CapNhatSoLuongConLaiTrongBangChiTietGioHang();
+        $url = "/web_mvc/GioHang/TinhTrangDonHang";
+        header("Location: $url");
     }
 
     function TinhTrangDonHang(){
+        CheckLoginUser();
         $giohang = $this->model("GioHangModel");
         $userName = $_SESSION["userNameLogin"];
         $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));

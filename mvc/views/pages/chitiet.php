@@ -5,7 +5,7 @@
 
 
 <div class="chitiet container-fluid">
-
+    <div class="ajax"></div>
     <!-- Cot phai  -->
     <div class='row single-product'>
         <div class="col-xs-12 col-sm-12 col-md-3 sidebar pt-3">
@@ -21,10 +21,10 @@
                 <!-- slider san pham moi  -->
 
                 <div class="swiper-container w-100 h-auto">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Slides -->
-                            <?php
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <?php
 							while($row_sanpham_new = mysqli_fetch_array($data["sanphammoi"])){
                                 $sanphamnew_ten=$row_sanpham_new['TENHH'];
                                 $sanphamnew_hinh=$row_sanpham_new['HINH'];
@@ -57,19 +57,19 @@
                             };
 						
                         ?>
-                            
-                        </div>
-                        <!-- If we need pagination -->
-                        <div class="swiper-pagination"></div>
-                        <!-- If we need navigation buttons -->
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                        <!-- If we need scrollbar -->
-                        <div class="swiper-scrollbar"></div>
-                    </div>
 
-           
-                
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <!-- If we need scrollbar -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+
+
+
 
 
 
@@ -212,10 +212,7 @@
                             </div><!-- /.stock-container -->
 
                             <div class="description-container m-t-20">
-                                <p>Một trong những sản phẩm đáng chờ nhất trong năm 2020 của Yonex đó là siêu phẩm
-                                    tiếp theo của Astrox Series - Astrox 100 với 2 phiên bản Astrox 100 ZZ và Astrox
-                                    100 ZX. Những hình ảnh ban đầu của Astrox 100 ZZ còn khá ít và được nhà sản xuất
-                                    "thả xích" từ từ gây nhiều thu hút đến người hâm mô cầu lông trên toàn thế giới.
+                                <p><?php echo $row_sanpham['MOTA_NGAN'] ?>
                                 </p>
 
                             </div><!-- /.description-container -->
@@ -226,9 +223,12 @@
 
                                     <div class="col-sm-6 col-xs-6">
                                         <div class="price-box">
-                                            <span class="price"><?php echo number_format($row_sanpham['GIA'], 0, '', ',')."đ";  ?> ₫</span>
+                                            <span
+                                                class="price"><?php echo number_format($row_sanpham['GIA'], 0, '', ',')."đ";  ?>
+                                                ₫</span>
                                             <br>
-                                            <span class="price-strike">4.428.000 ₫</span>
+                                            <span class="price-strike"><?php echo number_format($row_sanpham['GIA']*1.2, 0, '', ',')."đ";  ?>
+                                                ₫</span>
                                         </div>
                                     </div>
 
@@ -240,12 +240,16 @@
                             <div class="quantity-container info-container">
                                 <div class="row">
 
-                                   
 
+                                    <?php if($row_sanpham['SOLUONGHANG']>0){ ?>
                                     <div class="add-btn">
-                                        <a href="#" class="btn btn-primary"><i
-                                                class="fa fa-shopping-cart inner-right-vs"></i> MUA HÀNG</a>
+                                        <button class="btn btn-primary icon addCart"
+                                            product_id="<?php echo $row_sanpham['MSHS'] ?>" data-toggle="dropdown"
+                                            type="button" name="addCart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            Thêm vào giỏ hàng </button>
                                     </div>
+                                    <?php }?>
 
 
                                 </div><!-- /.row -->

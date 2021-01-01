@@ -25,7 +25,7 @@ class App{
                 $this->controller = $arr[0];
                 unset($arr[0]);
             }
-           
+         
     
         }
         require_once "./mvc/controllers/". $this->controller .".php";

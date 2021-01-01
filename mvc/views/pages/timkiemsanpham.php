@@ -5,10 +5,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-center p-5"><?php 
-                 $row = mysqli_fetch_assoc($data['Title_SP1']);
-                    echo $row['TENNHOM'];
-                ?>
+                <h3 class="text-center p-5">Kết quả tìm kiếm
                 </h3>
 
 
@@ -37,7 +34,7 @@
         </div> -->
 
         <div class="row">
-            <?php 	while($row_sanpham = mysqli_fetch_array($data["sanpham"])){ 
+            <?php 	while($row_sanpham = mysqli_fetch_array($data["sanpham_timkiem"])){ 
                 if($row_sanpham['SOLUONGHANG']==0){
                     echo '<a href="/web_mvc/SanPham/ChiTietSanPham/' . $row_sanpham['nhomhanghoa_slug'] . '/' . $row_sanpham['MSHS'] . '">
                     <div class="col-md-3 product">
@@ -104,180 +101,14 @@
                 
               } ?>
         </div>
+       
 
 
 
 
 
 
-
-        <nav aria-label="Page navigation example ">
-            <ul class="pagination d-flex justify-content-center">
-                <li class="page-item"><a class="page-link"
-                        href="/web_mvc/SanPham/DanhMuc/<?php echo $data["loai"] ?>/<?php echo $data["page_no"]-1?>">Previous</a>
-                </li>
-                <?php 
-        $row_sl=mysqli_fetch_assoc($data["sl"]);
-        $kq = $row_sl['sl'];
-        $sotrang= ceil( $kq/sosanpham_hienthi);
-        $second_last=$sotrang-1;
-        $i=0;
-        $adjacents = "2";
-        ?>
-
-
-
-                <?php 
-	if ($sotrang <= 10){  	 
-		for ($counter = 1; $counter <= $sotrang; $counter++){
-			if ($counter == $data["page_no"]) {
-                echo '
-                <li class="page-item active">
-                    <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$counter.'">'.$counter.'
-                    </a>
-                </li>
-                ';
-                }
-                else{
-                    echo '
-                    <li class="page-item">
-                    <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$counter.'">'.$counter.'
-                    </a>
-                </li>
-                    ';
-				}
-        }
-	}
-	elseif($sotrang > 10){
-		
-	if($data["page_no"] <= 4) {			
-	 for ($counter = 1; $counter < 8; $counter++){		 
-			if ($counter == $data["page_no"]) {
-           echo '
-           <li class="page-item active">
-                    <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$counter.'">'.$counter.'
-                    </a>
-                </li>
-           
-           ';	
-				}else{
-           echo '<li class="page-item">
-           <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$counter.'">'.$counter.'
-           </a>
-       </li>';
-				}
-        }
-        echo '<li class="page-item">
-        <a class="page-link"">...
-        </a>
-    </li>';
-		echo '<li class="page-item">
-        <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$second_last.'">'.$second_last.'
-        </a>
-    </li>';
-		echo '<li class="page-item">
-        <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$sotrang.'">'.$sotrang.'
-        </a>
-    </li>';
-		}
-
-	 elseif($data["page_no"] > 4 && $data["page_no"] < $sotrang - 4) {		 
-		echo '<li class="page-item">
-        <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/1">1
-        </a>
-    </li>';
-		echo ' <li class="page-item "> <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/2">2
-        </a>';
-        echo '<li class="page-item">
-        <a class="page-link"">...
-        </a>
-    </li>';
-        for ($counter = $data["page_no"] - $adjacents; $counter <= $data["page_no"] + $adjacents; $counter++) {			
-           if ($counter == $data["page_no"]) {
-		   echo ' <li class="page-item active">
-           <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$counter.'">'.$counter.'
-           </a>
-       </li>
-  ';	
-				}else{
-           echo ' <li class="page-item">
-           <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$counter.'">'.$counter.'
-           </a>
-       </li>
-  ';
-				}                  
-       }
-       echo '<li class="page-item">
-       <a class="page-link"">...
-       </a>
-   </li>';
-	   echo '<li class="page-item">
-       <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$second_last.'">'.$second_last.'
-       </a>
-   </li>';
-	   echo '<li class="page-item">
-       <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$sotrang.'">'.$sotrang.'
-       </a>
-   </li>';      
-            }
-		
-		else {
-        echo '<li class="page-item">
-        <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/1">1
-        </a>
-    </li>';
-		echo '<li class="page-item">
-        <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/2">2
-        </a>
-    </li>';
-        echo '<li class="page-item">
-        <a class="page-link"">...
-        </a>
-    </li>';
-
-        for ($counter = $sotrang - 6; $counter <= $sotrang; $counter++) {
-          if ($counter == $data["page_no"]) {
-		   echo '<li class="page-item active">
-           <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$counter.'">'.$counter.'
-           </a>
-       </li>';	
-				}else{
-           echo '<li class="page-item">
-           <a class="page-link" href="/web_mvc/SanPham/DanhMuc/'.$data["loai"].'/'.$counter.'">'.$counter.'
-           </a>
-       </li>';
-				}                   
-                }
-            }
-	}
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <li class="page-item"><a class="page-link"
-                        href="/web_mvc/SanPham/DanhMuc/<?php echo $data["loai"] ?>/<?php echo $data["page_no"]+1?>">Next</a>
-                </li>
-
-            </ul>
-            <div style='padding: 10px 20px 0px;' class="d-flex justify-content-center">
-                <strong>Trang <?php echo $data["page_no"]." của ".$sotrang; ?></strong>
-            </div>
-
-        </nav>
+        
 
     </div>
 

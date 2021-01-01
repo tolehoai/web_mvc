@@ -14,7 +14,7 @@ class Ajax extends Controller {
         $a = '';
         while ($row_sanpham = mysqli_fetch_array($ketqua)) {
             // $a.=$row_sanpham['ten_thuong_hieu'];
-            $link = URL . "SanPham/" . $row_sanpham['nhomhanghoa_slug'] . "/" . $row_sanpham['slug'];
+            $link = URL . "SanPham/ThuongHieu/" . $row_sanpham['nhomhanghoa_slug'] . "/" . $row_sanpham['slug']."/1";
             echo '<li class="category-sub2-item "> <a href="' . $link . '">' . $row_sanpham['ten_thuong_hieu'] . '</a></li>';
         }
         // echo '<li class="category-sub2-item ">'.$a.'</li>';
@@ -25,7 +25,7 @@ class Ajax extends Controller {
         $sanpham = $this->model("SanPhamModel");
         $danhmuc = $_POST['danhmuc'];
         $tendanhmuc = $_POST['tendanhmuc'];
-        $ketqua = $sanpham->GetSanPhamTheoDanhMuc($danhmuc);
+        $ketqua = $sanpham->GetSanPhamTheoDanhMuc_Limit_8($danhmuc);
         // echo $danhmuc;
         while ($row_sanpham = mysqli_fetch_array($ketqua)) {
             if($row_sanpham['SOLUONGHANG']==0){
@@ -132,7 +132,7 @@ class Ajax extends Controller {
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#FCCF14',
-            confirmButtonText: '<a href=\"TaiKhoan\" style=\"color:white;\">Đăng nhập</a>',
+            confirmButtonText: '<a href=\"/web_mvc/TaiKhoan\" style=\"color:white;\">Đăng nhập</a>',
             cancelButtonText: 'Hủy bỏ',
             closeOnConfirm: false,
             closeOnCancel: false
@@ -447,7 +447,70 @@ class Ajax extends Controller {
     }
   
 
-
+    function XuLyXoaDonHang() {
+        $masanpham = $_POST['masanpham'];
+        $magiohang = $_POST['magiohang'];
+        $sanpham = $this->model("SanPhamModel");
+        $row = mysqli_fetch_assoc($sanpham->TimSanPhamTheoID($masanpham));
+        $tensanpham=$row['TENHH'];
+        echo $masanpham;
+        echo "
+           
+            <script>
+            Swal.fire({
+                title: 'Xác nhận xóa sản phẩm',
+                html: `<form action=\"/web_mvc/Admin/XoaDonHang/$masanpham/$magiohang\" method=\"POST\" name=\"\" id=\"\">
+               
+                            <div class=\"modal-body\">
+                                <p>Bạn có xác nhận xóa thương hiệu <strong>$tensanpham</strong></p>
+                            </div>
+                            <div class=\"modal-footer\">
+                           
+                            <a href=\"/web_mvc/Admin/XoaDonHang/$masanpham/$magiohang\"><button type=\"submit\" name=\"btnXoaGioHang\" class=\"btn btn-danger\">Xóa</button></a>
+                            </div>
+                        
+                        
+                    </div>
+                </div>
+            </form>`,
+                showConfirmButton: false,
+                showCancelButton: true,
+            })
+            </script>
+            
+        ";
+        
+    }
+    function XoaDonHang_GioHang(){
+        $giohang = $this->model("GioHangModel");
+        $userName = $_SESSION["userNameLogin"];
+        $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+        $magiohang = $row['ma_gio_hang'];
+        $masanpham = $_POST['masanpham'];
+        echo "
+        <script>
+            Swal.fire({
+                title: 'Xác nhận xóa sản phẩm trong giỏ hàng',
+                html: `<form action=\"/web_mvc/GioHang/Xoa/$masanpham\" method=\"POST\" name=\"\" id=\"\">
+               
+                            <div class=\"modal-body\">
+                                <p>Xác nhận xóa</p>
+                            </div>
+                            <div class=\"modal-footer\">
+                           
+                            <a href=\"/web_mvc/GioHang/Xoa/$masanpham\"><button type=\"submit\" name=\"btnXoaGioHang\" class=\"btn btn-danger\">Xóa</button></a>
+                            </div>
+                        
+                        
+                    </div>
+                </div>
+            </form>`,
+                showConfirmButton: false,
+                showCancelButton: true,
+            })
+            </script>
+        ";
+    }
 
 }
 
