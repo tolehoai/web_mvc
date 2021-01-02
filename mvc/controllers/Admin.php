@@ -226,7 +226,7 @@ class Admin extends Controller {
                     $_SESSION["thatbai"] = "Xóa sản phẩm thất bại - Do quan hệ RESTRICT";
                 }
             }
-            $url = URL . "Admin/SanPham/TatCa";
+            $url = URL . "Admin/SanPham/TatCa/1";
             header("Location: $url");
         }
     }

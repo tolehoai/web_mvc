@@ -131,7 +131,7 @@
 				?>
                         <div class="col-md-3">
                             <!-- Truyền theo ID -->
-                            <a href="<?php echo URL;?>Admin/SanPham/<?php echo to_slug($row_danhmuc['TENNHOM'])?>">
+                            <a href="<?php echo URL;?>Admin/SanPham/<?php echo to_slug($row_danhmuc['TENNHOM'])?>/1">
                                 <div class="card-counter <?php echo $colors[$i];?>">
                                     <span class="count-numbers"><?php echo $row_danhmuc['TENNHOM']; ?></span>
                                     <span class="count-name"><?php echo $row_danhmuc['SoLuong'] ?> Sản phẩm </span>
