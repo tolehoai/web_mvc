@@ -218,6 +218,7 @@ class Admin extends Controller {
             $hinhsanpham=$row['HINH'];
             // $dst = "/web_mvc/uploads/" . $hinhsanpham;
             // unlink('/web_mvc/uploads/'.$hinhsanpham);
+            unlink(__DIR__ . '/../../uploads/'.$hinhsanpham);
             $kq = $sanpham->XoaSanPham($id);
             if (isset($kq)) {
                 if ($kq == 1) {
