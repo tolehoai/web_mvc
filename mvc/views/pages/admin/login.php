@@ -45,7 +45,7 @@
 							?>
 							<div class="header">
 								<div class="logo text-center "><img class="logo-img" src="<?php echo URL;?>mvc/views/pages/images/logo.PNG" alt="Klorofil Logo"></div>
-								<p class="lead">Đăng nhập vào trang quản lý</p>
+								<p class="lead">Đăng nhập vào trang quản lý tên đăng nhập: admin - mật khẩu: 1</p>
 							</div>
 							<form class="form-auth-small" action="<?php echo URL;?>Admin/KiemTraDangNhap" method="POST">
 								<div class="form-group">

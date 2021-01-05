@@ -265,7 +265,7 @@ class Admin extends Controller {
         } else {
             $_SESSION["thatbai"] = "Sửa sản phẩm thất bại";
         }
-        $url = "/web_mvc/Admin/SanPham/TatCa";
+        $url = "/web_mvc/Admin/SanPham/TatCa/1";
         header("Location: $url");
     }
     function Thuonghieu() {
