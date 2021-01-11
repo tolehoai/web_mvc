@@ -41,7 +41,6 @@
 
     <script src="<?php echo URL;?>mvc/views/pages/assets/js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="public/simple.money.format.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -55,7 +54,7 @@
                 var mahanghoa_update = soluong.attr("mahanghoa");
                 // console.log("soluong_update)";
                 // alert(mahanghoa_update);
-                $.post("./Ajax/CapNhatSoLuong", {
+                $.post("/web_mvc/Ajax/CapNhatSoLuong", {
                         soluongcancapnhat: soluong_update,
                         mahanghoa: mahanghoa_update
                     },
@@ -63,7 +62,7 @@
                         $("#tongcong-" + mahanghoa_update).html(data);
                         // alert(data);
                     })
-                $.post("./Ajax/CapNhatThanhTien", {}, function(data) {
+                $.post("/web_mvc/Ajax/CapNhatThanhTien", {}, function(data) {
                     $(".tongcong").html(data);
                     // alert(data);
                 })
@@ -78,14 +77,14 @@
                 // console.log("#tongcong-"+mahanghoa_update);
                 soluong.val(parseInt(soluong.val()) + 1);
                 var soluong_update = parseInt(soluong.val());
-                $.post("./Ajax/CapNhatSoLuong", {
+                $.post("/web_mvc/Ajax/CapNhatSoLuong", {
                     soluongcancapnhat: soluong_update,
                     mahanghoa: mahanghoa_update
                 }, function(data) {
                     $("#tongcong-" + mahanghoa_update).html(data);
                     // alert(data);
                 })
-                $.post("./Ajax/CapNhatThanhTien", {}, function(data) {
+                $.post("/web_mvc/Ajax/CapNhatThanhTien", {}, function(data) {
                     $(".tongcong").html(data);
                     // alert(data);
                 })
@@ -99,14 +98,14 @@
                 }
                 var soluong_update = parseInt(soluong.val());
 
-                $.post("./Ajax/CapNhatSoLuong", {
+                $.post("/web_mvc/Ajax/CapNhatSoLuong", {
                     soluongcancapnhat: soluong_update,
                     mahanghoa: mahanghoa_update
                 }, function(data) {
                     $("#tongcong-" + mahanghoa_update).html(data);
                     // alert(data);
                 })
-                $.post("./Ajax/CapNhatThanhTien", {}, function(data) {
+                $.post("/web_mvc/Ajax/CapNhatThanhTien", {}, function(data) {
                     $(".tongcong").html(data);
                     // alert(data);
                 })
@@ -140,7 +139,7 @@
                 // var str1=str1.concat(loaisanphamcanlay);
                 var a = 'noidung-';
                 var b = a.concat(loaisanphamcanlay);
-                $.post("./Ajax/GetSubMenu", {
+                $.post("/web_mvc/Ajax/GetSubMenu", {
                     loaisanpham: loaisanphamcanlay
                 }, function(data) {
                     $("." + b).html(data);
@@ -176,7 +175,7 @@
                     var b = a.concat(madanhmuc);
                     console.log(b);
                     // Ajax
-                    $.post("./Ajax/LaySanPhamTheoDanhMuc", {
+                    $.post("/web_mvc/Ajax/LaySanPhamTheoDanhMuc", {
                             danhmuc: madanhmuc,
                             tendanhmuc: tendanhmuclayduoc
                         }, function(data) {
@@ -212,7 +211,7 @@
 
             //Click mở giỏ hàng
             $(".giohang").click(function() {
-                $.post("./Ajax/DiVaoGioHang", {}, function(data) {
+                $.post("/web_mvc/Ajax/DiVaoGioHang", {}, function(data) {
                     $(".ajax").html(data);
                     // alert(data);
                 })

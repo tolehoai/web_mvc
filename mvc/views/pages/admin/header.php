@@ -48,51 +48,7 @@
 </head>
 <script>
    
-    $(document).ready(function() {
-        $("#frmSuaSanPham").validate({
-        rules: {
-            lsp_ten: {
-            required: true,
-            minlength: 3,
-            maxlength: 50
-            },
-            lsp_mota: {
-            required: true,
-            minlength: 3,
-            maxlength: 255
-            }
-        },
-        messages: {
-            lsp_ten: {
-            required: "Vui lòng nhập tên Loại sản phẩm",
-            minlength: "Tên Loại sản phẩm phải có ít nhất 3 ký tự",
-            maxlength: "Tên Loại sản phẩm không được vượt quá 50 ký tự"
-            },
-            lsp_mota: {
-            required: "Vui lòng nhập mô tả cho Loại sản phẩm",
-            minlength: "Mô tả cho Loại sản phẩm phải có ít nhất 3 ký tự",
-            maxlength: "Mô tả cho Loại sản phẩm không được vượt quá 255 ký tự"
-            },
-        },
-        errorElement: "em",
-        errorPlacement: function(error, element) {
-            // Thêm class `invalid-feedback` cho field đang có lỗi
-            error.addClass("invalid-feedback");
-            if (element.prop("type") === "checkbox") {
-            error.insertAfter(element.parent("label"));
-            } else {
-            error.insertAfter(element);
-            }
-        },
-        success: function(label, element) {},
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass("is-invalid").removeClass("is-valid");
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).addClass("is-valid").removeClass("is-invalid");
-        }
-        });
-    });
+    
    
     $(document).on("click", '.xoaDonHang', function(event) {
         //  console.log("click");
