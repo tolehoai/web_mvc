@@ -45,8 +45,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-
-
             // $('.money').simpleMoneyFormat();
             $(".soluonghanghoa").keyup(function() {
                 var soluong = $(this);
@@ -54,7 +52,7 @@
                 var mahanghoa_update = soluong.attr("mahanghoa");
                 // console.log("soluong_update)";
                 // alert(mahanghoa_update);
-                $.post("/web_mvc/Ajax/CapNhatSoLuong", {
+                $.post("<?php echo URL;?>Ajax/CapNhatSoLuong", {
                         soluongcancapnhat: soluong_update,
                         mahanghoa: mahanghoa_update
                     },
@@ -62,7 +60,7 @@
                         $("#tongcong-" + mahanghoa_update).html(data);
                         // alert(data);
                     })
-                $.post("/web_mvc/Ajax/CapNhatThanhTien", {}, function(data) {
+                $.post("<?php echo URL;?>Ajax/CapNhatThanhTien", {}, function(data) {
                     $(".tongcong").html(data);
                     // alert(data);
                 })
@@ -77,14 +75,14 @@
                 // console.log("#tongcong-"+mahanghoa_update);
                 soluong.val(parseInt(soluong.val()) + 1);
                 var soluong_update = parseInt(soluong.val());
-                $.post("/web_mvc/Ajax/CapNhatSoLuong", {
+                $.post("<?php echo URL;?>Ajax/CapNhatSoLuong", {
                     soluongcancapnhat: soluong_update,
                     mahanghoa: mahanghoa_update
                 }, function(data) {
                     $("#tongcong-" + mahanghoa_update).html(data);
                     // alert(data);
                 })
-                $.post("/web_mvc/Ajax/CapNhatThanhTien", {}, function(data) {
+                $.post("<?php echo URL;?>Ajax/CapNhatThanhTien", {}, function(data) {
                     $(".tongcong").html(data);
                     // alert(data);
                 })
@@ -98,14 +96,14 @@
                 }
                 var soluong_update = parseInt(soluong.val());
 
-                $.post("/web_mvc/Ajax/CapNhatSoLuong", {
+                $.post("<?php echo URL;?>Ajax/CapNhatSoLuong", {
                     soluongcancapnhat: soluong_update,
                     mahanghoa: mahanghoa_update
                 }, function(data) {
                     $("#tongcong-" + mahanghoa_update).html(data);
                     // alert(data);
                 })
-                $.post("/web_mvc/Ajax/CapNhatThanhTien", {}, function(data) {
+                $.post("<?php echo URL;?>Ajax/CapNhatThanhTien", {}, function(data) {
                     $(".tongcong").html(data);
                     // alert(data);
                 })
@@ -139,7 +137,7 @@
                 // var str1=str1.concat(loaisanphamcanlay);
                 var a = 'noidung-';
                 var b = a.concat(loaisanphamcanlay);
-                $.post("/web_mvc/Ajax/GetSubMenu", {
+                $.post("<?php echo URL;?>Ajax/GetSubMenu", {
                     loaisanpham: loaisanphamcanlay
                 }, function(data) {
                     $("." + b).html(data);
@@ -175,7 +173,7 @@
                     var b = a.concat(madanhmuc);
                     console.log(b);
                     // Ajax
-                    $.post("/web_mvc/Ajax/LaySanPhamTheoDanhMuc", {
+                    $.post("<?php echo URL;?>Ajax/LaySanPhamTheoDanhMuc", {
                             danhmuc: madanhmuc,
                             tendanhmuc: tendanhmuclayduoc
                         }, function(data) {
@@ -198,7 +196,7 @@
                     var masanpham_get = parseInt($(this).attr('product_id'));
 
                     console.log(masanpham_get);
-                    $.post("/web_mvc/Ajax/ThemVaoGioHang", {
+                    $.post("<?php echo URL;?>Ajax/ThemVaoGioHang", {
                         masanpham: masanpham_get
                     }, function(data) {
                         $(".ajax").html(data);
@@ -211,14 +209,14 @@
 
             //Click mở giỏ hàng
             $(".giohang").click(function() {
-                $.post("/web_mvc/Ajax/DiVaoGioHang", {}, function(data) {
+                $.post("<?php echo URL;?>Ajax/DiVaoGioHang", {}, function(data) {
                     $(".ajax").html(data);
                     // alert(data);
                 })
             })
             $(".xoaDonHang").on("click", function() {
                 var masanpham_get = parseInt($(this).attr('masanpham'));
-                $.post("/web_mvc/Ajax/XoaDonHang_GioHang", {
+                $.post("<?php echo URL;?>Ajax/XoaDonHang_GioHang", {
                     masanpham: masanpham_get
                 }, function(data) {
                     $(".ajax").html(data);
@@ -274,7 +272,7 @@
 
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="<?php echo URL;?>mvc\views\pages\assets\css\bootstrap.css">
+    <link rel="stylesheet" href="<?php echo URL;?>mvc/views/pages/assets/css/bootstrap.css">
     <!-- Customizable CSS -->
 
     <link rel="stylesheet" type="text/css" href="<?php echo URL;?>mvc/views/pages/assets/css/main.css">
