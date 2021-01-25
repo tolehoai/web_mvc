@@ -367,6 +367,9 @@ class Admin extends Controller {
         }
         
     }
+    //Chuc nang chi tiet gio hang
+    //Sau khi them san pham vao gio hang, san pham se trong bang chi tiet gio hang
+    //Neu bam nut Thanh Toan -> Chuyển sản phẩm vào bảng chi tiết hóa đơn, Xóa sản phẩm bên bảng chi_tiet_hoa_don
     function XoaDonHang($masanpham, $magiohang){
         CheckLogin();
         $giohang = $this->model("GioHangModel");
