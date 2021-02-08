@@ -41,9 +41,12 @@
 
     <script src="<?php echo URL;?>mvc/views/pages/assets/js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="public/simple.money.format.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
+
+
 
             // $('.money').simpleMoneyFormat();
             $(".soluonghanghoa").keyup(function() {
@@ -75,14 +78,14 @@
                 // console.log("#tongcong-"+mahanghoa_update);
                 soluong.val(parseInt(soluong.val()) + 1);
                 var soluong_update = parseInt(soluong.val());
-                $.post("<?php echo URL;?>Ajax/CapNhatSoLuong", {
+                $.post("<?php echo URL;?>/Ajax/CapNhatSoLuong", {
                     soluongcancapnhat: soluong_update,
                     mahanghoa: mahanghoa_update
                 }, function(data) {
                     $("#tongcong-" + mahanghoa_update).html(data);
                     // alert(data);
                 })
-                $.post("<?php echo URL;?>Ajax/CapNhatThanhTien", {}, function(data) {
+                $.post("<?php echo URL;?>/Ajax/CapNhatThanhTien", {}, function(data) {
                     $(".tongcong").html(data);
                     // alert(data);
                 })
@@ -96,14 +99,14 @@
                 }
                 var soluong_update = parseInt(soluong.val());
 
-                $.post("<?php echo URL;?>Ajax/CapNhatSoLuong", {
+                $.post("<?php echo URL;?>/Ajax/CapNhatSoLuong", {
                     soluongcancapnhat: soluong_update,
                     mahanghoa: mahanghoa_update
                 }, function(data) {
                     $("#tongcong-" + mahanghoa_update).html(data);
                     // alert(data);
                 })
-                $.post("<?php echo URL;?>Ajax/CapNhatThanhTien", {}, function(data) {
+                $.post("<?php echo URL;?>/Ajax/CapNhatThanhTien", {}, function(data) {
                     $(".tongcong").html(data);
                     // alert(data);
                 })
@@ -111,16 +114,16 @@
 
             //Update cart
             //Hien thi so luong
-            // $.post("./Ajax/HienThiSoLuong", {}, function (data) {
-            //         $(".cart-number").html(data);
-            //         // alert(data);
-            //       })
+            $.post("<?php echo URL;?>Ajax/HienThiSoLuong", {}, function (data) {
+                    $(".cart-number").html(data);
+                    // alert(data);
+                  })
 
-            //Hien thi gia
-            // $.post("./Ajax/HienThiGia", {}, function (data) {
-            //   $(".gia").html(data);
-            //   // alert(data);
-            // })
+            // Hien thi gia
+            $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function (data) {
+              $(".gia").html(data);
+              // alert(data);
+            })
 
 
 
@@ -196,7 +199,7 @@
                     var masanpham_get = parseInt($(this).attr('product_id'));
 
                     console.log(masanpham_get);
-                    $.post("<?php echo URL;?>Ajax/ThemVaoGioHang", {
+                    $.post("/web_mvc/Ajax/ThemVaoGioHang", {
                         masanpham: masanpham_get
                     }, function(data) {
                         $(".ajax").html(data);
@@ -216,7 +219,7 @@
             })
             $(".xoaDonHang").on("click", function() {
                 var masanpham_get = parseInt($(this).attr('masanpham'));
-                $.post("<?php echo URL;?>Ajax/XoaDonHang_GioHang", {
+                $.post("/web_mvc/Ajax/XoaDonHang_GioHang", {
                     masanpham: masanpham_get
                 }, function(data) {
                     $(".ajax").html(data);
@@ -272,7 +275,7 @@
 
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="<?php echo URL;?>mvc/views/pages/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo URL;?>mvc\views\pages\assets\css\bootstrap.css">
     <!-- Customizable CSS -->
 
     <link rel="stylesheet" type="text/css" href="<?php echo URL;?>mvc/views/pages/assets/css/main.css">
@@ -461,6 +464,9 @@
     border-radius: 0 999px 999px 0;
     background-color: #fdd922;
     }
+    .top-cart-row{
+        
+    }
 </style>
 
 
@@ -540,9 +546,20 @@
 
                     <!-- ============================================================= SEARCH AREA : END ============================================================= -->
 
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 top-cart-row item ml-5 pb-0 pt-0 mt-0 mb-0">
+          <div class="giohang" style="cursor: pointer;">
+            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-cart2 cart-icon" fill="white"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+              </svg>
+          </div>
 
+            <div class="cart-number"></div>
+            <div class="gia"></div>
+          </div>
 
-
+              
 
                 </div>
 

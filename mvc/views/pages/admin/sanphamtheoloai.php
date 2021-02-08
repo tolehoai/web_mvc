@@ -345,58 +345,17 @@ elseif ($sotrang > 10)
 </div>
 <!-- END WRAPPER -->
 <!-- Javascript -->
-
 <script>
-$(document).ready(function() {
-    $(".sub1").on("click", function () {
+	$(document).ready(function () {
+		$(".sub1").on("click", function () {
 			// var el =$(this).siblings().hide(500);
 			$(this).siblings().toggle("fast");
 
 		}
-        $("#frmSuaSanPham").validate({
-        rules: {
-            lsp_ten: {
-            required: true,
-            minlength: 3,
-            maxlength: 50
-            },
-            lsp_mota: {
-            required: true,
-            minlength: 3,
-            maxlength: 255
-            }
-        },
-        messages: {
-            lsp_ten: {
-            required: "Vui lòng nhập tên Loại sản phẩm",
-            minlength: "Tên Loại sản phẩm phải có ít nhất 3 ký tự",
-            maxlength: "Tên Loại sản phẩm không được vượt quá 50 ký tự"
-            },
-            lsp_mota: {
-            required: "Vui lòng nhập mô tả cho Loại sản phẩm",
-            minlength: "Mô tả cho Loại sản phẩm phải có ít nhất 3 ký tự",
-            maxlength: "Mô tả cho Loại sản phẩm không được vượt quá 255 ký tự"
-            },
-        },
-        errorElement: "em",
-        errorPlacement: function(error, element) {
-            // Thêm class `invalid-feedback` cho field đang có lỗi
-            error.addClass("invalid-feedback");
-            if (element.prop("type") === "checkbox") {
-            error.insertAfter(element.parent("label"));
-            } else {
-            error.insertAfter(element);
-            }
-        },
-        success: function(label, element) {},
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass("is-invalid").removeClass("is-valid");
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).addClass("is-valid").removeClass("is-invalid");
-        }
-        });
-    });
+
+		);
+
+
 </script>
 
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/jquery/jquery.min.js"></script>

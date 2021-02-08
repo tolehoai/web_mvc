@@ -248,23 +248,35 @@ class Ajax extends Controller {
         echo " ₫";
     }
     function HienThiSoLuong() {
-        $giohang = $this->model("GioHangModel");
-        $userName = $_SESSION["userNameLogin"];
-        $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
-        $maGioHang = $row['ma_gio_hang'];
-        $row_hienthi=mysqli_fetch_assoc($giohang->Hien_Thi_Gia_Va_So_Luong($maGioHang));
-        $soluong=$row_hienthi['sl'];
-        echo $soluong;
+        if(!isset($_SESSION["userNameLogin"])){
+            echo "0";
+        }
+        else{
+            $giohang = $this->model("GioHangModel");
+            $userName = $_SESSION["userNameLogin"];
+            $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+            $maGioHang = $row['ma_gio_hang'];
+            $row_hienthi=mysqli_fetch_assoc($giohang->Hien_Thi_Gia_Va_So_Luong($maGioHang));
+            $soluong=$row_hienthi['sl'];
+            echo $soluong;
+        }
+       
     }
     function HienThiGia() {
-        $giohang = $this->model("GioHangModel");
-        $userName = $_SESSION["userNameLogin"];
-        $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
-        $maGioHang = $row['ma_gio_hang'];
-        $row_hienthi=mysqli_fetch_assoc($giohang->Hien_Thi_Gia_Va_So_Luong($maGioHang));
-        $gia=$row_hienthi['gia'];
-        echo number_format($gia, 0, '', ','); 
-        echo " ₫";
+        if(!isset($_SESSION["userNameLogin"])){
+            echo "";
+        }
+        else{
+            $giohang = $this->model("GioHangModel");
+            $userName = $_SESSION["userNameLogin"];
+            $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
+            $maGioHang = $row['ma_gio_hang'];
+            $row_hienthi=mysqli_fetch_assoc($giohang->Hien_Thi_Gia_Va_So_Luong($maGioHang));
+            $gia=$row_hienthi['gia'];
+            echo number_format($gia, 0, '', ','); 
+            echo " ₫";
+        }
+        
     }
 
     function Update_ChuaCapNhat() {

@@ -144,7 +144,7 @@
 
 
 
-        <?php   while($row_sanpham = mysqli_fetch_array($data["sanpham"])){ ?>
+        <?php   $row_sanpham = mysqli_fetch_array($data["sanpham"]) ?>
         <!-- Cot trai  -->
 
         <div class='col-xs-12 col-sm-12 col-md-9 rht-col pt-3'>
@@ -249,7 +249,7 @@
                                             <i class="fa fa-shopping-cart"></i>
                                             Thêm vào giỏ hàng </button>
                                     </div>
-                                    <?php }?>
+                                    
 
 
                                 </div><!-- /.row -->
