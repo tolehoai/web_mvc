@@ -133,8 +133,9 @@
                                                             class="btn btn-upper btn-primary outer-left-xs">Tiếp tục
                                                             mua
                                                             sắp</a>
-                                                       
+                                                            <button type="button" class="btn btn-primary btn-update">Cập nhật</button>
                                                     </span>
+                                                    
                                                 </div>
                                                 <!-- /.shopping-cart-btn -->
                                             </td>
@@ -248,3 +249,12 @@
 
             </div>
 </form>
+
+<script>
+    $( document ).ready(function() {
+       
+
+        
+});
+     
+</script>

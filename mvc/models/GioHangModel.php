@@ -62,7 +62,7 @@ class GiohangModel extends DB {
     public function Hien_Thi_Gia_Va_So_Luong($magiohang) {
         $qr = "SELECT sum(so_luong) sl, sum(giohang_gia*so_luong) gia
         FROM chi_tiet_gio_hang
-        WHERE chi_tiet_gio_hang.ma_gio_hang='$magiohang' AND tinhtrang_donhang LIKE 'Chưa xữ lý'";
+        WHERE chi_tiet_gio_hang.ma_gio_hang='$magiohang' AND tinhtrang_donhang LIKE '' ";
         return mysqli_query($this->con, $qr);
     }
     public function CapNhatSoLuongLonNhat_GioHang_HangHoa($magiohang,$masanpham) {

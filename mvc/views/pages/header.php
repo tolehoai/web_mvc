@@ -89,6 +89,19 @@
                     $(".tongcong").html(data);
                     // alert(data);
                 })
+                //Update cart
+            //Hien thi so luong
+            $.post("<?php echo URL;?>Ajax/HienThiSoLuong", {}, function (data) {
+                    $(".cart-number").html(data);
+                    // alert(data);
+                  })
+            
+            // Hien thi gia
+            $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function (data) {
+              $(".gia").html(data);
+              // alert(data);
+            })
+
             })
             $(".giamsoluong").click(function() {
                 var soluong = $(this).prev().children();
@@ -110,6 +123,18 @@
                     $(".tongcong").html(data);
                     // alert(data);
                 })
+                //Update cart
+            //Hien thi so luong
+            $.post("<?php echo URL;?>Ajax/HienThiSoLuong", {}, function (data) {
+                    $(".cart-number").html(data);
+                    // alert(data);
+                  })
+            
+            // Hien thi gia
+            $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function (data) {
+              $(".gia").html(data);
+              // alert(data);
+            })
             })
 
             //Update cart
@@ -118,12 +143,18 @@
                     $(".cart-number").html(data);
                     // alert(data);
                   })
-
+            
             // Hien thi gia
             $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function (data) {
               $(".gia").html(data);
               // alert(data);
             })
+
+
+
+
+            // soluonghanghoa 
+           
 
 
 
@@ -196,6 +227,7 @@
                 // })
                 $(document).on("click", '.addCart', function(event) {
                     //  console.log("click");
+
                     var masanpham_get = parseInt($(this).attr('product_id'));
 
                     console.log(masanpham_get);
@@ -205,6 +237,9 @@
                         $(".ajax").html(data);
                         // alert(data);
                     })
+                    
+                    
+
                 });
 
             })
@@ -234,31 +269,7 @@
 
 
 
-            $(".sub1").on("click", function() {
-                // var el =$(this).siblings().hide(500);
-                $(this).siblings().toggle(300);
-                // console.log(el);
-
-            });
-            // When the user scrolls the page, execute myFunction
-            window.onscroll = function() {
-                myFunction()
-            };
-
-            // Get the header
-            var header = document.getElementById("sanphammoi");
-            // console.log(header);
-            // Get the offset position of the navbar
-            var sticky = header.offsetTop;
-
-            // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-            function myFunction() {
-                if (window.pageYOffset > sticky) {
-                    header.classList.add("sticky");
-                } else {
-                    header.classList.remove("sticky");
-                }
-            }
+            
 
 
 
