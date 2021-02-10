@@ -622,8 +622,8 @@ a:hover {
             <li class="nav-item"><a href="" class="nav-link font-weight-bold text-uppercase">Giới thiệu</a></li>
             <li class="nav-item"><a href="/web_mvc/GioHang/TinhTrangDonHang"
                     class="nav-link font-weight-bold text-uppercase">TÌNH TRẠNG ĐƠN HÀNG</a></li>
-            <li class="nav-item"><a href="/web_mvc/GioHang" class="nav-link font-weight-bold text-uppercase">Giỏ
-                    hàng</a></li>
+            <!-- <li class="nav-item"><a href="/web_mvc/GioHang" class="nav-link font-weight-bold text-uppercase">Giỏ
+                    hàng</a></li> -->
             </ul>
             </div>
         </nav>
