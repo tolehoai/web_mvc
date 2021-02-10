@@ -4,6 +4,10 @@ class GiohangModel extends DB {
         $qr = "INSERT INTO `gio_hang`(`ma_gio_hang`, `USERNAME`) VALUES ('','$userName')";
         return mysqli_query($this->con, $qr);
     }
+    public function ThemDonHang($userName) {
+        $qr = "INSERT INTO `don_hang`(`ma_don_hang`, `USERNAME`) VALUES ('','$userName')";
+        return mysqli_query($this->con, $qr);
+    }
     public function LayMaGioHangTuUsername($userName) {
         $qr = "SELECT gio_hang.ma_gio_hang  FROM gio_hang WHERE gio_hang.USERNAME='$userName'";
         return mysqli_query($this->con, $qr);
@@ -28,7 +32,7 @@ class GiohangModel extends DB {
     }
     public function CapNhatSoLuongConLai() {
         $qr = "UPDATE hang_hoa JOIN
-        (SELECT chi_tiet_gio_hang.MSHS 'mahanghoa', sum(chi_tiet_gio_hang.so_luong) 'sl'
+        (SELECT chi_tiet_don_hang.MSHS 'mahanghoa', sum(chi_tiet_gio_hang.so_luong) 'sl'
         FROM chi_tiet_gio_hang 
         GROUP BY chi_tiet_gio_hang.MSHS) a
         ON hang_hoa.MSHS=a.mahanghoa
@@ -73,8 +77,8 @@ class GiohangModel extends DB {
     }
     public function XoaSanPhamTuGioHang($magiohang,$masanpham) {
         $qr = "DELETE 
-        FROM chi_tiet_gio_hang 
-        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
+        FROM chi_tiet_don_hang 
+        WHERE chi_tiet_don_hang.MSHS='$masanpham' AND chi_tiet_don_hang.ma_gio_hang='$magiohang'";
         return mysqli_query($this->con, $qr);
     }
     public function UpdateTinhTrangDonHang($magiohang,$masanpham) {
@@ -102,28 +106,35 @@ class GiohangModel extends DB {
         LIMIT $offset,$sosanpham_hienthi";;
         return mysqli_query($this->con, $qr);
     }
+    public function GetMaGioHang_CoSoTrang($offset, $sosanpham_hienthi) {
+        $qr = "SELECT DISTINCT ma_gio_hang
+        FROM chi_tiet_gio_hang
+        ORDER BY ma_gio_hang ASC
+        LIMIT $offset,$sosanpham_hienthi";;
+        return mysqli_query($this->con, $qr);
+    }
     public function CapNhatTrangThaiSanPham_MaGioHang_ChuaXuLy($masanpham,$magiohang) {
-        $qr = "UPDATE chi_tiet_gio_hang
+        $qr = "UPDATE chi_tiet_don_hang
         SET tinhtrang_donhang='Chưa xữ lý'
-        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
+        WHERE chi_tiet_don_hang.MSHS='$masanpham' AND chi_tiet_don_hang.ma_gio_hang='$magiohang'";
         return mysqli_query($this->con, $qr);
     }
     public function CapNhatTrangThaiSanPham_MaGioHang_DangXuLy($masanpham,$magiohang) {
-        $qr = "UPDATE chi_tiet_gio_hang
+        $qr = "UPDATE chi_tiet_don_hang
         SET tinhtrang_donhang='Đang xữ lý'
-        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
+        WHERE chi_tiet_don_hang.MSHS='$masanpham' AND chi_tiet_don_hang.ma_gio_hang='$magiohang'";
         return mysqli_query($this->con, $qr);
     }
     public function CapNhatTrangThaiSanPham_MaGioHang_DaXuLy($masanpham,$magiohang) {
-        $qr = "UPDATE chi_tiet_gio_hang
+        $qr = "UPDATE chi_tiet_don_hang
         SET tinhtrang_donhang='Đã xữ lý'
-        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
+        WHERE chi_tiet_don_hang.MSHS='$masanpham' AND chi_tiet_don_hang.ma_gio_hang='$magiohang'";
         return mysqli_query($this->con, $qr);
     }
     public function GetChiTietGioHangTuMaGioHang($magiohang) {
-        $qr = "SELECT * FROM chi_tiet_gio_hang JOIN hang_hoa
-        WHERE chi_tiet_gio_hang.ma_gio_hang='$magiohang'
-        AND chi_tiet_gio_hang.MSHS=hang_hoa.MSHS";
+        $qr = "SELECT * FROM chi_tiet_don_hang JOIN hang_hoa
+        WHERE chi_tiet_don_hang.ma_gio_hang='$magiohang'
+        AND chi_tiet_don_hang.MSHS=hang_hoa.MSHS";
         return mysqli_query($this->con, $qr);
     }
     public function DemGiohang() {
@@ -131,11 +142,81 @@ class GiohangModel extends DB {
         FROM chi_tiet_gio_hang";
         return mysqli_query($this->con, $qr);
     }
+    public function DemMaGiohang() {
+        $qr = "
+        SELECT COUNT(DISTINCT ma_gio_hang)  as sl 
+        FROM chi_tiet_gio_hang
+        ORDER BY ma_gio_hang ASC";
+        return mysqli_query($this->con, $qr);
+    }
+    public function DemMaDonHang() {
+        $qr = "
+        SELECT COUNT(DISTINCT ma_don_hang)  as sl 
+        FROM chi_tiet_don_hang
+        ORDER BY ma_don_hang ASC";
+        return mysqli_query($this->con, $qr);
+    }
     public function UpdateThongTinThanhToan($hoten, $diachi, $sdt, $ghichu, $maGioHang) {
         $qr = "UPDATE chi_tiet_gio_hang
         SET
-        hoten='$hoten',diachi='$diachi',sodienthoai='$sdt',ghichu='$chichu'
+        hoten='$hoten',diachi='$diachi',sodienthoai='$sdt',ghichu='$ghichu'
         WHERE chi_tiet_gio_hang.ma_gio_hang='$maGioHang'";
+        return mysqli_query($this->con, $qr);
+    }
+    public function DiChuyenGioHangSangDonHang_Insert($maGioHang) {
+        $qr = "INSERT INTO chi_tiet_don_hang(MSHS,ma_gio_hang,so_luong,soluong_conlai,giohang_gia,tinhtrang_donhang,time,show_in_cart,hoten,diachi,sodienthoai,ghichu)
+        SELECT * FROM chi_tiet_gio_hang
+        WHERE chi_tiet_gio_hang.ma_gio_hang=$maGioHang;
+                
+";
+        return mysqli_query($this->con, $qr);
+    }
+    public function DiChuyenGioHangSangDonHang_Update($maGioHang) {
+        $qr = "DELETE FROM chi_tiet_gio_hang
+        WHERE chi_tiet_gio_hang.ma_gio_hang=$maGioHang;
+                
+";
+        return mysqli_query($this->con, $qr);
+    }
+    public function TaoMaDonHang() {
+        $qr = "UPDATE chi_tiet_don_hang
+        SET chi_tiet_don_hang.ma_don_hang=CONCAT(CAST(chi_tiet_don_hang.ma_gio_hang AS CHAR(50)),'-',chi_tiet_don_hang.time);
+                
+";
+        return mysqli_query($this->con, $qr);
+    }
+    public function GetDonHang_TinhTrang_CoSoTrang($offset, $sosanpham_hienthi) {
+        $qr = "SELECT chi_tiet_don_hang.ma_don_hang, COUNT(case when chi_tiet_don_hang.tinhtrang_donhang = 'Chưa xữ lý' then 1 else null end) as 'chua_xu_ly',
+        COUNT(case when chi_tiet_don_hang.tinhtrang_donhang = 'Đang xữ lý' then 1 else null end) as 'dang_xu_ly',
+        COUNT(case when chi_tiet_don_hang.tinhtrang_donhang = 'Đã xữ lý' then 1 else null end) as 'da_xu_ly'
+    FROM chi_tiet_don_hang
+    GROUP BY chi_tiet_don_hang.ma_don_hang
+        
+        LIMIT $offset,$sosanpham_hienthi";;
+        return mysqli_query($this->con, $qr);
+    }
+    public function GetDonHang_TheoMa($ma_donhang) {
+        $qr = "SELECT *
+        FROM chi_tiet_don_hang JOIN hang_hoa
+        WHERE chi_tiet_don_hang.ma_don_hang='$ma_donhang' AND chi_tiet_don_hang.MSHS=hang_hoa.MSHS";;
+        return mysqli_query($this->con, $qr);
+    }
+    public function DemTrangThai_ChuaXuLy($ma_donhang) {
+        $qr = "SELECT COUNT(chi_tiet_don_hang.ma_don_hang) as sl
+        FROM chi_tiet_don_hang
+        WHERE chi_tiet_don_hang.ma_don_hang='$ma_donhang' AND chi_tiet_don_hang.tinhtrang_donhang='Chưa xữ lý'";;
+        return mysqli_query($this->con, $qr);
+    }
+    public function DemTrangThai_DangXuLy($ma_donhang) {
+        $qr = "SELECT COUNT(chi_tiet_don_hang.ma_don_hang) as sl
+        FROM chi_tiet_don_hang
+        WHERE chi_tiet_don_hang.ma_don_hang='$ma_donhang' AND chi_tiet_don_hang.tinhtrang_donhang='Đang xữ lý'";;
+        return mysqli_query($this->con, $qr);
+    }
+    public function DemTrangThai_DaXuLy($ma_donhang) {
+        $qr = "SELECT COUNT(chi_tiet_don_hang.ma_don_hang) as sl
+        FROM chi_tiet_don_hang
+        WHERE chi_tiet_don_hang.ma_don_hang='$ma_donhang' AND chi_tiet_don_hang.tinhtrang_donhang='Đã xữ lý'";;
         return mysqli_query($this->con, $qr);
     }
    

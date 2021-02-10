@@ -29,6 +29,7 @@ class TaiKhoan extends Controller {
                 if ($kq == 1) {
                     $_SESSION["DangKyThanhCong"] = "Thanhcong";
                     $giohang->ThemGioHang($userName);
+                    $giohang->ThemDonHang($userName);
                 } else {
                     $_SESSION["DangKyThatBai"] = "That bai";
                 }

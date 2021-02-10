@@ -100,8 +100,8 @@
                                             <td><?php echo $row_giohang['tinhtrang_donhang'] ?></td>
                                             <td class="romove-item">
                                             <?php if($row_giohang['tinhtrang_donhang']=="Chưa xữ lý"){?>
-                                            
                                             <button type="button" class="btn btn-danger xoaDonHang" masanpham="<?php echo $row_giohang['MSHS'];?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            
                                             <?php } ?>
                                             </td>
                                         </tr>

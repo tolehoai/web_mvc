@@ -13,7 +13,7 @@
     <meta name="robots" content="all">
     <link rel="stylesheet" href="public/style.css">
     <title>
-    <?php 
+        <?php 
 
   if(isset($data["SP_Title"])){
     $row = mysqli_fetch_assoc($data["SP_Title"]);
@@ -31,12 +31,14 @@
   }
 
   ?>
-  
-  </title>
+
+    </title>
 
     <!-- Google Font  -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+        rel="stylesheet">
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
 
     <script src="<?php echo URL;?>mvc/views/pages/assets/js/jquery.js"></script>
@@ -44,237 +46,237 @@
     <script src="public/simple.money.format.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+    $(document).ready(function() {
 
 
 
-            // $('.money').simpleMoneyFormat();
-            $(".soluonghanghoa").keyup(function() {
-                var soluong = $(this);
-                var soluong_update = parseInt(soluong.val());
-                var mahanghoa_update = soluong.attr("mahanghoa");
-                // console.log("soluong_update)";
-                // alert(mahanghoa_update);
-                $.post("<?php echo URL;?>Ajax/CapNhatSoLuong", {
-                        soluongcancapnhat: soluong_update,
-                        mahanghoa: mahanghoa_update
-                    },
-                    function(data) {
-                        $("#tongcong-" + mahanghoa_update).html(data);
-                        // alert(data);
-                    })
-                $.post("<?php echo URL;?>Ajax/CapNhatThanhTien", {}, function(data) {
-                    $(".tongcong").html(data);
-                    // alert(data);
-                })
-            })
-
-
-
-            $(".tangsoluong").click(function() {
-
-                var soluong = $(this).next().children();
-                var mahanghoa_update = soluong.attr("mahanghoa");
-                // console.log("#tongcong-"+mahanghoa_update);
-                soluong.val(parseInt(soluong.val()) + 1);
-                var soluong_update = parseInt(soluong.val());
-                $.post("<?php echo URL;?>/Ajax/CapNhatSoLuong", {
+        // $('.money').simpleMoneyFormat();
+        $(".soluonghanghoa").keyup(function() {
+            var soluong = $(this);
+            var soluong_update = parseInt(soluong.val());
+            var mahanghoa_update = soluong.attr("mahanghoa");
+            // console.log("soluong_update)";
+            // alert(mahanghoa_update);
+            $.post("<?php echo URL;?>Ajax/CapNhatSoLuong", {
                     soluongcancapnhat: soluong_update,
                     mahanghoa: mahanghoa_update
-                }, function(data) {
+                },
+                function(data) {
                     $("#tongcong-" + mahanghoa_update).html(data);
                     // alert(data);
                 })
-                $.post("<?php echo URL;?>/Ajax/CapNhatThanhTien", {}, function(data) {
-                    $(".tongcong").html(data);
-                    // alert(data);
-                })
-                //Update cart
-            //Hien thi so luong
-            $.post("<?php echo URL;?>Ajax/HienThiSoLuong", {}, function (data) {
-                    $(".cart-number").html(data);
-                    // alert(data);
-                  })
-            
-            // Hien thi gia
-            $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function (data) {
-              $(".gia").html(data);
-              // alert(data);
+            $.post("<?php echo URL;?>Ajax/CapNhatThanhTien", {}, function(data) {
+                $(".tongcong").html(data);
+                // alert(data);
             })
+        })
 
-            })
-            $(".giamsoluong").click(function() {
-                var soluong = $(this).prev().children();
-                var mahanghoa_update = soluong.attr("mahanghoa");
-                soluong.val(parseInt(soluong.val()) - 1);
-                if (parseInt(soluong.val()) < 1) {
-                    soluong.val(1);
-                }
-                var soluong_update = parseInt(soluong.val());
 
-                $.post("<?php echo URL;?>/Ajax/CapNhatSoLuong", {
-                    soluongcancapnhat: soluong_update,
-                    mahanghoa: mahanghoa_update
-                }, function(data) {
-                    $("#tongcong-" + mahanghoa_update).html(data);
-                    // alert(data);
-                })
-                $.post("<?php echo URL;?>/Ajax/CapNhatThanhTien", {}, function(data) {
-                    $(".tongcong").html(data);
-                    // alert(data);
-                })
-                //Update cart
-            //Hien thi so luong
-            $.post("<?php echo URL;?>Ajax/HienThiSoLuong", {}, function (data) {
-                    $(".cart-number").html(data);
-                    // alert(data);
-                  })
-            
-            // Hien thi gia
-            $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function (data) {
-              $(".gia").html(data);
-              // alert(data);
-            })
-            })
 
+        $(".tangsoluong").click(function() {
+
+            var soluong = $(this).next().children();
+            var mahanghoa_update = soluong.attr("mahanghoa");
+            // console.log("#tongcong-"+mahanghoa_update);
+            soluong.val(parseInt(soluong.val()) + 1);
+            var soluong_update = parseInt(soluong.val());
+            $.post("<?php echo URL;?>/Ajax/CapNhatSoLuong", {
+                soluongcancapnhat: soluong_update,
+                mahanghoa: mahanghoa_update
+            }, function(data) {
+                $("#tongcong-" + mahanghoa_update).html(data);
+                // alert(data);
+            })
+            $.post("<?php echo URL;?>/Ajax/CapNhatThanhTien", {}, function(data) {
+                $(".tongcong").html(data);
+                // alert(data);
+            })
             //Update cart
             //Hien thi so luong
-            $.post("<?php echo URL;?>Ajax/HienThiSoLuong", {}, function (data) {
-                    $(".cart-number").html(data);
-                    // alert(data);
-                  })
-            
+            $.post("<?php echo URL;?>Ajax/HienThiSoLuong", {}, function(data) {
+                $(".cart-number").html(data);
+                // alert(data);
+            })
+
             // Hien thi gia
-            $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function (data) {
-              $(".gia").html(data);
-              // alert(data);
+            $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function(data) {
+                $(".gia").html(data);
+                // alert(data);
             })
 
+        })
+        $(".giamsoluong").click(function() {
+            var soluong = $(this).prev().children();
+            var mahanghoa_update = soluong.attr("mahanghoa");
+            soluong.val(parseInt(soluong.val()) - 1);
+            if (parseInt(soluong.val()) < 1) {
+                soluong.val(1);
+            }
+            var soluong_update = parseInt(soluong.val());
+
+            $.post("<?php echo URL;?>/Ajax/CapNhatSoLuong", {
+                soluongcancapnhat: soluong_update,
+                mahanghoa: mahanghoa_update
+            }, function(data) {
+                $("#tongcong-" + mahanghoa_update).html(data);
+                // alert(data);
+            })
+            $.post("<?php echo URL;?>/Ajax/CapNhatThanhTien", {}, function(data) {
+                $(".tongcong").html(data);
+                // alert(data);
+            })
+            //Update cart
+            //Hien thi so luong
+            $.post("<?php echo URL;?>Ajax/HienThiSoLuong", {}, function(data) {
+                $(".cart-number").html(data);
+                // alert(data);
+            })
+
+            // Hien thi gia
+            $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function(data) {
+                $(".gia").html(data);
+                // alert(data);
+            })
+        })
+
+        //Update cart
+        //Hien thi so luong
+        $.post("<?php echo URL;?>Ajax/HienThiSoLuong", {}, function(data) {
+            $(".cart-number").html(data);
+            // alert(data);
+        })
+
+        // Hien thi gia
+        $.post("<?php echo URL;?>/Ajax/HienThiGia", {}, function(data) {
+            $(".gia").html(data);
+            // alert(data);
+        })
 
 
 
-            // soluonghanghoa 
-           
+
+        // soluonghanghoa 
 
 
 
-            // swal("Good job!", "You clicked the button!", "success");
+
+        // swal("Good job!", "You clicked the button!", "success");
 
 
 
-            var loaisanpham = $(".sub1");
-            // console.log(loaisanpham);
+        var loaisanpham = $(".sub1");
+        // console.log(loaisanpham);
 
-            $(".sub1").on("click", function() {
-                var loaisanphamcanlay = $(this).attr('loaisanpham');
+        $(".sub1").on("click", function() {
+            var loaisanphamcanlay = $(this).attr('loaisanpham');
 
-                // var str1=str1.concat(loaisanphamcanlay);
-                var a = 'noidung-';
-                var b = a.concat(loaisanphamcanlay);
-                $.post("<?php echo URL;?>Ajax/GetSubMenu", {
-                    loaisanpham: loaisanphamcanlay
+            // var str1=str1.concat(loaisanphamcanlay);
+            var a = 'noidung-';
+            var b = a.concat(loaisanphamcanlay);
+            $.post("<?php echo URL;?>Ajax/GetSubMenu", {
+                loaisanpham: loaisanphamcanlay
+            }, function(data) {
+                $("." + b).html(data);
+                // alert(data);
+            })
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $(".new-arriavls").ready(function() {
+            var danhmuc = $(".new-arriavls");
+            var myVals = [];
+            $(danhmuc).map(function() {
+                myVals.push($(this).attr('madanhmuc'));
+                var madanhmuc = $(this).attr('madanhmuc');
+                var tendanhmuclayduoc = $(this).attr('tendanhmuc');
+                var a = 'san-pham-cua-danh-muc-';
+                var b = a.concat(madanhmuc);
+                console.log(b);
+                // Ajax
+                $.post("<?php echo URL;?>Ajax/LaySanPhamTheoDanhMuc", {
+                    danhmuc: madanhmuc,
+                    tendanhmuc: tendanhmuclayduoc
                 }, function(data) {
-                    $("." + b).html(data);
+                    $("#" + b).html(data);
                     // alert(data);
                 })
+                // Ajax
             });
+            // console.log(myVals);
 
+        })
 
+        //Xu ly don hang
+        $(".new-arriavls").ready(function() {
+            // $(".addCart").click(function(){
+            //   console.log("click");
+            // })
+            $(document).on("click", '.addCart', function(event) {
+                //  console.log("click");
 
+                var masanpham_get = parseInt($(this).attr('product_id'));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            $(".new-arriavls").ready(function() {
-                var danhmuc = $(".new-arriavls");
-                var myVals = [];
-                $(danhmuc).map(function() {
-                    myVals.push($(this).attr('madanhmuc'));
-                    var madanhmuc = $(this).attr('madanhmuc');
-                    var tendanhmuclayduoc = $(this).attr('tendanhmuc');
-                    var a = 'san-pham-cua-danh-muc-';
-                    var b = a.concat(madanhmuc);
-                    console.log(b);
-                    // Ajax
-                    $.post("<?php echo URL;?>Ajax/LaySanPhamTheoDanhMuc", {
-                            danhmuc: madanhmuc,
-                            tendanhmuc: tendanhmuclayduoc
-                        }, function(data) {
-                            $("#" + b).html(data);
-                            // alert(data);
-                        })
-                        // Ajax
-                });
-                // console.log(myVals);
-
-            })
-
-            //Xu ly don hang
-            $(".new-arriavls").ready(function() {
-                // $(".addCart").click(function(){
-                //   console.log("click");
-                // })
-                $(document).on("click", '.addCart', function(event) {
-                    //  console.log("click");
-
-                    var masanpham_get = parseInt($(this).attr('product_id'));
-
-                    console.log(masanpham_get);
-                    $.post("/web_mvc/Ajax/ThemVaoGioHang", {
-                        masanpham: masanpham_get
-                    }, function(data) {
-                        $(".ajax").html(data);
-                        // alert(data);
-                    })
-                    
-                    
-
-                });
-
-            })
-
-
-            //Click mở giỏ hàng
-            $(".giohang").click(function() {
-                $.post("<?php echo URL;?>Ajax/DiVaoGioHang", {}, function(data) {
-                    $(".ajax").html(data);
-                    // alert(data);
-                })
-            })
-            $(".xoaDonHang").on("click", function() {
-                var masanpham_get = parseInt($(this).attr('masanpham'));
-                $.post("/web_mvc/Ajax/XoaDonHang_GioHang", {
+                console.log(masanpham_get);
+                $.post("/web_mvc/Ajax/ThemVaoGioHang", {
                     masanpham: masanpham_get
                 }, function(data) {
                     $(".ajax").html(data);
                     // alert(data);
                 })
+
+
+
             });
 
+        })
 
 
-
-
-
-
-
-            
-
-
-
-
+        //Click mở giỏ hàng
+        $(".giohang").click(function() {
+            $.post("<?php echo URL;?>Ajax/DiVaoGioHang", {}, function(data) {
+                $(".ajax").html(data);
+                // alert(data);
+            })
+        })
+        $(".xoaDonHang").on("click", function() {
+            var masanpham_get = parseInt($(this).attr('masanpham'));
+            $.post("/web_mvc/Ajax/XoaDonHang_GioHang", {
+                masanpham: masanpham_get
+            }, function(data) {
+                $(".ajax").html(data);
+                // alert(data);
+            })
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });
     </script>
 
     <!-- Bootstrap Core CSS -->
@@ -304,180 +306,184 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <!-- ===================================CSS============================================ -->
 
 <style>
-    .modal-footer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-    }
-    
-    a {
-        text-decoration: none;
-        color: #000000;
-    }
-    
-    a:hover {
-        color: #222222
-    }
-    /* Dropdown */
-    
-    .dropdown {
-        display: inline-block;
-        position: relative;
-    }
-    
-    .dd-button {
-        display: inline-block;
-        padding: 10px 30px 10px 20px;
-        background-color: #ffffff;
-        cursor: pointer;
-        white-space: nowrap;
-    }
-    
-    .dd-button:after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: 15px;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 5px solid black;
-    }
-    
-    .dd-button:hover {
-        background-color: #eeeeee;
-    }
-    
-    .dd-input {
-        display: none;
-    }
-    
-    .dd-menu {
-        position: absolute;
-        top: 100%;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 0;
-        margin: 2px 0 0 0;
-        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
-        background-color: #ffffff;
-        list-style-type: none;
-        z-index: 5;
-        margin-right: 10px;
-    }
-    
-    .dd-input+.dd-menu {
-        display: none;
-    }
-    
-    .dd-input:checked+.dd-menu {
-        display: block;
-    }
-    
-    .dd-menu li {
-        padding: 10px 20px;
-        cursor: pointer;
-        white-space: nowrap;
-    }
-    
-    .dd-menu li:hover {
-        background-color: #f6f6f6;
-    }
-    
-    .dd-menu li a {
-        display: block;
-        margin: -10px -20px;
-        padding: 10px 20px;
-    }
-    
-    .dd-menu li.divider {
-        padding: 0;
-        border-bottom: 1px solid #cccccc;
-    }
-    
-    .slider-img {
-        width: 1200px;
-    }
-    
-    .search-button {
-        padding: 29px 25px 19px !important;
-    }
-    
-    .gia {
-        position: relative !important;
-        right: 20px;
-        font-weight: 600;
-        color: white;
-        font-size: 14px;
-    }
-    
-    .cart-number {
-        position: relative !important;
-        right: 20px;
-        top: -15px;
-    }
-    
-    .product {
-        border-bottom: 1px solid #f3f3f3;
-        border-right: 1px solid #f3f3f3;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    
-    .btn-danger.disabled,
-    .btn-danger:disabled {}
-    
-    .item1 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    
-    .menu-sub-1 {
-        cursor: pointer;
-    }
-    
-    .menu-sub-2 {
-        display: none;
-    }
-    
-    .menu-sub-1:active .menu-sub-2 {
-        display: block;
-    }
-    
-    .noidungtimkiem {
-        width: 790px;
-        height: 50px;
-        position: relative;
-        /* border-radius: 15px; */
-    }
-    
-    .btnTimKiem {
-        position: absolute;
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+a:hover {
+    color: #222222
+}
+
+/* Dropdown */
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dd-button {
+    display: inline-block;
+    padding: 10px 30px 10px 20px;
+    background-color: #ffffff;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dd-button:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid black;
+}
+
+.dd-button:hover {
+    background-color: #eeeeee;
+}
+
+.dd-input {
+    display: none;
+}
+
+.dd-menu {
+    position: absolute;
+    top: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+    margin: 2px 0 0 0;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    list-style-type: none;
+    z-index: 5;
+    margin-right: 10px;
+}
+
+.dd-input+.dd-menu {
+    display: none;
+}
+
+.dd-input:checked+.dd-menu {
+    display: block;
+}
+
+.dd-menu li {
+    padding: 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dd-menu li:hover {
+    background-color: #f6f6f6;
+}
+
+.dd-menu li a {
+    display: block;
+    margin: -10px -20px;
+    padding: 10px 20px;
+}
+
+.dd-menu li.divider {
+    padding: 0;
+    border-bottom: 1px solid #cccccc;
+}
+
+.slider-img {
+    width: 1200px;
+}
+
+.search-button {
+    padding: 29px 25px 19px !important;
+}
+
+.gia {
+    position: relative !important;
+    right: 20px;
+    font-weight: 600;
+    color: white;
+    font-size: 14px;
+}
+
+.cart-number {
+    position: relative !important;
+    right: 20px;
+    top: -15px;
+}
+
+.product {
+    border-bottom: 1px solid #f3f3f3;
+    border-right: 1px solid #f3f3f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.btn-danger.disabled,
+.btn-danger:disabled {}
+
+.item1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.menu-sub-1 {
+    cursor: pointer;
+}
+
+.menu-sub-2 {
+    display: none;
+}
+
+.menu-sub-1:active .menu-sub-2 {
+    display: block;
+}
+
+.noidungtimkiem {
+    width: 790px;
+    height: 50px;
+    position: relative;
+    /* border-radius: 15px; */
+}
+
+.btnTimKiem {
+    position: absolute;
     top: 33px;
     right: 337px;
     padding: 14px;
     border-radius: 0 999px 999px 0;
     background-color: #fdd922;
-    }
-    .top-cart-row{
-        
-    }
+}
+
+.top-cart-row {}
 </style>
 
 
@@ -546,11 +552,13 @@
                     <!-- /.contact-row -->
                     <!-- ============================================================= SEARCH AREA ============================================================= -->
                     <div class="search-area">
-                        <form action="/web_mvc/SanPham/TimKiem" method="POST" name="frmTimKiem" id="frmTimKiem" autocomplete="off" >
+                        <form action="/web_mvc/SanPham/TimKiem" method="POST" name="frmTimKiem" id="frmTimKiem"
+                            autocomplete="off">
                             <div class="form-group">
-                                <input type="text" class="form-control noidungtimkiem" name="txtNoiDung" placeholder="Nhập tên sản phẩm cần tìm kiêm">
-                                <a href="/web_mvc/SanPham/TimKiem/1"><button
-                                            type="submit" name="btnTimKiem" class="btn btn-primary btnTimKiem">Tìm Kiếm</button></a>
+                                <input type="text" class="form-control noidungtimkiem" name="txtNoiDung"
+                                    placeholder="Nhập tên sản phẩm cần tìm kiêm">
+                                <a href="/web_mvc/SanPham/TimKiem/1"><button type="submit" name="btnTimKiem"
+                                        class="btn btn-primary btnTimKiem">Tìm Kiếm</button></a>
                             </div>
                         </form>
                     </div>
@@ -558,19 +566,26 @@
                     <!-- ============================================================= SEARCH AREA : END ============================================================= -->
 
                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 top-cart-row item ml-5 pb-0 pt-0 mt-0 mb-0">
-          <div class="giohang" style="cursor: pointer;">
-            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-cart2 cart-icon" fill="white"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-              </svg>
-          </div>
 
-            <div class="cart-number"></div>
-            <div class="gia"></div>
-          </div>
+                        <div class="giohang1" style="cursor: pointer;">
+                            <a href="/web_mvc/GioHang" class="nav-link font-weight-bold text-uppercase">
+                                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-cart2 cart-icon"
+                                    fill="white" xmlns="">
+                                    <path fill-rule="evenodd"
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                                </svg>
+                            </a>
+                        </div>
 
-              
+
+                        <div class="cart-number"></div>
+                        <div class="gia"></div>
+
+                    </div>
+
+
+
+
 
                 </div>
 
@@ -590,7 +605,10 @@
 
         <!-- ============================================== NAVBAR ============================================== -->
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-white py-1 shadow-sm"> <a href="#" class="navbar-brand font-weight-bold d-block d-lg-none">MegaMenu</a> <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"> <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-1 shadow-sm"> <a href="#"
+                class="navbar-brand font-weight-bold d-block d-lg-none">MegaMenu</a> <button type="button"
+                data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false"
+                aria-label="Toggle navigation" class="navbar-toggler"> <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navbarContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav mx-auto">
@@ -599,7 +617,8 @@
             </div>
             </li>
             <li class="nav-item"><a href="" class="nav-link font-weight-bold text-uppercase">Giới thiệu</a></li>
-            <li class="nav-item"><a href="/web_mvc/GioHang/TinhTrangDonHang" class="nav-link font-weight-bold text-uppercase">TÌNH TRẠNG ĐƠN HÀNG</a></li>
+            <li class="nav-item"><a href="/web_mvc/GioHang/TinhTrangDonHang"
+                    class="nav-link font-weight-bold text-uppercase">TÌNH TRẠNG ĐƠN HÀNG</a></li>
             <li class="nav-item"><a href="/web_mvc/GioHang" class="nav-link font-weight-bold text-uppercase">Giỏ
                     hàng</a></li>
             </ul>

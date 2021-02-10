@@ -352,11 +352,12 @@ class Admin extends Controller {
             echo "Đơn hàng";
             $donhang = $this->model("GioHangModel");
             $this->view("pagemaster_admin", 
-            ["Page" => "admin/danhsachdonhang", 
-            "donhang"=>$donhang->GetGioHang_CoSoTrang($offset, $sosanpham_hienthi),
+            ["Page" => "admin/danhsachdonhang1", 
+            "donhang"=>$donhang->GetDonHang_TinhTrang_CoSoTrang($offset, $sosanpham_hienthi),
             "Title" => 'Danh sách đơn hàng', 
             "page_no" => $trang,
-            "sl" => $donhang->DemGioHang(),
+            "sl" => $donhang->DemMaDonHang(),
+            
             ]);
         }
         else{
@@ -365,6 +366,20 @@ class Admin extends Controller {
            
             ]);
         }
+        
+    }
+    function ChiTietDonHang($ma_donhang){
+            CheckLogin();
+            $donhang = $this->model("GioHangModel");
+            $this->view("pagemaster_admin", 
+            ["Page" => "admin/danhsachdonhang", 
+            "donhang"=>$donhang->GetDonHang_TheoMa($ma_donhang),
+           
+            "madonhang"=>$ma_donhang,
+            "Title" => 'Đơn hàng', 
+            ]);
+        
+       
         
     }
     //Chuc nang chi tiet gio hang

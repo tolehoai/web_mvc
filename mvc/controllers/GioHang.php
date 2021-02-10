@@ -81,8 +81,11 @@ class GioHang extends Controller {
         $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
         $maGioHang = $row['ma_gio_hang'];
         echo "Thanh toan";
+        // echo $maGioHang;
+        //Di chuyen tu bang chi tiet gio hang sang bang chi tiet hoa don
+        
 
-        //Cập nhật trạng thái đơn hàng
+        // Cập nhật trạng thái đơn hàng
         // var_dump($_POST);
         // exit(); 
         // $arrSoLuong=array();
@@ -104,7 +107,10 @@ class GioHang extends Controller {
         $sdt=$_POST['txtSDT'];
         $ghichu=$_POST['txtGhiChu'];
         $giohang->UpdateThongTinThanhToan($hoten, $diachi, $sdt, $ghichu, $maGioHang);
-        
+        $giohang->DiChuyenGioHangSangDonHang_Insert($maGioHang);
+        $giohang->DiChuyenGioHangSangDonHang_Update($maGioHang);
+        $giohang->TaoMaDonHang();
+
 
 
        
