@@ -12,8 +12,8 @@ class GiohangModel extends DB {
         $qr = "SELECT gio_hang.ma_gio_hang  FROM gio_hang WHERE gio_hang.USERNAME='$userName'";
         return mysqli_query($this->con, $qr);
     }
-    public function LayThongTinGioHangTuMSHS($MSHS) {
-        $qr = "SELECT *  FROM chi_tiet_gio_hang WHERE chi_tiet_gio_hang.MSHS=$MSHS";
+    public function LayThongTinGioHangTuMSHS($MSHS,$maGioHang) {
+        $qr = "SELECT *  FROM chi_tiet_gio_hang WHERE chi_tiet_gio_hang.MSHS=$MSHS AND chi_tiet_gio_hang.ma_gio_hang=$maGioHang";
         return mysqli_query($this->con, $qr);
     }
     public function ThemSanPhamVaoGioHang($masanpham, $magiohang, $gia) {
@@ -32,7 +32,7 @@ class GiohangModel extends DB {
     }
     public function CapNhatSoLuongConLai() {
         $qr = "UPDATE hang_hoa JOIN
-        (SELECT chi_tiet_don_hang.MSHS 'mahanghoa', sum(chi_tiet_gio_hang.so_luong) 'sl'
+        (SELECT chi_tiet_gio_hang.MSHS 'mahanghoa', sum(chi_tiet_gio_hang.so_luong) 'sl'
         FROM chi_tiet_gio_hang 
         GROUP BY chi_tiet_gio_hang.MSHS) a
         ON hang_hoa.MSHS=a.mahanghoa
@@ -77,8 +77,8 @@ class GiohangModel extends DB {
     }
     public function XoaSanPhamTuGioHang($magiohang,$masanpham) {
         $qr = "DELETE 
-        FROM chi_tiet_don_hang 
-        WHERE chi_tiet_don_hang.MSHS='$masanpham' AND chi_tiet_don_hang.ma_gio_hang='$magiohang'";
+        FROM chi_tiet_gio_hang 
+        WHERE chi_tiet_gio_hang.MSHS='$masanpham' AND chi_tiet_gio_hang.ma_gio_hang='$magiohang'";
         return mysqli_query($this->con, $qr);
     }
     public function UpdateTinhTrangDonHang($magiohang,$masanpham) {

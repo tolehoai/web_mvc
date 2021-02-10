@@ -149,7 +149,7 @@ class GioHang extends Controller {
 
         //Cập nhật lại số lượng có thể mua trong bảng chi tiết hàng hóa 
         $giohang->CapNhatSoLuongConLaiTrongBangChiTietGioHang();
-        $url = "/web_mvc/GioHang/TinhTrangDonHang";
+        $url = "/web_mvc/GioHang";
         header("Location: $url");
     }
 

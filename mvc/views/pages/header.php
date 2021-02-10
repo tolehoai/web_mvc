@@ -319,6 +319,9 @@
 <!-- ===================================CSS============================================ -->
 
 <style>
+.romove-item1{
+    z-index:100;
+}
 .modal-footer {
     display: flex;
     align-items: center;

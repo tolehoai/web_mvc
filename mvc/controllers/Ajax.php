@@ -193,7 +193,7 @@ class Ajax extends Controller {
 
         // $row = mysqli_fetch_assoc($giohang->LayMaGioHangTuUsername($userName));
         
-        $row_giohang=mysqli_fetch_assoc($giohang->LayThongTinGioHangTuMSHS($masanpham));
+        $row_giohang=mysqli_fetch_assoc($giohang->LayThongTinGioHangTuMSHS($masanpham,$maGioHang));
         $kq = $row_giohang['giohang_gia']*$row_giohang['so_luong'];
         
         echo number_format($kq, 0, '', ','); 

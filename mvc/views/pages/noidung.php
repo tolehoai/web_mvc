@@ -101,12 +101,8 @@
                                                     </span>
                                                 </td>
                                                 <input type="hidden" value="<?php echo $row_giohang['MSHS'];?>" name="masanpham[]">
-                                                <td class="romove-item">
-
-                                                    <button type="button" class="btn btn-danger"><a
-                                                            href="GioHang/Xoa/<?php echo $row_giohang['MSHS'];?>"
-                                                            title="Xóa" class="icon"><i style="color:white;"
-                                                                class="fa fa-trash-o"></i></a></button>
+                                                <td class="">
+                                               <a href="/web_mvc/GioHang/Xoa/<?php echo $row_giohang['MSHS']?>">Xóa</a>
                                                 </td>
                                             </tr>
                                        
