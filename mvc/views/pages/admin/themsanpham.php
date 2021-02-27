@@ -38,7 +38,7 @@ if (isset($_SESSION["thatbai"])) {
             
             <div class="row">
                 <div class="col-md-6">
-                <form action="/web_mvc/Admin/ThemSanPham" method="POST" enctype="multipart/form-data">
+                <form action="/web_mvc/Admin/ThemSanPham" method="POST" enctype="multipart/form-data" id="frmThemSanPham">
                 <div class="form-group">
                     <label >Tên sản phẩm</label>
                     <input type="text" class="form-control" name="txtTenSanPham" aria-describedby="emailHelp" placeholder="Nhập tên sản phẩm">
@@ -102,7 +102,53 @@ while ($row_thuonghieu = mysqli_fetch_array($data["thuonghieu"])) {
 </div>
 <!-- END MAIN -->
 <div class="clearfix"></div>
+<script>
+        
+        $(document).ready(function() {
+            $("#frmThemSanPham").validate({
+                rules: {
+                    txtTenSanPham: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 50,
 
+                    },
+                    
+                },
+                messages: {
+                    txtTenSanPham: {
+                        required: "Vui lòng nhập tên đăng nhập",
+                        minlength: "Tên đăng nhập phải có ít nhất 3 ký tự",
+                        maxlength: "Tên đăng nhập không được vượt quá 50 ký tự"
+                    },
+                    
+                },
+                errorElement: "em",
+                errorPlacement: function(error, element) {
+                    // Thêm class `invalid-feedback` cho field đang có lỗi
+                    error.addClass("invalid-feedback");
+                    if (element.prop("type") === "checkbox") {
+                        error.insertAfter(element.parent("label"));
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                success: function(label, element) {},
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass("is-invalid").removeClass("is-valid");
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).addClass("is-valid").removeClass("is-invalid");
+                }
+            });
+
+            
+          
+        })
+
+
+            
+</script>
 </div>
 <!-- END WRAPPER -->
 <!-- Javascript -->

@@ -44,6 +44,8 @@
     <script src="<?php echo URL;?>mvc/views/pages/assets/js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="public/simple.money.format.js"></script>
+    <script src="/web_mvc/public/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/web_mvc/public/jquery-validation/dist/localization/messages_vi.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -339,7 +341,13 @@ a:hover {
 }
 
 /* Dropdown */
-
+#txtDangKyUsernameErr {
+    
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
 .dropdown {
     display: inline-block;
     position: relative;

@@ -21,6 +21,8 @@ class Ajax extends Controller {
         // echo $a;
         
     }
+    
+
     function LaySanPhamTheoDanhMuc() {
         $sanpham = $this->model("SanPhamModel");
         $danhmuc = $_POST['danhmuc'];
@@ -524,6 +526,33 @@ class Ajax extends Controller {
             })
             </script>
         ";
+    }
+
+    function CheckEmail() {
+        $taikhoan = $this->model("TaiKhoanModel");
+        $un = $_POST['un_post'];
+        $number = mysqli_num_rows($taikhoan->TimTaiKhoanTheoUsername($un));
+        
+        if($number>0){
+            echo "Tên tài khoản đã tồn tại";
+        }
+       
+        
+        
+    
+        
+    }
+    function API_MemberNumber(){
+        $taikhoan = $this->model("TaiKhoanModel");
+        $ketqua = $taikhoan->CountMember();
+      
+        while ($row_sanpham = mysqli_fetch_array($ketqua)) {
+            $dataSoLuongKhachHang[] = array(
+                'SoLuong' => $row['Number_Of_Member'] 
+            );
+        }
+        echo json_encode($dataSoLuongKhachHang[0]);
+       
     }
 
 }

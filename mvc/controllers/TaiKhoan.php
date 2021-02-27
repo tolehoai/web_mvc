@@ -15,7 +15,7 @@ class TaiKhoan extends Controller {
         $giohang = $this->model("GioHangModel");
         if (isset($_POST["btnDangKy"])) {
             $userName = $_POST['txtDangKyUsername'];
-            $pass = $_POST['txtDangKyPass'];
+            $pass = md5($_POST['txtDangKyPass']);
             $fullName = $_POST['txtDangKyFullname'];
             $diaChi = $_POST['txtDangKyDiaChi'];
             $sdt = $_POST['txtDangKySDT'];
@@ -42,7 +42,7 @@ class TaiKhoan extends Controller {
         $taikhoan = $this->model("TaiKhoanModel");
         if (isset($_POST["btnDangNhap"])) {
             $userName = $_POST['txtDangNhapUsername'];
-            $pass = $_POST['txtDangNhapPass'];
+            $pass = md5($_POST['txtDangNhapPass']);
             $kq = mysqli_num_rows($taikhoan->KiemTraDangNhap($userName, $pass));
             if (isset($kq)) {
                 if ($kq == 1) {

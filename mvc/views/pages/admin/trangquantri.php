@@ -141,16 +141,24 @@
     </div>
     <!-- END MAIN CONTENT -->
 </div>
+
 <!-- END MAIN -->
 <div class="clearfix"></div>
+<div class="row">
+
+
+
 <footer>
     <div class="container-fluid">
-        <p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
+        <p class="copyright">&copy; 2020 <a href="" target="_blank">
+        <div id="baocaoKhachHang_SoLuong" class=""></div>
+        Tô Lê Hoài</a>. Mạng  máy tính và truyền thông dữ liệu K44 - CTU.</p>
     </div>
 </footer>
 </div>
 <!-- END WRAPPER -->
 <!-- Javascript -->
+
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/jquery/jquery.min.js"></script>
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -158,6 +166,7 @@
 </script>
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/vendor/chartist/js/chartist.min.js"></script>
 <script src="<?php echo URL;?>mvc/views/pages/admin/assets/scripts/klorofil-common.js"></script>
+<script src="<?php echo URL;?>/public/Chart.js/dist/Chart.min.js"></script>
 
 </body>
 

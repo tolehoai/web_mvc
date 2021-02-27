@@ -20,5 +20,9 @@ class TaiKhoanModel extends DB {
         $qr = "SELECT khachhang.MSKH FROM khachhang WHERE khachhang.USERNAME='$username'";
         return mysqli_query($this->con, $qr);
     }
+    public function CountMember() {
+        $qr = "SELECT COUNT(USERNAME) as 'Number_Of_Member' FROM khachhang";
+        return mysqli_query($this->con, $qr);
+    }
 }
 ?>

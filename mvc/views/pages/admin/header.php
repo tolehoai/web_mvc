@@ -34,7 +34,8 @@
 
     <script src="<?php echo URL;?>mvc/views/pages/assets/js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="public/simple.money.format.js"></script>
+
+
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- ICONS -->
@@ -43,73 +44,10 @@
     <!--JQUERY-->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Thư viện Jquery validation -->
-    <script src="/web_mvc/public/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="/web_mvc/public/jquery-validation/dist/localization/messages_vi.js"></script>
+    <script src="<?php echo URL;?>public/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="<?php echo URL;?>public/jquery-validation/dist/localization/messages_vi.js"></script>
 </head>
-<script>
-   
-    $(document).ready(function() {
-        $("#frmSuaSanPham").validate({
-        rules: {
-            lsp_ten: {
-            required: true,
-            minlength: 3,
-            maxlength: 50
-            },
-            lsp_mota: {
-            required: true,
-            minlength: 3,
-            maxlength: 255
-            }
-        },
-        messages: {
-            lsp_ten: {
-            required: "Vui lòng nhập tên Loại sản phẩm",
-            minlength: "Tên Loại sản phẩm phải có ít nhất 3 ký tự",
-            maxlength: "Tên Loại sản phẩm không được vượt quá 50 ký tự"
-            },
-            lsp_mota: {
-            required: "Vui lòng nhập mô tả cho Loại sản phẩm",
-            minlength: "Mô tả cho Loại sản phẩm phải có ít nhất 3 ký tự",
-            maxlength: "Mô tả cho Loại sản phẩm không được vượt quá 255 ký tự"
-            },
-        },
-        errorElement: "em",
-        errorPlacement: function(error, element) {
-            // Thêm class `invalid-feedback` cho field đang có lỗi
-            error.addClass("invalid-feedback");
-            if (element.prop("type") === "checkbox") {
-            error.insertAfter(element.parent("label"));
-            } else {
-            error.insertAfter(element);
-            }
-        },
-        success: function(label, element) {},
-        highlight: function(element, errorClass, validClass) {
-            $(element).addClass("is-invalid").removeClass("is-valid");
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).addClass("is-valid").removeClass("is-invalid");
-        }
-        });
-    });
-   
-    $(document).on("click", '.xoaDonHang', function(event) {
-        //  console.log("click");
-        var masanpham_get = parseInt($(this).attr('masanpham'));
-        var magiohang_get = parseInt($(this).attr('magiohang'));
 
-        console.log(masanpham_get);
-        console.log(magiohang_get);
-        $.post("/web_mvc/Ajax/XuLyXoaDonHang", {
-            masanpham: masanpham_get,
-            magiohang: magiohang_get
-        }, function(data) {
-            $(".ajax").html(data);
-            // alert(data);
-        })
-    });
-</script>
 <style>
     body {
         overflow-x: hidden;

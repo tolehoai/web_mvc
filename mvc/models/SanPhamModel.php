@@ -38,6 +38,7 @@ class SanPhamModel extends DB {
     public function GetSanPhamTheoLoai_CoSoTrang($loai,$offset,$sosanpham_hienthi) {
         $qr = "SELECT * from hang_hoa JOIN nhomhanghoa JOIN thuong_hieu
         WHERE hang_hoa.MANHOM = nhomhanghoa.MANHOM AND hang_hoa.MATHUONGHIEU=thuong_hieu.ma_thuong_hieu AND nhomhanghoa_slug='$loai'
+        ORDER BY hang_hoa.MSHS DESC
         LIMIT $offset,$sosanpham_hienthi";
         return mysqli_query($this->con, $qr);
     }
@@ -137,7 +138,7 @@ class SanPhamModel extends DB {
     public function GetSanPhamMoi() {
         $qr = "SELECT * FROM hang_hoa JOIN nhomhanghoa
         WHERE hang_hoa.MANHOM=nhomhanghoa.MANHOM
-        ORDER BY hang_hoa.MSHS ASC
+        ORDER BY hang_hoa.MSHS DESC
                 LIMIT 5";
         return mysqli_query($this->con, $qr);
     }
