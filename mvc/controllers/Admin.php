@@ -191,7 +191,7 @@ class Admin extends Controller {
                 }
             }
            
-            echo '<script>window.location = "/web_mvc/Admin/SanPham/TatCa" </script>';
+            echo '<script>window.location = "/web_mvc/Admin/SanPham/TatCa/1" </script>';
         } else {
             echo "Chua";
         }

@@ -1,10 +1,16 @@
 <script type="text/javascript">
 
+
     $(document).ready(function () {
       $(".sub1").on("click", function () {
         // var el =$(this).siblings().hide(500);
         $(this).siblings().toggle(300);
       });
+
+
+	  //validation
+
+	  
      
     });
 	

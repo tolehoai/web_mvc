@@ -44,8 +44,9 @@
     <!--JQUERY-->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Thư viện Jquery validation -->
-    <script src="<?php echo URL;?>public/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="<?php echo URL;?>public/jquery-validation/dist/localization/messages_vi.js"></script>
+    <!-- <script src="<?php echo URL;?>public/jquery-validation/dist/jquery.validate.min.js"></script> -->
+    <!-- <script src="<?php echo URL;?>public/jquery-validation/dist/localization/messages_vi.js"></script> -->
+    <script scr="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
 </head>
 
 <style>
